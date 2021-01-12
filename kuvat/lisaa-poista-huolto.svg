@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="483.81099"
+     inkscape:cx="332.28811"
      inkscape:cy="581.90445"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,78 +56,78 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       y="656.20819"
-       x="97.425201"
-       height="119.53011"
-       width="537.88702"
+       y="599.43732"
+       x="209.58026"
+       height="78.491379"
+       width="353.21222"
        id="rect5198"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96495879" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.63365579" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22.8686142px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="551.18103"
-       y="717.70251"
+       style="font-style:normal;font-weight:normal;font-size:15.01704502px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="507.54636"
+       y="639.81854"
        id="text5200"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="551.18103"
-         y="717.70251"
+         x="507.54636"
+         y="639.81854"
          id="tspan5202"
          style="text-align:end;text-anchor:end">Haluatko varmasti poistaa huollon?</tspan></text>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.80536151"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.18551981"
        id="rect5204"
-       width="537.17938"
-       height="43.555901"
-       x="97.845398"
-       y="612.38867" />
+       width="352.74753"
+       height="28.601686"
+       x="209.8562"
+       y="570.66248" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="109.19134"
-       y="646.54718"
+       style="font-style:normal;font-weight:normal;font-size:24.26906586px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="217.30667"
+       y="593.0932"
        id="text5206"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5208"
-         x="109.19134"
-         y="646.54718">Poista huolto?</tspan></text>
+         x="217.30667"
+         y="593.0932">Poista huolto?</tspan></text>
     <rect
-       y="775.92273"
-       x="97.832367"
-       height="43.555901"
-       width="537.17938"
+       y="678.04974"
+       x="209.84763"
+       height="28.601686"
+       width="352.74753"
        id="rect5210"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.80536151" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.18551981" />
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.322981"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.86875689"
        id="rect5212"
-       width="285.30856"
-       height="44.038284"
-       x="97.591187"
-       y="775.68152" />
+       width="187.35248"
+       height="28.918451"
+       x="209.68927"
+       y="677.89136" />
     <text
        sodipodi:linespacing="125%"
        id="text5214"
-       y="810.45776"
-       x="197.12692"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="700.72778"
+       x="275.05099"
+       style="font-style:normal;font-weight:normal;font-size:24.26906586px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="810.45776"
-         x="197.12692"
+         y="700.72778"
+         x="275.05099"
          id="tspan5216"
          sodipodi:role="line">Kyllä</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="499.11963"
-       y="811.85498"
+       style="font-style:normal;font-weight:normal;font-size:24.26906586px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="473.35941"
+       y="701.64526"
        id="text5218"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5220"
-         x="499.11963"
-         y="811.85498">Ei</tspan></text>
+         x="473.35941"
+         y="701.64526">Ei</tspan></text>
     <rect
        y="235.58131"
        x="93.169655"
