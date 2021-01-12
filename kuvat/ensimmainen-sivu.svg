@@ -482,19 +482,45 @@
        y="419.65756" />
     <g
        id="g4863"
-       transform="translate(-189.63298,28.072245)">
+       transform="translate(-90.347267,30.215102)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:85.16919708px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="1360.5323"
-         y="361.87943"
+         x="141.50925"
+         y="359.21786"
+         id="text4887"
+         sodipodi:linespacing="125%"
+         transform="scale(0.85475352,1.1699279)"><tspan
+           sodipodi:role="line"
+           id="tspan4889"
+           x="141.50925"
+           y="359.21786"
+           style="font-size:18.92648697px">Tiedosto</tspan></text>
+      <text
+         transform="scale(0.85475352,1.1699279)"
+         sodipodi:linespacing="125%"
+         id="text4898"
+         y="359.21786"
+         x="268.53"
+         style="font-style:normal;font-weight:normal;font-size:85.16919708px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:18.92648697px"
+           y="359.21786"
+           x="268.53"
+           id="tspan4900"
+           sodipodi:role="line">Muokkaa</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:85.16919708px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="424.59003"
+         y="359.43729"
          id="text4906"
          sodipodi:linespacing="125%"
          transform="scale(0.85475352,1.1699279)"><tspan
            sodipodi:role="line"
            id="tspan4908"
-           x="1360.5323"
-           y="361.87943"
+           x="424.59003"
+           y="359.43729"
            style="font-size:18.92648697px">Apua</tspan></text>
     </g>
   </g>
