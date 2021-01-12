@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="237.49853"
-     inkscape:cy="446.74197"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="528.39828"
+     inkscape:cy="315.63517"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -109,26 +109,26 @@
        x="392.80334"
        y="533.737" />
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.95088363"
        id="rect4758"
-       width="137.14285"
-       height="42.857143"
-       x="48.57143"
-       y="968.19897" />
+       width="137.19197"
+       height="40.763401"
+       x="48.546871"
+       y="961.10339" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.39356804px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="62.814518"
-       y="997.06543"
+       x="67.013199"
+       y="986.10101"
        id="text4760"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4762"
-         x="62.814518"
-         y="997.06543">Lisää pyörä</tspan></text>
+         x="67.013199"
+         y="986.10101">Lisää pyörä</tspan></text>
     <g
        id="g4773"
-       transform="translate(3.4488793,-0.86276627)">
+       transform="translate(632.02031,-9.4341948)">
       <g
          id="g4770">
         <rect
@@ -142,18 +142,18 @@
       <text
          sodipodi:linespacing="125%"
          id="text4766"
-         y="1002.2177"
-         x="217.91957"
-         style="font-style:normal;font-weight:normal;font-size:32.64217758px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         y="998.35358"
+         x="241.40149"
+         style="font-style:normal;font-weight:normal;font-size:21.11998749px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           y="1002.2177"
-           x="217.91957"
+           y="998.35358"
+           x="241.40149"
            id="tspan4768"
            sodipodi:role="line">Tallenna</tspan></text>
     </g>
     <g
        id="g4232"
-       transform="translate(190,1.2797927e-6)">
+       transform="matrix(0.68678208,0,0,0.95062994,254.99603,40.524231)">
       <rect
          y="968.03363"
          x="207.10005"
@@ -164,14 +164,15 @@
       <text
          sodipodi:linespacing="125%"
          id="text4781"
-         y="1002.3286"
-         x="357.20328"
-         style="font-style:normal;font-weight:normal;font-size:36.17869568px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           y="1002.3286"
-           x="357.20328"
+         y="1205.6738"
+         x="342.09238"
+         style="font-style:normal;font-weight:normal;font-size:29.47411728px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"
+         transform="scale(1.2100724,0.82639683)"><tspan
+           y="1205.6738"
+           x="342.09238"
            id="tspan4783"
-           sodipodi:role="line">Avaa  huoltokirja</tspan></text>
+           sodipodi:role="line">huoltokirja</tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -453,5 +454,30 @@
          x="730.29785"
          id="tspan4204-1"
          sodipodi:role="line">HD65FFHH3</tspan></text>
+    <g
+       transform="translate(5.6322988,-9.0157759)"
+       id="g4202">
+      <g
+         id="g4204">
+        <rect
+           y="970.03473"
+           x="193.44421"
+           height="40.911179"
+           width="180.81731"
+           id="rect4206"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:19.07556152px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="224.83319"
+         y="995.55261"
+         id="text4208"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4210"
+           x="224.83319"
+           y="995.55261">Poista pyörä</tspan></text>
+    </g>
   </g>
 </svg>
