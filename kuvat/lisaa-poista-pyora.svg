@@ -15,7 +15,10 @@
    id="svg4357"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="lisaa-poista-pyora.svg">
+   sodipodi:docname="lisaa-poista-pyora.svg"
+   inkscape:export-filename="D:\kurssit\ohj2\ht\kuvat\lisaa-poista-pyora.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4359" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="282.07203"
-     inkscape:cy="541.33406"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="533.77668"
+     inkscape:cy="736.67718"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -54,7 +57,7 @@
      id="layer1">
     <g
        id="g4207"
-       transform="matrix(0.85154793,0,0,0.85154793,-231.88849,-400.26599)">
+       transform="matrix(0.4641492,0,0,0.4641492,-97.331125,-32.119963)">
       <g
          transform="translate(-6.775201,55.672233)"
          id="g4929" />
@@ -230,59 +233,59 @@
       </g>
     </g>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.76234722"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96059424"
        id="rect5004"
-       width="524.38062"
-       height="42.518147"
-       x="100.39242"
-       y="45.692238" />
+       width="285.82166"
+       height="23.175165"
+       x="83.783653"
+       y="210.95638" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:36.07744217px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="111.46803"
-       y="79.036896"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="89.820595"
+       y="229.13139"
        id="text5006"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5008"
-         x="111.46803"
-         y="79.036896">Lisää uusi pyörä</tspan></text>
+         x="89.820595"
+         y="229.13139">Lisää uusi pyörä</tspan></text>
     <rect
-       y="430.19864"
-       x="100.29253"
-       height="42.518147"
-       width="524.38062"
+       y="420.53748"
+       x="83.729202"
+       height="23.175165"
+       width="285.82166"
        id="rect5010"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.76234722" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96059424" />
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.2914598"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.7039299"
        id="rect5012"
-       width="278.51086"
-       height="42.989033"
-       x="100.05709"
-       y="429.9632" />
+       width="151.80659"
+       height="23.431829"
+       x="83.600868"
+       y="420.40912" />
     <text
        sodipodi:linespacing="125%"
        id="text5014"
-       y="465.88297"
-       x="160.73616"
-       style="font-style:normal;font-weight:normal;font-size:36.07744217px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="439.98773"
+       x="116.67493"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="465.88297"
-         x="160.73616"
+         y="439.98773"
+         x="116.67493"
          id="tspan5016"
          sodipodi:role="line">Tallenna</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:36.07744217px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="433.83975"
-       y="465.27469"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="265.53421"
+       y="439.65619"
        id="text5018"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5020"
-         x="433.83975"
-         y="465.27469">Peruuta</tspan></text>
+         x="265.53421"
+         y="439.65619">Peruuta</tspan></text>
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96495879"
        id="rect5074"
@@ -356,5 +359,236 @@
          x="508.3432"
          id="tspan5142"
          sodipodi:role="line">Ei</tspan></text>
+    <g
+       transform="matrix(0.4641492,0,0,0.4641492,197.63341,-31.10981)"
+       id="g5948">
+      <g
+         id="g5950"
+         transform="translate(-6.775201,55.672233)" />
+      <g
+         transform="translate(0,3.0304576)"
+         id="g5952">
+        <rect
+           transform="translate(-5.7142861,38.571428)"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.8924067"
+           id="rect5954"
+           width="615.8219"
+           height="401.53616"
+           x="395.8338"
+           y="532.72687" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:34.92146683px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="682.27271"
+           y="707.03687"
+           id="text5956"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="682.27271"
+             y="707.03687"
+             id="tspan5958"
+             style="text-align:end;text-anchor:end">Merkki</tspan></text>
+        <rect
+           y="679.7345"
+           x="719.98901"
+           height="33.734879"
+           width="238.73488"
+           id="rect5960"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.83654928" />
+        <text
+           transform="translate(-6.775201,55.672228)"
+           sodipodi:linespacing="125%"
+           id="text5962"
+           y="717.49994"
+           x="687.68127"
+           style="font-style:normal;font-weight:normal;font-size:35.67254257px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="text-align:end;text-anchor:end"
+             id="tspan5964"
+             y="717.49994"
+             x="687.68127"
+             sodipodi:role="line">Malli</tspan></text>
+        <text
+           transform="translate(-6.775201,55.672228)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:36.44079971px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="687.74469"
+           y="790.07684"
+           id="text5966"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="687.74469"
+             y="790.07684"
+             id="tspan5968"
+             style="text-align:end;text-anchor:end">Vuosimalli</tspan></text>
+        <text
+           transform="translate(-6.775201,55.672228)"
+           sodipodi:linespacing="125%"
+           id="text5970"
+           y="862.07007"
+           x="686.64148"
+           style="font-style:normal;font-weight:normal;font-size:36.44079971px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="text-align:end;text-anchor:end"
+             id="tspan5972"
+             y="862.07007"
+             x="686.64148"
+             sodipodi:role="line">Runkonumero</tspan></text>
+        <rect
+           transform="translate(-6.775201,55.672228)"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.83654928"
+           id="rect5974"
+           width="238.73488"
+           height="33.734879"
+           x="727.01678"
+           y="691.31543" />
+        <rect
+           transform="translate(-6.775201,55.672228)"
+           y="763.30865"
+           x="727.01678"
+           height="33.734879"
+           width="238.73488"
+           id="rect5976"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.83654928" />
+        <rect
+           transform="translate(-6.775201,55.672228)"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.83654928"
+           id="rect5978"
+           width="238.73488"
+           height="33.734879"
+           x="727.01678"
+           y="835.30188" />
+        <text
+           transform="translate(-6.775201,55.672228)"
+           sodipodi:linespacing="125%"
+           id="text5980"
+           y="594.7052"
+           x="687.20465"
+           style="font-style:normal;font-weight:normal;font-size:34.92146683px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="text-align:end;text-anchor:end"
+             id="tspan5982"
+             y="594.7052"
+             x="687.20465"
+             sodipodi:role="line">Nimi</tspan></text>
+        <rect
+           transform="translate(-6.775201,55.672228)"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.83654928"
+           id="rect5984"
+           width="238.73488"
+           height="33.734879"
+           x="724.15967"
+           y="565.75085" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text5986"
+           y="704.8692"
+           x="730.83124"
+           style="font-style:normal;font-weight:normal;font-size:29.05714035px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             y="704.8692"
+             x="730.83124"
+             id="tspan5988"
+             sodipodi:role="line">Fuji</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:29.05714035px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="730.57867"
+           y="772.80194"
+           id="text5990"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5992"
+             x="730.57867"
+             y="772.80194">Rakan 1.3</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:29.05714035px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="730.97626"
+           y="845.60663"
+           id="text5994"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5996"
+             x="730.97626"
+             y="845.60663">2019</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:29.05714035px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="727.44073"
+           y="917.32745"
+           id="text5998"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan6000"
+             x="727.44073"
+             y="917.32745">HD65FFHH3</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:29.05714035px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="728.52252"
+           y="645.78528"
+           id="text6002"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan6004"
+             x="728.52252"
+             y="645.78528">Fuji Rakan</tspan></text>
+      </g>
+    </g>
+    <rect
+       y="211.96652"
+       x="378.7482"
+       height="23.175165"
+       width="285.82166"
+       id="rect6006"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96059424" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text6008"
+       y="230.14154"
+       x="384.78513"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="230.14154"
+         x="384.78513"
+         id="tspan6010"
+         sodipodi:role="line">Muokkaa pyörän tietoja</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96059424"
+       id="rect6012"
+       width="285.82166"
+       height="23.175165"
+       x="378.69376"
+       y="421.54764" />
+    <rect
+       y="421.41928"
+       x="378.5654"
+       height="23.431829"
+       width="151.80659"
+       id="rect6014"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.7039299" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="411.63947"
+       y="440.99789"
+       id="text6016"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6018"
+         x="411.63947"
+         y="440.99789">Tallenna</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6020"
+       y="440.66635"
+       x="560.49878"
+       style="font-style:normal;font-weight:normal;font-size:19.66456032px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="440.66635"
+         x="560.49878"
+         id="tspan6022"
+         sodipodi:role="line">Peruuta</tspan></text>
   </g>
 </svg>
