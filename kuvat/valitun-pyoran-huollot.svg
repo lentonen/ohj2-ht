@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="valitun_pyoran_huollot.svg"
+   sodipodi:docname="valitun-pyoran-huollot.svg"
    inkscape:export-filename="D:\kurssit\ohj2\ht\kuvat\valitun_pyoran_huollot.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -28,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="840.49829"
-     inkscape:cy="529.35403"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="644.66088"
+     inkscape:cy="303.41501"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4210"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -479,6 +479,37 @@
            id="rect4958"
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="ccccc" />
+      </g>
+    </g>
+    <g
+       transform="translate(-267.37353,-20.029736)"
+       id="g4206">
+      <g
+         id="g4210">
+        <g
+           id="g4217"
+           transform="translate(-190.91883,-3.0304576)">
+          <rect
+             y="937.31488"
+             x="782.38843"
+             height="54.724693"
+             width="182.78375"
+             id="rect4208"
+             style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.81486601"
+             transform="translate(0,-4e-6)" />
+          <text
+             transform="scale(0.85427837,1.1705786)"
+             sodipodi:linespacing="125%"
+             id="text4212"
+             y="834.34613"
+             x="930.93774"
+             style="font-style:normal;font-weight:normal;font-size:25.08877945px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               y="834.34613"
+               x="930.93774"
+               id="tspan4214"
+               sodipodi:role="line">Poista huolto</tspan></text>
+        </g>
       </g>
     </g>
   </g>
