@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="533.77668"
-     inkscape:cy="736.67718"
+     inkscape:cx="382.2538"
+     inkscape:cy="534.64667"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -287,76 +287,76 @@
          x="265.53421"
          y="439.65619">Peruuta</tspan></text>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96495879"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.60099208"
        id="rect5074"
-       width="537.88702"
-       height="119.53011"
-       x="106.64881"
-       y="548.96619" />
+       width="335.00482"
+       height="74.445305"
+       x="207.47717"
+       y="528.05707" />
     <text
        sodipodi:linespacing="125%"
        id="text5090"
-       y="610.46051"
-       x="560.40466"
-       style="font-style:normal;font-weight:normal;font-size:22.8686142px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="566.35675"
+       x="490.08371"
+       style="font-style:normal;font-weight:normal;font-size:14.24294662px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="text-align:end;text-anchor:end"
          id="tspan5092"
-         y="610.46051"
-         x="560.40466"
+         y="566.35675"
+         x="490.08371"
          sodipodi:role="line">Haluatko varmasti poistaa pyörän</tspan></text>
     <rect
-       y="505.14667"
-       x="107.06901"
-       height="43.555901"
-       width="537.17938"
+       y="500.76556"
+       x="207.73888"
+       height="27.127327"
+       width="334.56412"
        id="rect5126"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.80536151" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.1244086" />
     <text
        sodipodi:linespacing="125%"
        id="text5128"
-       y="539.30518"
-       x="118.41495"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="522.0401"
+       x="214.8053"
+       style="font-style:normal;font-weight:normal;font-size:23.01804352px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="539.30518"
-         x="118.41495"
+         y="522.0401"
+         x="214.8053"
          id="tspan5130"
          sodipodi:role="line">Poista pyörä?</tspan></text>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.80536151"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.1244086"
        id="rect5132"
-       width="537.17938"
-       height="43.555901"
-       x="107.05598"
-       y="668.68073" />
+       width="334.56412"
+       height="27.127327"
+       x="207.73076"
+       y="602.61725" />
     <rect
-       y="668.43951"
-       x="106.81479"
-       height="44.038284"
-       width="285.30856"
+       y="602.46704"
+       x="207.58055"
+       height="27.427763"
+       width="177.69484"
        id="rect5134"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.322981" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.82397419" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="205.05812"
-       y="700.78088"
+       style="font-style:normal;font-weight:normal;font-size:23.01804352px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="268.7681"
+       y="622.6098"
        id="text5136"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5138"
-         x="205.05812"
-         y="700.78088">Kyllä</tspan></text>
+         x="268.7681"
+         y="622.6098">Kyllä</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5140"
-       y="704.48914"
-       x="508.3432"
-       style="font-style:normal;font-weight:normal;font-size:36.95799637px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="624.91937"
+       x="457.659"
+       style="font-style:normal;font-weight:normal;font-size:23.01804352px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="704.48914"
-         x="508.3432"
+         y="624.91937"
+         x="457.659"
          id="tspan5142"
          sodipodi:role="line">Ei</tspan></text>
     <g
