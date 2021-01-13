@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="332.28811"
+     inkscape:cx="180.76523"
      inkscape:cy="581.90445"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -136,7 +136,7 @@
        id="rect4737"
        style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.24507451" />
     <rect
-       y="325.93082"
+       y="293.60596"
        x="216.63123"
        height="25.301249"
        width="124.18347"
@@ -146,55 +146,35 @@
        transform="scale(0.81372137,1.2289219)"
        sodipodi:linespacing="125%"
        id="text4745"
-       y="277.94653"
+       y="251.6431"
        x="186.85933"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:11.87696075px"
-         y="277.94653"
+         y="251.6431"
          x="186.85933"
          id="tspan4747"
          sodipodi:role="line">Ajotunnit</tspan></text>
     <rect
-       y="360.48471"
-       x="217.95337"
-       height="122.00787"
-       width="122.79288"
+       y="328.21048"
+       x="218.00401"
+       height="148.17056"
+       width="122.6916"
        id="rect4743-4-9"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.99725515" />
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.09853566" />
     <text
        transform="scale(0.81372137,1.2289219)"
        sodipodi:linespacing="125%"
        id="text4745-5-6"
-       y="301.93164"
+       y="275.62817"
        x="127.21935"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:11.87696075px"
-         y="301.93164"
+         y="275.62817"
          x="127.21935"
          sodipodi:role="line"
          id="tspan4782-6">Huoltotoimenpiteet</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="164.45082"
-       y="251.86581"
-       id="text4830"
-       sodipodi:linespacing="125%"
-       transform="scale(0.81372137,1.2289219)"><tspan
-         sodipodi:role="line"
-         id="tspan4832"
-         x="164.45082"
-         y="251.86581"
-         style="font-size:11.87696075px">Huoltopaikka</tspan></text>
-    <rect
-       y="293.99332"
-       x="216.60168"
-       height="25.301479"
-       width="124.06224"
-       id="rect4838"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.45647663" />
     <text
        transform="scale(0.81372137,1.2289219)"
        sodipodi:linespacing="125%"
@@ -219,23 +199,23 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="274.79727"
-       y="307.85599"
+       y="281.55252"
        id="text5277"
        sodipodi:linespacing="125%"
        transform="scale(0.81372137,1.2289219)"><tspan
          id="tspan5279"
          sodipodi:role="line"
          x="274.79727"
-         y="307.85599"
+         y="281.55252"
          style="font-size:11.87696075px">Puhdistus, </tspan><tspan
          sodipodi:role="line"
          x="274.79727"
-         y="322.70221"
+         y="296.39871"
          style="font-size:11.87696075px"
          id="tspan5281">O-renkaiden vaihto </tspan><tspan
          sodipodi:role="line"
          x="274.79727"
-         y="337.5484"
+         y="311.24493"
          style="font-size:11.87696075px"
          id="tspan5287">(servicekit123)</tspan></text>
     <text
@@ -251,26 +231,14 @@
          id="tspan5261"
          sodipodi:role="line">Takaiskarin huolto</tspan></text>
     <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:11.95655346px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="239.22714"
-       y="293.3389"
-       id="text5263"
-       sodipodi:linespacing="125%"
-       transform="scale(0.93881446,1.0651732)"><tspan
-         sodipodi:role="line"
-         id="tspan5265"
-         x="239.22714"
-         y="293.3389">Itse</tspan></text>
-    <text
        transform="scale(0.93881446,1.0651732)"
        sodipodi:linespacing="125%"
        id="text5267"
-       y="321.30203"
+       y="290.95496"
        x="239.57239"
        style="font-style:normal;font-weight:normal;font-size:11.95655346px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="321.30203"
+         y="290.95496"
          x="239.57239"
          id="tspan5269"
          sodipodi:role="line">100</tspan></text>
@@ -341,60 +309,40 @@
        width="124.18347"
        height="25.301249"
        x="523.18231"
-       y="326.10413" />
+       y="292.7691" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="563.58673"
-       y="278.08755"
+       y="250.96213"
        id="text6028"
        sodipodi:linespacing="125%"
        transform="scale(0.81372137,1.2289219)"><tspan
          sodipodi:role="line"
          id="tspan6030"
          x="563.58673"
-         y="278.08755"
+         y="250.96213"
          style="font-size:11.87696075px">Ajotunnit</tspan></text>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.99725515"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.09853566"
        id="rect6032"
-       width="122.79288"
-       height="122.00787"
-       x="524.50446"
-       y="360.65802" />
+       width="122.6916"
+       height="148.17056"
+       x="524.55511"
+       y="327.37363" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="503.94675"
-       y="302.07266"
+       y="274.94724"
        id="text6034"
        sodipodi:linespacing="125%"
        transform="scale(0.81372137,1.2289219)"><tspan
          id="tspan6036"
          sodipodi:role="line"
          x="503.94675"
-         y="302.07266"
+         y="274.94724"
          style="font-size:11.87696075px">Huoltotoimenpiteet</tspan></text>
-    <text
-       transform="scale(0.81372137,1.2289219)"
-       sodipodi:linespacing="125%"
-       id="text6038"
-       y="252.00684"
-       x="541.17822"
-       style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-size:11.87696075px"
-         y="252.00684"
-         x="541.17822"
-         id="tspan6040"
-         sodipodi:role="line">Huoltopaikka</tspan></text>
-    <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.45647663"
-       id="rect6042"
-       width="124.06224"
-       height="25.301479"
-       x="523.15277"
-       y="294.16663" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -419,23 +367,23 @@
        transform="scale(0.81372137,1.2289219)"
        sodipodi:linespacing="125%"
        id="text6050"
-       y="307.99701"
+       y="280.87158"
        x="651.52466"
        style="font-style:normal;font-weight:normal;font-size:53.44632721px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:11.87696075px"
-         y="307.99701"
+         y="280.87158"
          x="651.52466"
          sodipodi:role="line"
          id="tspan6052">Puhdistus, </tspan><tspan
          id="tspan6054"
          style="font-size:11.87696075px"
-         y="322.8432"
+         y="295.71777"
          x="651.52466"
          sodipodi:role="line">O-renkaiden vaihto </tspan><tspan
          id="tspan6056"
          style="font-size:11.87696075px"
-         y="337.68942"
+         y="310.564"
          x="651.52466"
          sodipodi:role="line">(servicekit123)</tspan></text>
     <text
@@ -451,29 +399,17 @@
          x="562.65015"
          y="258.97925">Takaiskarin huolto</tspan></text>
     <text
-       transform="scale(0.93881446,1.0651732)"
-       sodipodi:linespacing="125%"
-       id="text6062"
-       y="293.50162"
-       x="565.7572"
-       style="font-style:normal;font-weight:normal;font-size:11.95655346px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         y="293.50162"
-         x="565.7572"
-         id="tspan6064"
-         sodipodi:role="line">Itse</tspan></text>
-    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:11.95655346px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="566.10242"
-       y="321.46475"
+       y="290.16934"
        id="text6066"
        sodipodi:linespacing="125%"
        transform="scale(0.93881446,1.0651732)"><tspan
          sodipodi:role="line"
          id="tspan6068"
          x="566.10242"
-         y="321.46475">100</tspan></text>
+         y="290.16934">100</tspan></text>
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.11034024"
        id="rect6070"
