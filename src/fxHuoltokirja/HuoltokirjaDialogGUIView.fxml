@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxHuoltokirja.HuoltokirjaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <left>
       <BorderPane BorderPane.alignment="CENTER">
          <left>
@@ -84,8 +84,8 @@
    <bottom>
       <ButtonBar BorderPane.alignment="CENTER">
          <buttons>
-            <Button mnemonicParsing="false" text="OK" />
-            <Button mnemonicParsing="false" text="Peruuta" textAlignment="CENTER" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleDefaultOK" text="OK" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" textAlignment="CENTER" />
          </buttons>
          <BorderPane.margin>
             <Insets bottom="10.0" right="30.0" top="10.0" />

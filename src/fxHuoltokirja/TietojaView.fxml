@@ -22,9 +22,17 @@
    <center>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="HUOLTOKIRJA 1.0">
+            <Label text="HUOLTOKIRJA ">
                <font>
                   <Font size="32.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="Version 1.0">
+               <font>
+                  <Font size="17.0" />
                </font>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
