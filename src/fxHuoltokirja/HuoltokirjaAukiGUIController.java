@@ -14,28 +14,23 @@ import javafx.fxml.FXML;
  * @version Jan 15, 2021
  *
  */
-public class HuoltokirjaGUIController {
+public class HuoltokirjaAukiGUIController {
    
-    @FXML void handleUusiPyora() {
-        uusiPyora();
+    @FXML void handleUusiHuolto() {
+        uusiHuolto();
     }
     
     
-    @FXML void handlePoistaPyora() {
-        poistaPyora();
-    }
-    
-    
-    @FXML
-    void handleMuokkaaPyoraa() {
-        muokkaaPyoraa();
+    @FXML void handlePoistaHuolto() {
+        poistaHuolto();
     }
     
     
     @FXML
-    void handleAvaaHuoltokirja() {
-        avaaHuoltokirja();
+    void handleMuokkaaHuoltoa() {
+        muokkaaHuoltoa();
     }
+
     
     
     @FXML
@@ -65,33 +60,27 @@ public class HuoltokirjaGUIController {
 
     //=============================================================================================
     
-    private void uusiPyora() {
-       Dialogs.showMessageDialog("Lisätään uusi pyörä. Ei osata lisätä vielä!");
+    private void uusiHuolto() {
+       Dialogs.showMessageDialog("Lisätään uusi huolto. Ei osata lisätä vielä!");
     }
     
     
-    private void poistaPyora() {
+    private void poistaHuolto() {
         Dialogs.showQuestionDialog("Poisto?",
-                "Poistetaanko pyörä: Fuji Rakan", "Kyllä", "Ei");
-    }
-    
-    
-    private void avaaHuoltokirja() {
-        ModalController.showModal(HuoltokirjaGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
-                "Huoltokirja", null, "");
+                "Poistetaanko huolto: Takaiskarin huolto", "Kyllä", "Ei");
     }
     
     
     private void tulosta() {
-        ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
+        ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TulostusView.fxml"),
                 "Tulosta", null, "");
         
     }
     
     
-    private void muokkaaPyoraa() {
-        ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
-                "Pyörän tiedot", null, "");
+    private void muokkaaHuoltoa() {
+        ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaAukiDialogGUIView.fxml"),
+                "Huollon tiedot", null, "");
         
     }
     
@@ -110,7 +99,7 @@ public class HuoltokirjaGUIController {
     
     
     private void tietoja() {
-        ModalController.showModal(HuoltokirjaGUIController.class.getResource("TietojaView.fxml"),
+        ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TietojaView.fxml"),
                 "Tietoja", null, "");
         
     }
