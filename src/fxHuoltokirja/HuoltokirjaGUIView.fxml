@@ -47,7 +47,7 @@
    <bottom>
       <HBox prefWidth="443.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleUusiPyora" text="Uusi pyörä" />
+            <Button fx:id="uusiPyora" mnemonicParsing="false" onAction="#handleUusiPyora" text="Uusi pyörä" />
             <Button mnemonicParsing="false" onAction="#handlePoistaPyora" text="Poista pyörä" />
          </children>
          <padding>

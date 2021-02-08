@@ -1,13 +1,12 @@
 package fxHuoltokirja;
 
-import java.awt.TextField;
 
-import fi.jyu.mit.fxgui.Dialogs;
+//import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.stage.Stage;
+
 
 /**
  * @author hemalein

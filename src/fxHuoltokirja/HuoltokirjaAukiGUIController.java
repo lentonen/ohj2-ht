@@ -7,15 +7,43 @@ import java.net.URISyntaxException;
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * @author hemalein
  * @version Jan 15, 2021
  *
  */
-public class HuoltokirjaAukiGUIController {
-   
+public class HuoltokirjaAukiGUIController implements ModalControllerInterface<String> {
+    
+    String kerhonnimi = "jotain";
+    
+    @FXML private Button lisaaHuolto;
+
+    
+    @Override
+    public String getResult() {
+        return "";
+    }
+
+    /**
+     * Mitä tehdään kun dialogi on näytetty
+     */
+    @Override
+    public void handleShown() {
+        //;    
+    }
+
+
+    @Override
+    public void setDefault(String oletus) {
+        //;
+        
+    }
+    
     @FXML void handleUusiHuolto() {
         uusiHuolto();
     }
@@ -106,8 +134,22 @@ public class HuoltokirjaAukiGUIController {
     
     
     private void lopeta() {
-        Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
+        ModalController.closeStage(lisaaHuolto);        
+        //Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
     }
-        
     
+    
+    /**
+      * Luodaan nimenkysymisdialogi ja palautetaan siihen kirjoitettu nimi tai null
+      * @param modalityStage mille ollaan modaalisia, null = sovellukselle
+      * @param oletus mitä nimeä näytetään oletuksena
+      * @return null jos painetaan Cancel, muuten kirjoitettu nimi
+      */
+      public static String avaaHuollot(Stage modalityStage, String oletus) {
+          return ModalController.showModal(
+                  HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
+                  "Huoltokirja",
+                  modalityStage, oletus);
+          }
+
 }
