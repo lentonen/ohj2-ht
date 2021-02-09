@@ -10,7 +10,7 @@ import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+
 
 /**
  * @author hemalein
@@ -26,7 +26,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     
     @Override
     public String getResult() {
-        return "";
+        return null;
     }
 
     /**
@@ -40,8 +40,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
 
     @Override
     public void setDefault(String oletus) {
-        //;
-        
+        //;   
     }
     
     @FXML void handleUusiHuolto() {
@@ -134,10 +133,15 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     
     
     private void lopeta() {
-        ModalController.closeStage(lisaaHuolto);        
+        // Suljetaan huoltokirjadialogi
+        ModalController.closeStage(lisaaHuolto);         
+        
         //Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
     }
     
+    
+    
+    // Versio, jossa huoltokirjan palautus omana aliohjelmana. Ei käytössä tällä hetkellä.
     
     /**
       * Luodaan nimenkysymisdialogi ja palautetaan siihen kirjoitettu nimi tai null
@@ -145,11 +149,14 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
       * @param oletus mitä nimeä näytetään oletuksena
       * @return null jos painetaan Cancel, muuten kirjoitettu nimi
       */
-      public static String avaaHuollot(Stage modalityStage, String oletus) {
+      
+    /*
+    public static String avaaHuollot(Stage modalityStage, String oletus) {
           return ModalController.showModal(
                   HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
                   "Huoltokirja",
                   modalityStage, oletus);
-          }
+          } */
+      
 
 }
