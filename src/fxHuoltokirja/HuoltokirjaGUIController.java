@@ -25,49 +25,36 @@ public class HuoltokirjaGUIController {
     
     @FXML private Button uusiPyora;
    
-    @FXML void handleUusiPyora() {
+    @FXML private void handleUusiPyora() {
         uusiPyora();
     }
-    
-    
-    @FXML void handlePoistaPyora() {
+     
+    @FXML private void handlePoistaPyora() {
         poistaPyora();
     }
-    
-    
-    @FXML
-    void handleMuokkaaPyoraa() {
+
+    @FXML private void handleMuokkaaPyoraa() {
         muokkaaPyoraa();
     }
     
-    
-    @FXML
-    void handleAvaaHuoltokirja() {
+    @FXML private void handleAvaaHuoltokirja() {
         avaaHuoltokirja();
         
     }
     
-    
-    @FXML
-    void handleTulosta() {
+    @FXML private void handleTulosta() {
         tulosta();
     }
-    
-    
-    @FXML
-    void handleApua() {
+
+    @FXML private void handleApua() {
         apua();
     }
     
-    
-    @FXML
-    void handleTietoja() {
+    @FXML private void handleTietoja() {
         tietoja();
     }
     
-    
-    @FXML
-    void handleLopeta() {
+    @FXML private void handleLopeta() {
         lopeta();
     }
 
@@ -75,16 +62,26 @@ public class HuoltokirjaGUIController {
 
     //=============================================================================================
     
+    /**
+     * Lisää uuden pyörän.
+     */
     private void uusiPyora() {
        Dialogs.showMessageDialog("Lisätään uusi pyörä. Ei osata lisätä vielä!");
     }
     
     
+    /**
+     * Poistaa pyörän.
+     */
     private void poistaPyora() {
         Dialogs.showQuestionDialog("Poisto?",
                 "Poistetaanko pyörä: Fuji Rakan", "Kyllä", "Ei");
     }
     
+    
+    /**
+     * Avaa huoltokirjan.
+     */
     private void avaaHuoltokirja() {      
         // Suljetaan pyöränvalintadialogi, EI KÄYTÖSSÄ
         // ModalController.closeStage(uusiPyora);
@@ -95,18 +92,22 @@ public class HuoltokirjaGUIController {
         
         // Versio, jossa huoltokirjan aukaiseminen on kirjoitettu huoltokirjaAukiGUIControlleriin.       
         //HuoltokirjaAukiGUIController.avaaHuollot(null, kerhonnimi);
-        
-        
+
     }
     
     
+    /**
+     * Avaa tulostusikkunan
+     */
     private void tulosta() {
         ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
                 "Tulosta", null, "");
-        
     }
     
     
+    /**
+     * Avaa dialogin, jonka avulla pyörän tietoja muokataan
+     */
     private void muokkaaPyoraa() {
         ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
                 "Pyörän tiedot", null, "");
@@ -114,6 +115,9 @@ public class HuoltokirjaGUIController {
     }
     
     
+    /**
+     * Avaa verkkosivun, josta löytyy apua. Tässä käytössä HT TIM-sivu.
+     */
     private void apua() {
             Desktop desktop = Desktop.getDesktop();
             try {
@@ -127,6 +131,9 @@ public class HuoltokirjaGUIController {
     }
     
     
+    /**
+     * Avaa dialogin, josta näkee ohjelman tiedot
+     */
     private void tietoja() {
         ModalController.showModal(HuoltokirjaGUIController.class.getResource("TietojaView.fxml"),
                 "Tietoja", null, "");
@@ -134,6 +141,9 @@ public class HuoltokirjaGUIController {
     }
     
     
+    /**
+     * Sulkee ohjelman.
+     */
     private void lopeta() {
         Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
     }
