@@ -11,7 +11,7 @@ package huoltokirja;
  *
  */
 public class Pyorat {
-    private static final int MAX_PYORIA     = 2;                        // pyörien maksimimäärä luokassa
+    private static final int MAX_PYORIA     = 5;                        // pyörien maksimimäärä luokassa
     private int              lkm            = 0;                        // mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
     private String           tiedostonNimi  = "";                       // tiedosto johon tiedot on tallennettu
     private Pyora            pyorat[]       = new Pyora[MAX_PYORIA];    // Taulukko jossa viitteet tallennettuihin pyöriin
@@ -41,8 +41,26 @@ public class Pyorat {
     }
     
     
-    //TODO: talleta-metodi, joka tallettaa pyörän tiedostoon.
-    //TODO: luetiedostosta, lukee pyörien tiedot tiedostosta.
+    /**
+     * Tallettaap pyörien tiedot tiedostoon pyorat.dat TODO: tee tiedoston tallettaminen loppuun
+     * @throws ApuException minkälainen virheilmoitus näytetään
+     */
+    public void talleta() throws ApuException {
+        //tiedostonNimi = hakemisto + "pyorat.dat"; TODO: tarviiko tätä jossakin vaiheessa?
+        throw new ApuException("Ei osata tallentaa tiedostoon" +tiedostonNimi);
+    }
+
+    
+    /**
+     * Lukee pyörien tiedot tiedostosta. TODO: tee tiedoston luku loppuun
+     * @param hakemisto kertoo missä tiedosto sijaitsee
+     * @throws ApuException minkälainen virheilmoitus näytetään.
+     */
+    public void lueTiedosto(String hakemisto) throws ApuException {
+        tiedostonNimi = hakemisto + "pyorat.dat";
+        throw new ApuException("Ei osata lukea vielä tiedostoa " +tiedostonNimi);
+    }
+    
     
     /**
      * Palauttaa tallennettujen pyörien lukumäärän

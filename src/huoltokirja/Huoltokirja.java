@@ -40,9 +40,25 @@ public class Huoltokirja {
     }
     
     
-    // TODO: talleta
-    // TODO: Lue tiedostosta
-    // TODO: poistaPyora
+    /**
+     * Tallentaa pyörien tiedot huoltokirjaan
+     * @throws ApuException jos tallentaminen epäonnistuu
+     */
+    public void talleta() throws ApuException {
+        pyorat.talleta();
+    }
+   
+    
+     /**
+     * @param nimi mitä tiedostoa luetaan
+     * @throws ApuException kps lukeminen epäonnistuu
+     */
+    public void lueTiedosto(String nimi) throws ApuException {
+        pyorat.lueTiedosto(nimi);
+    }
+
+
+    //TODO: poista
     
     
     /**

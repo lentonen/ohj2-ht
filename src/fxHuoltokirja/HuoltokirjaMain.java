@@ -1,5 +1,6 @@
 package fxHuoltokirja;
 	
+import huoltokirja.Huoltokirja;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -16,11 +17,19 @@ public class HuoltokirjaMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));
+		    final FXMLLoader ldr = new FXMLLoader(getClass().getResource("HuoltokirjaGUIView.fxml"));             // Lataa fxml resurssin?
+			BorderPane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));     // käytössä oleva pane?
+			final HuoltokirjaGUIController huoltokirjaCtrl = ldr.getController();                                 // Käytössä oleva kontrolleri
+			    
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("huoltokirja.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			Huoltokirja huoltokirja = new Huoltokirja();     // Luodaan uusi huoltokirja
+			huoltokirjaCtrl.setHuoltokirja(huoltokirja);     // Asetetaan luotu huoltokirja käyttöön?
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
