@@ -62,7 +62,7 @@
             <VBox prefHeight="35.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="10.0" layoutY="60.0" text="Suodatin" />
-                  <ComboBoxChooser fx:id="suodatinPyora" prefHeight="25.0" prefWidth="200.0" rivit="Nimi&#10;Merkki&#10;Malli&#10;Vuosimalli&#10;Runkonumero" />
+                  <ComboBoxChooser fx:id="suodatinPyora" onAction="#handleHaku" prefHeight="25.0" prefWidth="200.0" rivit="Nimi&#10;Merkki&#10;Malli&#10;Vuosimalli&#10;Runkonumero" />
                   <TextField fx:id="labelHakuehto" onKeyReleased="#handleHaku" />
                </children>
                <BorderPane.margin>

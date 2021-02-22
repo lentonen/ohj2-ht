@@ -4,7 +4,8 @@ import huoltokirja.Huoltokirja;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+//import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 
@@ -18,7 +19,7 @@ public class HuoltokirjaMain extends Application {
 	public void start(Stage primaryStage) {
 		try {
 		    final FXMLLoader ldr = new FXMLLoader(getClass().getResource("HuoltokirjaGUIView.fxml"));             // Lataa fxml resurssin?
-			BorderPane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));     // käytössä oleva pane?
+			final Pane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));     // käytössä oleva pane?
 			final HuoltokirjaGUIController huoltokirjaCtrl = ldr.getController();                                 // Käytössä oleva kontrolleri
 			    
 			

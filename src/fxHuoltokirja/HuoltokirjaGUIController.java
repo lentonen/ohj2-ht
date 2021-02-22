@@ -136,13 +136,32 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     
     /**
-     * Avaa tulostusikkunan
+     * Avaa tulostusikkunan, johon tuodaan listaan lisätyt pyörät
      */
     private void tulosta() {
-        ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
-                "Tulosta", null, "");
+        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Haetaan tulostuksen kontrolleri
+        TulostaPyorat(tulostusCtrl.getTextArea());
+        
+        //ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
+        //        "Tulosta", null, "");
     }
     
+    
+    /**
+     * Lisää käyttäjän luomat pyörät tulostusalueeseen
+     * @param textArea Tulostusalue johon pyörien tiedot lisätään.
+     */
+    public void TulostaPyorat(TextArea textArea) {
+        try (PrintStream out = TextAreaOutputStream.getTextPrintStream(textArea);) {    // try-with sulkee resurssin automaattisesti
+            out.println("Huoltokirja \n----------------------------------------------\n");
+            for (int i = 0; i<huoltokirja.getPyoria(); i++) {
+                Pyora pyora = huoltokirja.annaPyora(i);
+                pyora.tulosta(out);
+                out.println("----------------------------------------------");
+            }
+        }     
+    }
+
     
     /**
      * Avaa dialogin, jonka avulla pyörän tietoja muokataan

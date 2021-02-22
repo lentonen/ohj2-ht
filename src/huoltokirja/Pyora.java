@@ -21,7 +21,7 @@ public class Pyora {
     private int vuosimalli  = 0 ;
     private String runkoNro = "";
     
-    private static int seuraavaNro = 1;
+    private static int seuraavaNro = 1;  // static = "tämä on olemassa, vaikka olioita ei olisi luotukaan."
     
     
     /**
@@ -43,8 +43,8 @@ public class Pyora {
      * @param os tietovirta johon tiedot tulostetaan
      */
     public void tulosta(OutputStream os) {
-        PrintStream out = new PrintStream(os);
-        out.println("ID: "+tunnusNro + "\n"
+        PrintStream out = new PrintStream(os);    // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
+        out.println("ID: "+tunnusNro + "\n"       // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
                 + "Nimi: "+nimi + "\n" 
                 +"Merkki: "+merkki + "\n" 
                 +"Malli: "+malli + "\n"

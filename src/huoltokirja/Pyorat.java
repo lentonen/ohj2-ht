@@ -14,19 +14,44 @@ public class Pyorat {
     private static final int MAX_PYORIA     = 5;                        // pyörien maksimimäärä luokassa
     private int              lkm            = 0;                        // mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
     private String           tiedostonNimi  = "";                       // tiedosto johon tiedot on tallennettu
-    private Pyora            pyorat[]       = new Pyora[MAX_PYORIA];    // Taulukko jossa viitteet tallennettuihin pyöriin
+    private Pyora[]          pyorat;                                    // Taulukko jossa viitteet tallennettuihin pyöriin
 
    
     /**
-     * Lisää uuden pyörän tietorakenteeseen. TODO: Expections
+     * Muodostaja pyörät-oliolle.
+     */
+    public Pyorat() {
+        pyorat = new Pyora[MAX_PYORIA];
+    }
+    
+    
+    /**
+     * Lisää uuden pyörän tietorakenteeseen.
      * @param pyora viite lisättävään pyörään.
      * @throws ApuException virhe kun tietorakenne täynnä
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException 
+     * Pyorat pyorat = new Pyorat();
+     * Pyora pyora1 = new Pyora(), pyora2 = new Pyora(); Pyora pyora3 = new Pyora(); Pyora pyora4 = new Pyora(); Pyora pyora5 = new Pyora();
+     * pyorat.getLkm() === 0;
+     * pyorat.lisaa(pyora1); pyorat.getLkm() === 1;
+     * pyorat.lisaa(pyora2); pyorat.getLkm() === 2;
+     * pyorat.lisaa(pyora3); pyorat.getLkm() === 3;
+     * pyorat.anna(0) === pyora1;
+     * pyorat.anna(1) === pyora2;
+     * pyorat.anna(2) === pyora3;
+     * pyorat.anna(3) === pyora3; #THROWS IndexOutOfBoundsException 
+     * pyorat.lisaa(pyora4); pyorat.getLkm() === 4;
+     * pyorat.lisaa(pyora5); pyorat.getLkm() === 5;
+     * pyorat.lisaa(pyora5); #THROWS ApuException 
+     * </pre>
      */
     public void lisaa(Pyora pyora) throws ApuException {
         if (lkm >= pyorat.length) throw new ApuException("Liikaa pyöriä");
         pyorat[lkm] =pyora;
         lkm++;
-    }
+    }       
     
     
     /**
@@ -95,7 +120,7 @@ public class Pyorat {
             }
                 
         } catch (ApuException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }
