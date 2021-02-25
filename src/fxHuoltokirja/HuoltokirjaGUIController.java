@@ -29,7 +29,7 @@ import javafx.scene.control.TextField;
 
 /**
  * @author hemalein
- * @version Jan 15, 2021
+ * @version 25.2.2021
  *
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.

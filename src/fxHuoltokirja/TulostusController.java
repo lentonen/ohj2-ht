@@ -12,7 +12,7 @@ import javafx.scene.control.TextArea;
 
 /**
  * @author hemalein
- * @version Jan 15, 2021
+ * @version 25.2.2021
  *
  */
 public class TulostusController implements ModalControllerInterface<String> {

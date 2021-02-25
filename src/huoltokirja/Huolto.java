@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 /**
  * @author Henri
- * @version Feb 11, 2021
+ * @version 25.2.2021
  *
  */
 public class Huolto {

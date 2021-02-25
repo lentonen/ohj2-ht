@@ -10,7 +10,7 @@ import javafx.scene.Node;
 
 /**
  * @author hemalein
- * @version Jan 15, 2021
+ * @version 25.2.2021
  *
  */
 public class HuoltokirjaDialogGUIController implements ModalControllerInterface<String> {

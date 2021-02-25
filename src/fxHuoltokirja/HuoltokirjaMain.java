@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * @author Henri
- * @version Jan 15, 2021
+ * @version 25.2.2021
  *
  */
 public class HuoltokirjaMain extends Application {

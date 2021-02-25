@@ -7,7 +7,7 @@ package huoltokirja;
 /**
  * Huoltokirjaan kirjatut pyörät. Osaa esimerkiksi lisätä ja poistaa uuden pyörän.
  * @author Henri
- * @version Feb 11, 2021
+ * @version 25.2.2021
  *
  */
 public class Pyorat {

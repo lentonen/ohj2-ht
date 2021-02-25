@@ -6,7 +6,7 @@ package huoltokirja;
 /**
  * Luokka omalle poikkeukselle.
  * @author Henri
- * @version Feb 11, 2021
+ * @version 25.2.2021
  *
  */
 public class ApuException extends Exception {
