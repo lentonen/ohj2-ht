@@ -27,6 +27,7 @@ public class Huolto {
      * Oletusmuodostaja
      */
     public Huolto() {
+        //
     }
     
     
@@ -127,7 +128,6 @@ public class Huolto {
         toimenpiteet = "Vaihdettiin osanro " +rand(1,9999) + " ja putsattiin osa " +rand(1,200);
     }
     
-    
 
     /**
      * Pääohjelma Huolto-olion testaamiseen.
@@ -143,7 +143,5 @@ public class Huolto {
         huolto2.arvoHuolto();
         huolto2.rekisteroi();
         huolto2.tulosta(System.out);
-    
     }
-
 }

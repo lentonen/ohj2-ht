@@ -4,13 +4,14 @@
 package huoltokirja;
 
 /**
+ * Luokka omalle poikkeukselle.
  * @author Henri
  * @version Feb 11, 2021
  *
  */
 public class ApuException extends Exception {
-    private static final long serialVersionUID = 1L;
-      
+    private static final long serialVersionUID = 1L;        // Versionumero, apuna jos ohjelmia jaetaan verkon yli ja toisella hlöllä eri versiot. 
+                                                            //Tällöin saadaan ilmoitus erilaisita versionumeroista.
       
    /**
     * Poikkeuksen muodostaja jolle tuodaan poikkeuksessa
@@ -18,6 +19,6 @@ public class ApuException extends Exception {
     * @param viesti Poikkeuksen viesti
     */
     public ApuException(String viesti) {
-              super(viesti);
+              super(viesti);                                // Viedään oma viesti alkuperäiselle muodostajalle.
     }
 }

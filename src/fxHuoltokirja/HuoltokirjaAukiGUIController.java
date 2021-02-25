@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 public class HuoltokirjaAukiGUIController implements ModalControllerInterface<String> {
     
     String kerhonnimi = "jotain";
-    
     @FXML private Button lisaaHuolto;
 
     
@@ -37,7 +36,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
         //;    
     }
 
-
     @Override
     public void setDefault(String oletus) {
         //;   
@@ -47,71 +45,75 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
         uusiHuolto();
     }
     
-    
     @FXML void handlePoistaHuolto() {
         poistaHuolto();
     }
-    
     
     @FXML
     void handleMuokkaaHuoltoa() {
         muokkaaHuoltoa();
     }
 
-    
-    
     @FXML
     void handleTulosta() {
         tulosta();
     }
-    
     
     @FXML
     void handleApua() {
         apua();
     }
     
-    
     @FXML
     void handleTietoja() {
         tietoja();
     }
-    
     
     @FXML
     void handleLopeta() {
         lopeta();
     }
 
-
-
     //=============================================================================================
     
+    /**
+     * Lisää uuden uuden huollon
+     */
     private void uusiHuolto() {
        Dialogs.showMessageDialog("Lisätään uusi huolto. Ei osata lisätä vielä!");
     }
     
     
+    /**
+     * Poistaa huollon
+     */
     private void poistaHuolto() {
         Dialogs.showQuestionDialog("Poisto?",
                 "Poistetaanko huolto: Takaiskarin huolto", "Kyllä", "Ei");
     }
     
     
+    /**
+     * Tulostaa valitun pyörän huoltokirjan
+     */
     private void tulosta() {
         ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TulostusView.fxml"),
-                "Tulosta", null, "");
-        
+                "Tulosta", null, "");  
     }
     
     
+    /**
+     * Muokataan huollon tietoja
+     */
     private void muokkaaHuoltoa() {
         ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaAukiDialogGUIView.fxml"),
                 "Huollon tiedot", null, "");
-        
     }
     
     
+    /**
+     * Avaa verkkosivun, josta löytyy apua. Tässä käytössä HT TIM-sivu.
+     */
     private void apua() {
             Desktop desktop = Desktop.getDesktop();
             try {
@@ -125,21 +127,24 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     }
     
     
+    /**
+     * Avaa dialogin, josta näkee ohjelman tiedot
+     */
     private void tietoja() {
         ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TietojaView.fxml"),
-                "Tietoja", null, "");
-        
+                "Tietoja", null, "");   
     }
     
     
+    /**
+     * Sulkee huoltokirjan
+     */
     private void lopeta() {
         // Suljetaan huoltokirjadialogi
         ModalController.closeStage(lisaaHuolto);         
         
         //Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
     }
-    
-    
     
     // Versio, jossa huoltokirjan palautus omana aliohjelmana. Ei käytössä tällä hetkellä.
     
@@ -157,6 +162,4 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
                   "Huoltokirja",
                   modalityStage, oletus);
           } */
-      
-
 }

@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class Huollot implements Iterable<Huolto> {
     private String tiedostonNimi ="";
-    
     private final Collection<Huolto> huollot= new ArrayList<Huolto>();
+    
     
     /**
      * oletusmuodostaja
@@ -110,17 +110,11 @@ public class Huollot implements Iterable<Huolto> {
         }
         
     }
-
-    
-    
-    
-    
-    
+  
     
     @Override
     public Iterator<Huolto> iterator() {
         // TODO Auto-generated method stub
         return null;
     }
-
 }

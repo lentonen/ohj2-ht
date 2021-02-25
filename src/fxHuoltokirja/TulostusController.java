@@ -23,7 +23,6 @@ public class TulostusController implements ModalControllerInterface<String> {
         ModalController.closeStage(tulostusAlue);
     }
 
-    
     @FXML
     void handleTulosta() {
         Dialogs.showMessageDialog("Ei osata vielä tulostaa");
@@ -36,16 +35,14 @@ public class TulostusController implements ModalControllerInterface<String> {
 
     @Override
     public void handleShown() {
-        //
-        
+        //  
     }
 
     @Override
     public void setDefault(String oletus) {
         tulostusAlue.setText(oletus);     
     }
-    
-
+       
     /**
      * Saantimetodi tulostusalueelle
      * @return tulostusalue

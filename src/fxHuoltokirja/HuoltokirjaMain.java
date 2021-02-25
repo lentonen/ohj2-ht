@@ -18,9 +18,9 @@ public class HuoltokirjaMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    final FXMLLoader ldr = new FXMLLoader(getClass().getResource("HuoltokirjaGUIView.fxml"));             // Lataa fxml resurssin?
-			final Pane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));     // käytössä oleva pane?
-			final HuoltokirjaGUIController huoltokirjaCtrl = ldr.getController();                                 // Käytössä oleva kontrolleri
+		    final FXMLLoader ldr = new FXMLLoader(getClass().getResource("HuoltokirjaGUIView.fxml"));                            // Lataa fxml resurssin?
+			final Pane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));      // käytössä oleva pane?
+			final HuoltokirjaGUIController huoltokirjaCtrl = ldr.getController();                                                // Käytössä oleva kontrolleri
 			    
 			
 			Scene scene = new Scene(root);
@@ -29,7 +29,7 @@ public class HuoltokirjaMain extends Application {
 			primaryStage.show();
 			
 			Huoltokirja huoltokirja = new Huoltokirja();     // Luodaan uusi huoltokirja
-			huoltokirjaCtrl.setHuoltokirja(huoltokirja);     // Asetetaan luotu huoltokirja käyttöön?
+			huoltokirjaCtrl.setHuoltokirja(huoltokirja);     // Asetetaan luotu huoltokirja kontrollerin käyttöön.
 			
 		} catch(Exception e) {
 			e.printStackTrace();

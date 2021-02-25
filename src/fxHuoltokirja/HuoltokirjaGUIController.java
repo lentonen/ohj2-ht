@@ -32,15 +32,15 @@ import javafx.scene.control.TextField;
  * @version Jan 15, 2021
  *
  */
-public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään muokkaamaan luonnin jälkeen?
+public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
     
     @FXML private Button uusiPyora; 
     @FXML private ListChooser<Pyora> chooserPyorat;
-    @FXML private ScrollPane panelPyora;
     @FXML private Label labelHakuError;
     @FXML private TextField labelHakuehto;
     @FXML private ComboBoxChooser<String> suodatinPyora;
+    @FXML private ScrollPane panelPyora;        
     
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
@@ -93,11 +93,11 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private Pyora pyoraKohdalla;
     
     /**
-     * Lisää uuden pyörän.
+     * Lisätään uusi pyörä.
      */
     private void uusiPyora() {
         Pyora pyora = new Pyora();
-        pyora.arvoPyora();
+        pyora.arvoPyora();          // TODO: korvaa dialogilla, johon tiedot syötetään.
         pyora.rekisteroi();
         try {
             huoltokirja.lisaa(pyora);
@@ -105,12 +105,13 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             Dialogs.showMessageDialog("Ongelmia pyörän luomisessa");
         }
         paivitaLista();
+        
         //Dialogs.showMessageDialog("Lisätään uusi pyörä. Ei osata lisätä vielä!");  
     }
     
     
     /**
-     * Poistaa pyörän.
+     * Poistetaan pyörä
      */
     private void poistaPyora() {
         Dialogs.showQuestionDialog("Poisto?",
@@ -139,8 +140,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Avaa tulostusikkunan, johon tuodaan listaan lisätyt pyörät
      */
     private void tulosta() {
-        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Haetaan tulostuksen kontrolleri
-        TulostaPyorat(tulostusCtrl.getTextArea());
+        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Haetaan tulostuksen kontrolleri, ei viedä parametreja, koska ei haluta tulostaa alueelle tässä vielä mitään.
+        TulostaPyorat(tulostusCtrl.getTextArea());                           // Tulostetaan lisättyjen pyörien tiedot tulostusalueelle
         
         //ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
         //        "Tulosta", null, "");
@@ -168,8 +169,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     private void muokkaaPyoraa() {
         ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
-                "Pyörän tiedot", null, "");
-        
+                "Pyörän tiedot", null, "");  
     }
     
     
@@ -179,12 +179,12 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void apua() {
             Desktop desktop = Desktop.getDesktop();
             try {
-            URI uri = new URI("https://tim.jyu.fi/view/kurssit/tie/ohj2/2021k/ht/hemalein");
-            desktop.browse(uri);
+                URI uri = new URI("https://tim.jyu.fi/view/kurssit/tie/ohj2/2021k/ht/hemalein");
+                desktop.browse(uri);
             } catch (URISyntaxException e) {
-            return;
+                return;
             } catch (IOException e) {
-            return;
+                return;
             }
     }
     
@@ -200,19 +200,23 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         }
     }
     
+    
     /**
      * Alustaa uuden väliaikaisen näkymän pyörän tiedoille.
      */
     private void alusta() {
-        panelPyora.setContent(pyoranTiedot);
+        panelPyora.setContent(pyoranTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
         // pyoranTiedot.setFont(new Font("Courier New", 12));  // TODO: säädä fontit lopuksi
         panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
         chooserPyorat.clear();
-        chooserPyorat.addSelectionListener(e -> naytaJasen()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaJasen();?
+        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaJasen();?
     }
     
     
-    private void naytaJasen() {
+    /**
+     * Näyttää listasta valitun pyörän tiedot
+     */
+    private void naytaPyora() {
         pyoraKohdalla = chooserPyorat.getSelectedObject();  // Hakee muuttujaan listasta valitun pyörän
         if (pyoraKohdalla == null) return;                  // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
         
@@ -223,13 +227,13 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         }
     }
 
+    
     /**
      * Avaa dialogin, josta näkee ohjelman tiedot
      */
     private void tietoja() {
         ModalController.showModal(HuoltokirjaGUIController.class.getResource("TietojaView.fxml"),
                 "Tietoja", null, "");
-        
     }
     
     
@@ -242,6 +246,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     
     /**
+     * Asetetaan käytettävä huoltokirja
      * @param huoltokirja huoltokirja jota käyttöliittymässä käytetään
      */
     public void setHuoltokirja(Huoltokirja huoltokirja) {
@@ -265,7 +270,5 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             labelHakuError.getStyleClass().setAll("virhe");         // Hakee .virhe-kohdan tyylin käyttöön.
             labelHakuError.setText("Ei osata hakea vielä " +suodatinPyora.getSelectedText() + " : " + labelHakuehto.getText());        
         }
-    }
-   
-    
+    } 
 }

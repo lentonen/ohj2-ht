@@ -81,6 +81,7 @@ public class Pyora {
         return tunnusNro;
     }
     
+    
     /**
      * Arpoo mallin vuoksi dataan pyörän hieman eri nimellä ja runkonumerolla
      */
@@ -91,7 +92,6 @@ public class Pyora {
         vuosimalli  = rand(1990, 2021);
         runkoNro    = "AVK4DFG" + rand(1,9999);
     }
-    
     
 
     /**
@@ -108,7 +108,6 @@ public class Pyora {
         pyora2.arvoPyora();
         pyora2.rekisteroi();
         pyora2.tulosta(System.out);
-    
     }
 
 }

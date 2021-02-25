@@ -4,6 +4,7 @@
 package huoltokirja;
 
 /**
+ * Luokka huoltokirjassa käytetyille laskuille.
  * @author Henri
  * @version Feb 11, 2021
  *
@@ -29,5 +30,4 @@ public class Apulaskut {
         double n = (yla-ala)*Math.random() + ala;
         return (int)Math.round(n);
     }
-
 }

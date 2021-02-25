@@ -84,8 +84,7 @@ public class Huoltokirja {
                 huoltokirja.annaPyora(i).tulosta(System.out);
             }
         } catch (ApuException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
-
 }
