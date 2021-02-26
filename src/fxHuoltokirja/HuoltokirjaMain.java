@@ -21,7 +21,6 @@ public class HuoltokirjaMain extends Application {
 		    final FXMLLoader ldr = new FXMLLoader(getClass().getResource("HuoltokirjaGUIView.fxml"));                            // Lataa fxml resurssin?
 			final Pane root = ldr.load(); //(BorderPane)FXMLLoader.load(getClass().getResource("HuoltokirjaGUIView.fxml"));      // käytössä oleva pane?
 			final HuoltokirjaGUIController huoltokirjaCtrl = ldr.getController();                                                // Käytössä oleva kontrolleri
-			    
 			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("huoltokirja.css").toExternalForm());

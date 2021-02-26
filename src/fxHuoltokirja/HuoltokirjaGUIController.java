@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -14,6 +15,7 @@ import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import huoltokirja.ApuException;
+import huoltokirja.Huolto;
 import huoltokirja.Huoltokirja;
 import huoltokirja.Pyora;
 import javafx.fxml.FXML;
@@ -83,14 +85,36 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         hae();
     }
     
+    @FXML private void handleLisaaHuolto() { // Tämä on väliaikainen testi, kunnes saadaan välitettyä pyörä huoltokirjalle TODO: poista kun ei tarvita.
+        lisäähuolto();
+    }
+    
 
 
     //=============================================================================================
-    
 
     private Huoltokirja huoltokirja;                  // huoltokirja, johon pyöriä lähdetään lisäämään 
     private TextArea pyoranTiedot = new TextArea();   // väliaikainen teksti-ikkuna, jolla voidaan näyttää lisätyn pyörän tietoja.
     private Pyora pyoraKohdalla;
+    
+    
+    /**
+     * Palauttaa pyörän, joka on valittuna.
+     * @return pyörä joka on valittuna listasta.
+     */
+    public Pyora getPyoraKohdalla() {
+        return this.pyoraKohdalla;
+    }
+    
+    
+    /**
+     * Palauttaa käytössä olevan huoltokirjan. Tällä hetkellä huoltokirja luodaan huoltokirjaMain:ssa.
+     * @return Huoltokirja
+     */
+    public Huoltokirja getHuoltokirja() {
+        return this.huoltokirja;
+    }
+    
     
     /**
      * Lisätään uusi pyörä.
@@ -125,8 +149,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void avaaHuoltokirja() {      
         // Suljetaan pyöränvalintadialogi, EI KÄYTÖSSÄ
         // ModalController.closeStage(uusiPyora);
-        
-        // resurssin lataaminen
+
+        // resurssin lataaminen       
         var resurssiHuoltokirjaAuki = HuoltokirjaGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml");
         ModalController.showModal(resurssiHuoltokirjaAuki, "Huoltokirja", null, "");
         
@@ -157,7 +181,14 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             out.println("Huoltokirja \n----------------------------------------------\n");
             for (int i = 0; i<huoltokirja.getPyoria(); i++) {
                 Pyora pyora = huoltokirja.annaPyora(i);
+                out.println("=========================================");
                 pyora.tulosta(out);
+                
+                // Tulostetaan myös huollot
+                List<Huolto> loytyneet = huoltokirja.annaHuollot(pyora);
+                for (Huolto huolto : loytyneet) {
+                    huolto.tulosta(out);
+                }
                 out.println("----------------------------------------------");
             }
         }     
@@ -224,6 +255,10 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         
         try (PrintStream os = TextAreaOutputStream.getTextPrintStream(pyoranTiedot)) {   // Haetaan os-muuttujaan printstream pyoranTiedot                                                 
                 pyoraKohdalla.tulosta(os);                                               // printstream on resurssi, joka täytyy sulkea ohjelman käytettyä sitä. try with resources huolehtii sulkemisesta automaattisesti.
+                List<Huolto> loytyneet = huoltokirja.annaHuollot(pyoraKohdalla);         // Etsitään pyörän huollot
+                for (Huolto huolto : loytyneet) {                                        // Tulostetaan huollot myös pääikkunaan TODO:tämä pitää poistaa jossakin vaiheessa.
+                    huolto.tulosta(os);
+                }
         }
     }
 
@@ -270,5 +305,22 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             labelHakuError.getStyleClass().setAll("virhe");         // Hakee .virhe-kohdan tyylin käyttöön.
             labelHakuError.setText("Ei osata hakea vielä " +suodatinPyora.getSelectedText() + " : " + labelHakuehto.getText());        
         }
-    } 
+    }
+    
+    
+    /**
+     * Väliaikainen huollon lisääminen pääikkunasta TODO: poista kun et enää tarvi!
+     */
+    private void lisäähuolto() {
+        if (pyoraKohdalla == null) return;
+        Huolto huolto = new Huolto(pyoraKohdalla.getTunnusNro());
+        huolto.arvoHuolto();          
+        huolto.rekisteroi();
+        try {
+            huoltokirja.lisaa(huolto);
+            naytaPyora();
+        } catch (ApuException e) {
+            Dialogs.showMessageDialog("Ongelmia huollon luomisessa");
+        }
+    }
 }

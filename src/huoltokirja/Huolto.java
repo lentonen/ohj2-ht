@@ -74,7 +74,7 @@ public class Huolto {
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);              // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
-        out.println("HuoltoID: "+tunnusNro + "\n"        // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
+        out.println("HuoltoID: "+tunnusNro + "\n"           // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
                 + "PyöräID: "+pyoraNro + "\n"
                 + "Nimi: "+nimi + "\n" 
                 +"Ajotunnit: "+ajotunnit + "\n" 

@@ -22,7 +22,7 @@ public class Huollot implements Iterable<Huolto> {
      * oletusmuodostaja
      */
     public Huollot() {
-        //
+        // Ei tarvita mitään vielä tässä vaiheessa
     }
     
     
@@ -70,6 +70,7 @@ public class Huollot implements Iterable<Huolto> {
      * @param pyoraNro Pyörä jonka huoltoja etsitään
      * @return Viite listaan pyörän huolloista
      * @throws IndexOutOfBoundsException virhe jos yritetään etsiä sellaisen pyörän huoltoa, jota ei ole lisätty
+     * TODO:testit
      */
     public List<Huolto> annaHuollot(int pyoraNro) throws IndexOutOfBoundsException {
         List<Huolto> loydetyt = new ArrayList<Huolto>();
@@ -103,12 +104,12 @@ public class Huollot implements Iterable<Huolto> {
         huollot.lisaa(huolto5);
         
         // Tulostetaan pyörän 1 / 2 huollot
-        
-        List<Huolto> pyoranHuollot = huollot.annaHuollot(2);
+        int i = 2; // minkä pyörän huollot tulostetaan
+        System.out.println("Pyörän " +i +" huollot:\n");
+        List<Huolto> pyoranHuollot = huollot.annaHuollot(i);
         for (Huolto huolto : pyoranHuollot) {
             huolto.tulosta(System.out);
-        }
-        
+        }    
     }
   
     
