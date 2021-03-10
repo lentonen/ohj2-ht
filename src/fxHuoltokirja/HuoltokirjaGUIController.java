@@ -151,11 +151,11 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         // ModalController.closeStage(uusiPyora);
 
         // resurssin lataaminen       
-        var resurssiHuoltokirjaAuki = HuoltokirjaGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml");
-        ModalController.showModal(resurssiHuoltokirjaAuki, "Huoltokirja", null, "");
+         var resurssiHuoltokirjaAuki = HuoltokirjaGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml");
+         ModalController.showModal(resurssiHuoltokirjaAuki, "Huoltokirja", null, "");
         
-        // Versio, jossa huoltokirjan aukaiseminen on kirjoitettu huoltokirjaAukiGUIControlleriin.       
-        //HuoltokirjaAukiGUIController.avaaHuollot(null, kerhonnimi);
+       // Versio, jossa huoltokirjan aukaiseminen on kirjoitettu huoltokirjaAukiGUIControlleriin.       
+       // HuoltokirjaAukiGUIController.avaaHuollot(null, pyoraKohdalla, huoltokirja);
 
     }
     

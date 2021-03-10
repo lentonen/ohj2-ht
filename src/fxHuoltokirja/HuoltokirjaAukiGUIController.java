@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 
 /**
@@ -92,7 +93,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     //=============================================================================================
     private Pyora pyoraKohdalla = new Pyora();  // Luodaan väliaikaisesti yksi pyörä, jolle huoltoja sijoitetaan. TODO: välitä valittu pyörä tähän.
     private Huolto huoltoKohdalla;
-    private Huoltokirja huoltokirja = new Huoltokirja(); // Luodaan väliaikaisesti huoltokirja, jolle huoltoja sijoitetaan. TODO: välitä käytössä oleva huoltokirja tähän.
+    private Huoltokirja huoltokirja= new Huoltokirja(); // Luodaan väliaikaisesti huoltokirja, jolle huoltoja sijoitetaan. TODO: välitä käytössä oleva huoltokirja tähän.
     private TextArea huollonTiedot = new TextArea();
     
     @Override
@@ -219,22 +220,21 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
         this.huoltokirja = huoltokirja;
         // naytaJasen();
     }
-
     
-    // Versio, jossa huoltokirjan palautus omana aliohjelmana. Ei käytössä tällä hetkellä.
+
+    // TODO: Jatka alla olevaa jotta saadaan välitettyä parametrina huoltokirja ja valittu pyörä. Nyt ei tomi 
     
     /**
-      * Luodaan nimenkysymisdialogi ja palautetaan siihen kirjoitettu nimi tai null
-      * @param modalityStage mille ollaan modaalisia, null = sovellukselle
-      * @param oletus mitä nimeä näytetään oletuksena
-      * @return null jos painetaan Cancel, muuten kirjoitettu nimi
-      */
-      /*
-    
-    public static Pyora avaaHuollot(Stage modalityStage, Huolto oletus) {
-          return ModalController.<Huolto, HuoltokirjaAukiGUIController>showModal(
-                  HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
-                  "Huoltokirja",
-                  modalityStage, oletus);
-          } */
+     * @param modalityStage s
+     * @param oletus s
+     * @return s
+     */
+    /*public static Pyora avaaHuollot(Stage modalityStage, Pyora oletus, Huoltokirja huoltokirja) {     
+        return ModalController.<Pyora, HuoltokirjaAukiGUIController>showModal(
+                             HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
+                             "Huoltokirja",
+                             modalityStage, oletus,
+                             ctrl -> ctrl.setHuoltokirja(huoltokirja)  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
+                         );
+             }*/
 }

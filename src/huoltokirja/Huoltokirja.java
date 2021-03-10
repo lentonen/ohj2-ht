@@ -60,6 +60,7 @@ public class Huoltokirja {
      * Palauttaa annetun pyörän huollot
      * @param pyora pyörä jonka huollot halutaan
      * @return huollot
+     * TODO: testit
      */
     public List<Huolto> annaHuollot(Pyora pyora) {
         return huollot.annaHuollot(pyora.getTunnusNro());
