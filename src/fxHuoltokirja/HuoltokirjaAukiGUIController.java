@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
@@ -31,16 +32,17 @@ import javafx.stage.Stage;
  * @version 25.2.2021
  *
  */
-public class HuoltokirjaAukiGUIController implements ModalControllerInterface<String>, Initializable {
+public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Pyora>, Initializable {
     
     String kerhonnimi = "jotain";
     @FXML private ScrollPane panelHuolto;  // Pistetään tähän paneen väliaikaiset tiedot huolloista.
     @FXML private Button lisaaHuolto;
     @FXML private ListChooser<Huolto> chooserHuollot;
+    @FXML private TextField labelHakuEhto;
 
     
     @Override
-    public String getResult() {
+    public Pyora getResult() {
         return null;
     }
 
@@ -53,7 +55,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     }
 
     @Override
-    public void setDefault(String oletus) {
+    public void setDefault(Pyora oletus) {
         //;   
     }
     
@@ -89,11 +91,18 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     void handleLopeta() {
         lopeta();
     }
+    
+    @FXML
+    void handleHaku() {
+        hae();
+    }
+
+    
 
     //=============================================================================================
-    private Pyora pyoraKohdalla = new Pyora();  // Luodaan väliaikaisesti yksi pyörä, jolle huoltoja sijoitetaan. TODO: välitä valittu pyörä tähän.
+    private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
     private Huolto huoltoKohdalla;
-    private Huoltokirja huoltokirja= new Huoltokirja(); // Luodaan väliaikaisesti huoltokirja, jolle huoltoja sijoitetaan. TODO: välitä käytössä oleva huoltokirja tähän.
+    private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
     private TextArea huollonTiedot = new TextArea();
     
     @Override
@@ -101,17 +110,17 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
         panelHuolto.setContent(huollonTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
         // pyoranTiedot.setFont(new Font("Courier New", 12));    // TODO: säädä fontit lopuksi
         panelHuolto.setFitToHeight(true);                        // Kenttä kasvaa koko alueen kokoiseksi
-        chooserHuollot.clear();
+        chooserHuollot.clear(); 
         chooserHuollot.addSelectionListener(e -> naytaHuolto()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
-    }
+        }
     
     
     /**
      * Näyttää listasta valitun huollon tiedot
      */
     private void naytaHuolto() {
-        huoltoKohdalla = chooserHuollot.getSelectedObject();   // Hakee muuttujaan listasta valitun pyörän
-        if (huoltoKohdalla == null) return;                    // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
+        huoltoKohdalla = chooserHuollot.getSelectedObject();   // Hakee muuttujaan listasta valitun huollon
+        if (huoltoKohdalla == null) return;                    // Huolehtii siitä, jos valitaan kohta jossa ei ole huoltoa
         
         huollonTiedot.setText("");                             // Tämä sen vuoksi, että edellisen pyörän tiedot saadaan pois näytöltä.
         
@@ -164,6 +173,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
     private void tulosta() {
         ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TulostusView.fxml"),
                 "Tulosta", null, "");  
+    }
+    
+    
+    private void hae() {
+        paivitaLista();
+        
     }
     
     
@@ -221,20 +236,31 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<St
         // naytaJasen();
     }
     
+    
+    /**
+     * Asetetaan tarkasteltava pyörä
+     * @param pyora huoltokirja jota käyttöliittymässä käytetään
+     */
+    public void setPyora(Pyora pyora) {
+        this.pyoraKohdalla = pyora;
+        // naytaJasen();
+    }
+    
 
     // TODO: Jatka alla olevaa jotta saadaan välitettyä parametrina huoltokirja ja valittu pyörä. Nyt ei tomi 
     
     /**
      * @param modalityStage s
-     * @param oletus s
+     * @param valittuPyora f
+     * @param huoltokirja s
      * @return s
      */
-    /*public static Pyora avaaHuollot(Stage modalityStage, Pyora oletus, Huoltokirja huoltokirja) {     
+    public static Pyora avaaHuollot(Stage modalityStage, Pyora valittuPyora, Huoltokirja huoltokirja) {     
         return ModalController.<Pyora, HuoltokirjaAukiGUIController>showModal(
                              HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
                              "Huoltokirja",
-                             modalityStage, oletus,
-                             ctrl -> ctrl.setHuoltokirja(huoltokirja)  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
+                             modalityStage, valittuPyora,
+                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.setPyora(valittuPyora); ctrl.paivitaLista();}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
                          );
-             }*/
+             }
 }

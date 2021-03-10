@@ -63,7 +63,7 @@
                <children>
                   <Label layoutX="10.0" layoutY="60.0" text="Suodatin" />
                   <ChoiceBox prefHeight="25.0" prefWidth="200.0" />
-                  <TextField text="taka" />
+                  <TextField fx:id="labelHakuEhto" onKeyPressed="#handleHaku" text="taka" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
