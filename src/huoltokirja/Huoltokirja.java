@@ -72,7 +72,7 @@ public class Huoltokirja {
      * @throws ApuException jos tallentaminen epäonnistuu
      */
     public void talleta() throws ApuException {
-        pyorat.talleta();
+        pyorat.tallenna("pyorat");
     }
    
     

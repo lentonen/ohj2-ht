@@ -3,14 +3,20 @@
  */
 package huoltokirja;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author Henri
- * @version 25.2.2021
+ * @version 18.3.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {
@@ -36,24 +42,56 @@ public class Huollot implements Iterable<Huolto> {
     
     
     /**
-     * Lukee huoltojen tiedot tiedostosta. TODO: tee huoltojen luku loppuun
+     * Lukee huoltojen tiedot tiedostosta.
      * @param hakemisto kertoo missä tiedosto sijaitsee
-     * @throws ApuException minkälainen virheilmoitus näytetään.
+     * @throws ApuException virhe jos huoltojen lukeminen epäonnistuu
+     * TODO:testit?
      */
     public void lueTiedosto(String hakemisto) throws ApuException {
-        tiedostonNimi = hakemisto + "huollot.dat";
-        throw new ApuException("Ei osata lukea vielä tiedostoa " +tiedostonNimi);
+        tiedostonNimi = hakemisto + "/huollot.dat";
+        File ftied = new File(tiedostonNimi); 
+        
+        try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
+            while (fi.hasNext()) {
+                String s = "";
+                s = fi.nextLine();
+                Huolto huolto = new Huolto();
+                huolto.parse(s); // voisi palauttaa onnistuuko parsiminen BOOL
+                lisaa(huolto);
+            }
+        } catch (FileNotFoundException ex) {
+            throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
+       // } catch (IOException e) {
+       //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
+        }
     }
     
     
     /**
-     * Tallettaa huoltojen tiedot tiedostoon huollot.dat TODO: tee huoltojen tallettaminen loppuun
-     * @throws ApuException minkälainen virheilmoitus näytetään
+     * Tallettaa huoltojen tiedot tiedostoon huollot.dat
+     * @param tiednimi tallennettavan tiedoston nimi
+     * @throws ApuException jos tallennus epäonnistuu
+     * @example
+     * <pre>
+     * hid |pid  |nimi                         |ajotunnit  |Toimenpiteet  
+     * 1   |1    |Takaiskarin huolto           |100        |Puhdistus, O-renkaiden vaihto (servicekit123)   
+     * 2   |1    |Takajarrupalojen vaihto      |120        |Shimano 123 - jarrupalat
+     * 3   |2    |Takapak. ja ketjun vaihto    |200        |Shimano678 ja Shimano 987, Lisäksi voimansiirron puhdistus ja vaihteiston säätö.
+     * </pre>
+     * TODO:testit?
      */
-    public void talleta() throws ApuException {
-        //tiedostonNimi = hakemisto + "pyorat.dat"; TODO: tarviiko tätä jossakin vaiheessa?
-        throw new ApuException("Ei osata tallentaa tiedostoon" +tiedostonNimi);
+    public void tallenna(String tiednimi) throws ApuException {
+        File ftied = new File(tiednimi + "/huollot.dat");
+        
+        try (PrintStream fo = new PrintStream(new FileOutputStream(ftied, false))) {
+            for (Huolto huolto : huollot) {
+                fo.println(huolto);
+            }
+        } catch (FileNotFoundException ex) {
+            throw new ApuException("Tiedosto " + ftied.getAbsolutePath() + " ei aukea");
+        }
     }
+
     
     
     /**
@@ -87,6 +125,13 @@ public class Huollot implements Iterable<Huolto> {
     public static void main(String[] args) {
         Huollot huollot = new Huollot();
         
+        // Luetaan aiemmin lisätyt huollot tiedostosta
+        try {
+            huollot.lueTiedosto("huollot");
+        } catch (ApuException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
         // Arvotaan huoltoja pyörälle 1
         Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); 
         Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huolto2.rekisteroi(); 
@@ -109,7 +154,13 @@ public class Huollot implements Iterable<Huolto> {
         List<Huolto> pyoranHuollot = huollot.annaHuollot(i);
         for (Huolto huolto : pyoranHuollot) {
             huolto.tulosta(System.out);
-        }    
+        }
+        
+        try {
+            huollot.tallenna("huollot");
+        } catch (ApuException e) {
+            e.printStackTrace();
+        }
     }
   
     

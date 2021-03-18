@@ -4,14 +4,21 @@
 package huoltokirja;
 //import huoltokirja.ApuException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 /**
  * Huoltokirjaan kirjatut pyörät. Osaa esimerkiksi lisätä ja poistaa uuden pyörän.
  * @author Henri
- * @version 25.2.2021
+ * @version 18.3.2021
  *
  */
 public class Pyorat {
-    private static final int MAX_PYORIA     = 5;                        // pyörien maksimimäärä luokassa
+    private static final int MAX_PYORIA     = 10;                        // pyörien maksimimäärä luokassa
     private int              lkm            = 0;                        // mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
     private String           tiedostonNimi  = "";                       // tiedosto johon tiedot on tallennettu
     private Pyora[]          pyorat;                                    // Taulukko jossa viitteet tallennettuihin pyöriin
@@ -67,23 +74,54 @@ public class Pyorat {
     
     
     /**
-     * Tallettaap pyörien tiedot tiedostoon pyorat.dat TODO: tee tiedoston tallettaminen loppuun
-     * @throws ApuException minkälainen virheilmoitus näytetään
+     * Tallettaa pyörien tiedot tiedostoon pyorat.dat
+     * @param tiednimi tallennettavan tiedoston nimi
+     * @throws ApuException jos tallennus epäonnistuu
+     * @example
+     * <pre>
+     * id |Pyörän nimi     |Merkki     |Malli       |Vuosimalli |Runkonumero |
+     * 1  |Fuji Rakan      |Fuji       |Rakan 1.3   |2019       |HD65FFHH3   |
+     * 3  |Ragley Trig     |Ragley     |Trig        |2020       |RLP00IUY77S |
+     * </pre>
+     * TODO:testit
      */
-    public void talleta() throws ApuException {
-        //tiedostonNimi = hakemisto + "pyorat.dat"; TODO: tarviiko tätä jossakin vaiheessa?
-        throw new ApuException("Ei osata tallentaa tiedostoon" +tiedostonNimi);
+    public void tallenna(String tiednimi) throws ApuException {
+        File ftied = new File(tiednimi + "/pyorat.dat");
+        
+        try (PrintStream fo = new PrintStream(new FileOutputStream(ftied, false))) {
+            for (int i = 0; i < getLkm(); i++) {
+                Pyora pyora = anna(i);
+                fo.println(pyora);
+            }
+        } catch (FileNotFoundException ex) {
+            throw new ApuException("Tiedosto " + ftied.getAbsolutePath() + " ei aukea");
+        }
     }
 
     
     /**
-     * Lukee pyörien tiedot tiedostosta. TODO: tee tiedoston luku loppuun
+     * Lukee pyörien tiedot tiedostosta.
      * @param hakemisto kertoo missä tiedosto sijaitsee
      * @throws ApuException minkälainen virheilmoitus näytetään.
+     * TODO:testit
      */
     public void lueTiedosto(String hakemisto) throws ApuException {
-        tiedostonNimi = hakemisto + "pyorat.dat";
-        throw new ApuException("Ei osata lukea vielä tiedostoa " +tiedostonNimi);
+        tiedostonNimi = hakemisto + "/pyorat.dat";
+        File ftied = new File(tiedostonNimi); 
+        
+        try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
+            while (fi.hasNext()) {
+                String s = "";
+                s = fi.nextLine();
+                Pyora pyora = new Pyora();
+                pyora.parse(s); // voisi palauttaa onnistuuko parsiminen BOOL
+                lisaa(pyora);
+            }
+        } catch (FileNotFoundException ex) {
+            throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
+       // } catch (IOException e) {
+       //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
+        }
     }
     
     
@@ -101,6 +139,13 @@ public class Pyorat {
      */
     public static void main(String[] args) {
         Pyorat pyorat = new Pyorat();
+        
+        try {
+            pyorat.lueTiedosto("pyorat");
+        } catch (ApuException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
 
         Pyora pyora1 = new Pyora();
         pyora1.arvoPyora();
@@ -121,6 +166,12 @@ public class Pyorat {
                 
         } catch (ApuException e) {
             System.err.println(e.getMessage());
+        }
+        
+        try {
+            pyorat.tallenna("pyorat");
+        } catch (ApuException e) {
+            e.printStackTrace();
         }
     }
 }
