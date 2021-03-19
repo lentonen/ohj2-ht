@@ -1,35 +1,29 @@
-/**
- * 
- */
 package huoltokirja;
 
 import static huoltokirja.Apulaskut.rand;
-
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
+ * Huolto-luokka yksittäiselle huollolle.
  * @author Henri
- * @version 18.3.2021
- *
+ * @version 19.3.2021
  */
 public class Huolto {
-    private int tunnusNro;
-    private int pyoraNro;
-    private String nimi             = "";
-    private int ajotunnit;
-    private String toimenpiteet     = "";
-    
-    private static int seuraavaNro = 1;  // static = "tämä on olemassa, vaikka olioita ei olisi luotukaan." TODO:tarvitaanko missään?
+    private int tunnusNro;                  // Numero joka yksilöi huollon
+    private int pyoraNro;                   // Pyörä jota huolto koskee
+    private String nimi             = "";   // Huollon nimi
+    private int ajotunnit;                  // Kuinka paljon pyörällä on ajettu ennen huoltoa
+    private String toimenpiteet     = "";   // Huoltotoimenpiteiden kuvaus
+    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."
     
     
     /**
      * Oletusmuodostaja
      */
     public Huolto() {
-        //
+        // attribuutit alustetaan esittelyssä. Int-tyyppiset alustuvat automaattisesti nollaksi, jos muuta ei anneta.
     }
     
     
@@ -43,8 +37,7 @@ public class Huolto {
     
     
     /**
-     * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 
-     * ajantasalla.
+     * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on ajantasalla. Private, koska muiden ei haluta asettavan attribuuttien arvoja.
      * @param nro asetettava tunnusnumero
      */
     private void setTunnusNro(int nro) {

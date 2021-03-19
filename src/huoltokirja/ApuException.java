@@ -11,7 +11,7 @@ package huoltokirja;
  */
 public class ApuException extends Exception {
     private static final long serialVersionUID = 1L;        // Versionumero, apuna jos ohjelmia jaetaan verkon yli ja toisella hlöllä eri versiot. 
-                                                            //Tällöin saadaan ilmoitus erilaisita versionumeroista.
+                                                            // Tällöin saadaan ilmoitus erilaisita versionumeroista.
       
    /**
     * Poikkeuksen muodostaja jolle tuodaan poikkeuksessa

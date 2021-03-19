@@ -29,35 +29,15 @@ import javafx.stage.Stage;
 
 /**
  * @author hemalein
- * @version 25.2.2021
+ * @version 19.3.2021
  *
  */
 public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Pyora>, Initializable {
     
-    String kerhonnimi = "jotain";
     @FXML private ScrollPane panelHuolto;  // Pistetään tähän paneen väliaikaiset tiedot huolloista.
     @FXML private Button lisaaHuolto;
     @FXML private ListChooser<Huolto> chooserHuollot;
     @FXML private TextField labelHakuEhto;
-
-    
-    @Override
-    public Pyora getResult() {
-        return null;
-    }
-
-    /**
-     * Mitä tehdään kun dialogi on näytetty
-     */
-    @Override
-    public void handleShown() {
-        //;    
-    }
-
-    @Override
-    public void setDefault(Pyora oletus) {
-        //;   
-    }
     
     @FXML void handleUusiHuolto() {
         uusiHuolto();
@@ -67,39 +47,58 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         poistaHuolto();
     }
     
-    @FXML
-    void handleMuokkaaHuoltoa() {
+    @FXML void handleMuokkaaHuoltoa() {
         muokkaaHuoltoa();
     }
 
-    @FXML
-    void handleTulosta() {
+    @FXML void handleTulosta() {
         tulosta();
     }
     
-    @FXML
-    void handleApua() {
+    @FXML void handleApua() {
         apua();
     }
     
-    @FXML
-    void handleTietoja() {
+    @FXML void handleTietoja() {
         tietoja();
     }
     
-    @FXML
-    void handleLopeta() {
+    @FXML void handleLopeta() {
         lopeta();
     }
     
-    @FXML
-    void handleHaku() {
+    @FXML void handleHaku() {
         hae();
     }
-
     
 
+    /**
+     * Palauttaa dialogin tuloksen sulkemisen jälkeen.
+     */
+    @Override public Pyora getResult() {
+        return null;
+    }
+
+    /**
+     * Mitä tehdään kun dialogi on näytetty.
+     */
+    @Override
+    public void handleShown() {
+        // Älä tee mitään    
+    }
+
+    /**
+     * Mitä näytetään oletuksena.
+     */
+    @Override
+    public void setDefault(Pyora oletus) {
+        //;   
+    }
+
+
     //=============================================================================================
+    
+    
     private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
     private Huolto huoltoKohdalla;
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan

@@ -31,7 +31,7 @@ import javafx.scene.control.TextField;
 
 /**
  * @author hemalein
- * @version 25.2.2021
+ * @version 19.3.2021
  *
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
@@ -44,8 +44,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private ComboBoxChooser<String> suodatinPyora;
     @FXML private ScrollPane panelPyora;        
     
-    @Override
-    public void initialize(URL url, ResourceBundle bundle) {
+    @Override public void initialize(URL url, ResourceBundle bundle) {
         alusta(); // käydään alustamassa uusi näkymä pyörän tiedoille. Tämä on väliaikaista.  
     }
 
@@ -129,8 +128,6 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             Dialogs.showMessageDialog("Ongelmia pyörän luomisessa");
         }
         paivitaLista();
-        
-        //Dialogs.showMessageDialog("Lisätään uusi pyörä. Ei osata lisätä vielä!");  
     }
     
     
@@ -164,11 +161,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Avaa tulostusikkunan, johon tuodaan listaan lisätyt pyörät
      */
     private void tulosta() {
-        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Haetaan tulostuksen kontrolleri, ei viedä parametreja, koska ei haluta tulostaa alueelle tässä vielä mitään.
+        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Avaa Modaalisen ikkunan ikkunan, joka palauttaa tulostuksen kontrollerin. Ei välitetä parametreja. Parametrina voitaisiin välitää String-merkkijono, joka näytettäsiin tulostusalueessa.
         TulostaPyorat(tulostusCtrl.getTextArea());                           // Tulostetaan lisättyjen pyörien tiedot tulostusalueelle
-        
-        //ModalController.showModal(HuoltokirjaGUIController.class.getResource("TulostusView.fxml"),
-        //        "Tulosta", null, "");
     }
     
     
@@ -208,10 +202,10 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Avaa verkkosivun, josta löytyy apua. Tässä käytössä HT TIM-sivu.
      */
     private void apua() {
-            Desktop desktop = Desktop.getDesktop();
+            Desktop desktop = Desktop.getDesktop();     // Hakee nykyisen desktopin
             try {
-                URI uri = new URI("https://tim.jyu.fi/view/kurssit/tie/ohj2/2021k/ht/hemalein");
-                desktop.browse(uri);
+                URI uri = new URI("https://tim.jyu.fi/view/kurssit/tie/ohj2/2021k/ht/hemalein");    
+                desktop.browse(uri);                    // Käynnistää desktopin oletusselaimella annetun uri-osoitteen
             } catch (URISyntaxException e) {
                 return;
             } catch (IOException e) {
@@ -227,7 +221,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         chooserPyorat.clear();
         for (int i = 0; i < huoltokirja.getPyoria(); i++) {
             Pyora pyora = huoltokirja.annaPyora(i);
-            chooserPyorat.add(pyora.getNimi(), pyora);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
+            chooserPyorat.add(pyora.getNimi(), pyora);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen vastaavaan Pyora-olioon.
         }
     }
     
@@ -239,8 +233,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         panelPyora.setContent(pyoranTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
         // pyoranTiedot.setFont(new Font("Courier New", 12));  // TODO: säädä fontit lopuksi
         panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
-        chooserPyorat.clear();
-        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaJasen();?
+        chooserPyorat.clear();                                 // Tyhjentää pyörien chooserlistan
+        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().
     }
     
     
@@ -250,7 +244,6 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void naytaPyora() {
         pyoraKohdalla = chooserPyorat.getSelectedObject();  // Hakee muuttujaan listasta valitun pyörän
         if (pyoraKohdalla == null) return;                  // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
-        
         pyoranTiedot.setText("");                           // Tämä sen vuoksi, että edellisen pyörän tiedot saadaan pois näytöltä.
         
         try (PrintStream os = TextAreaOutputStream.getTextPrintStream(pyoranTiedot)) {   // Haetaan os-muuttujaan printstream pyoranTiedot                                                 

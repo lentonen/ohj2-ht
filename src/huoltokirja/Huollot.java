@@ -15,13 +15,14 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
  * @author Henri
  * @version 18.3.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {
-    private String tiedostonNimi ="";
-    private final Collection<Huolto> huollot= new ArrayList<Huolto>();
+    private final static String tiedostonNimi ="huollot/huollot.dat";       // Tiedosto johon huollot tallennetaan
+    private final Collection<Huolto> huollot= new ArrayList<Huolto>();      // tietorakenne huoltojen tallentamiseen
     
     
     /**
@@ -43,12 +44,11 @@ public class Huollot implements Iterable<Huolto> {
     
     /**
      * Lukee huoltojen tiedot tiedostosta.
-     * @param hakemisto kertoo missä tiedosto sijaitsee
      * @throws ApuException virhe jos huoltojen lukeminen epäonnistuu
      * TODO:testit?
      */
-    public void lueTiedosto(String hakemisto) throws ApuException {
-        tiedostonNimi = hakemisto + "/huollot.dat";
+    public void lueTiedosto() throws ApuException {
+        //tiedostonNimi = hakemisto + "/huollot.dat";
         File ftied = new File(tiedostonNimi); 
         
         try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
@@ -127,7 +127,7 @@ public class Huollot implements Iterable<Huolto> {
         
         // Luetaan aiemmin lisätyt huollot tiedostosta
         try {
-            huollot.lueTiedosto("huollot");
+            huollot.lueTiedosto();
         } catch (ApuException ex) {
             System.err.println(ex.getMessage());
         }

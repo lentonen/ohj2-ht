@@ -12,7 +12,7 @@ import javafx.scene.control.TextArea;
 
 /**
  * @author hemalein
- * @version 25.2.2021
+ * @version 19.3.2021
  *
  */
 public class TulostusController implements ModalControllerInterface<String> {
@@ -42,7 +42,10 @@ public class TulostusController implements ModalControllerInterface<String> {
     public void setDefault(String oletus) {
         tulostusAlue.setText(oletus);     
     }
-       
+
+    //=============================================================================================
+    
+    
     /**
      * Saantimetodi tulostusalueelle
      * @return tulostusalue
@@ -50,13 +53,10 @@ public class TulostusController implements ModalControllerInterface<String> {
     public TextArea getTextArea() {
         return tulostusAlue;
     }
-
-
-    //=============================================================================================
     
     
     /**
-     * Näyttää tulostusalueessa tekstin
+     * Avaa modaalisen ikkunan tulostamista varten
      * @param tulostus tulostettava teskti
      * @return kontrolleri, jolta voidaan pyytää lisää tietoa
      */
@@ -66,9 +66,6 @@ public class TulostusController implements ModalControllerInterface<String> {
                                        "Tulostus", tulostus);
         return tulostusCtrl;
     }
-    
-    
-    
 }
     
   

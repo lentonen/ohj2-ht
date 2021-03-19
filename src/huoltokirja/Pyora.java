@@ -1,30 +1,25 @@
-/**
- * 
- */
 package huoltokirja;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import fi.jyu.mit.ohj2.Mjonot;
-
-import static huoltokirja.Apulaskut.*; //MITÄ STATIC TÄSSÄ TARKOITTAA?
+import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttää ilman, että yhtään luokan oliota on luotu. 
+                                            //          luokan sisällä olevia funktioita voidaan käyttää ilman luokan nimeä (Esim. Apulaskut.rand(1,2) --> rand(1,2))
 
 /**
  * Pyörä, joka huolehtii esimerkiksi tunnusNro:staan.
  * @author Henri
- * @version 18.3.2021
- *
+ * @version 19.3.2021
  */
 public class Pyora {
-    private int tunnusNro;
-    private String nimi     = "";
-    private String merkki   = "";
-    private String malli    = "";
-    private int vuosimalli  = 0 ;
-    private String runkoNro = "";
+    private int tunnusNro;                  // Numero joka yksilöi pyörän
+    private String nimi     = "";           // Pyörän nimi
+    private String merkki   = "";           // Pyörän merkki
+    private String malli    = "";           // Pyörän malli
+    private int vuosimalli  = 0 ;           // Pyörän vuosimalli
+    private String runkoNro = "";           // Pyörän runkonumero
+    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."
     
-    private static int seuraavaNro = 1;  // static = "tämä on olemassa, vaikka olioita ei olisi luotukaan."
     
     /**
      * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 
@@ -52,13 +47,13 @@ public class Pyora {
     
     
     /**
-     * Tulostetaan pyörän tiedotparametrina tuotuun tietovirtaan
+     * Tulostetaan pyörän tiedot parametrina tuotuun tietovirtaan
      * @param os tietovirta johon tiedot tulostetaan
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);    // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
         out.println("ID: "+tunnusNro + "\n"       // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
-                + "Nimi: "+nimi + "\n" 
+                + "Nimi: "+nimi + "\n"            // Printstreamiin annetttu sisältö muutetaan OutPutStreamille sopivaksi automaattisesti.
                 +"Merkki: "+merkki + "\n" 
                 +"Malli: "+malli + "\n"
                 +"vuosimalli: "+vuosimalli + "\n"
@@ -109,8 +104,8 @@ public class Pyora {
     
     
     /**
-     * Erottaa annetusta rivistä pyörän tiedot. Pyörän tiedot erotellaan | merkillä.
-     * @param rivi rivi josta pyörän tietoja parsitaan
+     * Erottaa annetusta rivistä pyörän tiedot. Pyörän tiedot erotellaan tolppamerkillä | 
+     * @param rivi annettu rivi josta pyörän tietoja etsitään
      * @example
      * <pre name="test">
      * Pyora pyora4 = new Pyora();
@@ -146,11 +141,11 @@ public class Pyora {
      * Arpoo mallin vuoksi dataan pyörän hieman eri nimellä ja runkonumerolla
      */
     public void arvoPyora() {
-        nimi        = "Fuji Rakan" + rand(1,9999);
+        nimi        = "Fuji Rakan" + rand(1,9999);      // rand arpoo satunnaisen luvun väliltä [1,9999]
         merkki      = "Fuji";
         malli       = "Rakan";
-        vuosimalli  = rand(1990, 2021);
-        runkoNro    = "AVK4DFG" + rand(1,9999);
+        vuosimalli  = rand(1990, 2021);                 // rand arpoo satunnaisen luvun väliltä [1990, 2021]
+        runkoNro    = "AVK4DFG" + rand(1,9999);         // rand arpoo satunnaisen luvun väliltä [1,9999]
     }
     
 
@@ -159,18 +154,20 @@ public class Pyora {
      * @param args ei käytössä
      */
     public static void main(String[] args) {
+        // Luodaan ensimmäinen pyörä arvotuilla tiedoilla, rekisteröidään ja tulostetaan
         Pyora pyora = new Pyora();
-        pyora.arvoPyora();
-        pyora.rekisteroi();
+        pyora.arvoPyora();              
+        pyora.rekisteroi();             
         pyora.tulosta(System.out);
         
+        // Luodaan toinen pyörä arvotuilla tiedoilla, rekisteröidään ja tulostetaan
         Pyora pyora2 = new Pyora();
         pyora2.arvoPyora();
         pyora2.rekisteroi();
         pyora2.tulosta(System.out);
         
+        // Luodaan kolmas pyörä ja muodostetaan pyörän tiedot annetusta merkkijonosta.
         Pyora pyora3 = new Pyora();
         pyora3.parse(" 3 |  Fuji Rakan  |  Fuji   | Rakan  | 2000   | abc123");
     }
-
 }

@@ -1,19 +1,17 @@
-/**
- * 
- */
 package huoltokirja;
 
 import java.util.List;
 
 /**
  * @author Henri
- * @version 25.2.2021
+ * @version 19.3.2021
  *
  */
 public class Huoltokirja {
-    private final Pyorat pyorat = new Pyorat(); 
-    private final Huollot huollot = new Huollot(); 
+    private Pyorat pyorat = new Pyorat();           // Huoltokirjan pyörät 
+    private Huollot huollot = new Huollot();        // Huoltokirjan huollot
 
+    
     /**
      * palauttaa pyörien lukumäärän
      * @return pyörien lukumäärä
@@ -72,20 +70,21 @@ public class Huoltokirja {
      * @throws ApuException jos tallentaminen epäonnistuu
      */
     public void talleta() throws ApuException {
-        pyorat.tallenna("pyorat");
+       //
     }
    
     
      /**
-     * @param nimi mitä tiedostoa luetaan
      * @throws ApuException kps lukeminen epäonnistuu
      */
-    public void lueTiedosto(String nimi) throws ApuException {
-        pyorat.lueTiedosto(nimi);
+    public void lueTiedosto() throws ApuException {
+        pyorat = new Pyorat();      // Tyhjentää olemassaolevan pyorat-olion
+        huollot = new Huollot();    // Tyhjentää olemassaolevan huollot-olion
+     
+        pyorat.lueTiedosto();       // Lukee tiedot pyoristä
+        huollot.lueTiedosto();      // Lukee tiedot huolloista
+        
     }
-
-
-    //TODO: poista
     
     
     /**
@@ -94,6 +93,12 @@ public class Huoltokirja {
      */
     public static void main(String[] args) {
         Huoltokirja huoltokirja = new Huoltokirja();
+        
+        try {
+            huoltokirja.lueTiedosto();
+        } catch (ApuException e1) {
+            System.err.println("Tiedoston luku meni pieleen.");
+        }
         
         try {
             Pyora pyora1 = new Pyora();
