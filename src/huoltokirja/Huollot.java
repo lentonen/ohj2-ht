@@ -69,7 +69,6 @@ public class Huollot implements Iterable<Huolto> {
     
     /**
      * Tallettaa huoltojen tiedot tiedostoon huollot.dat
-     * @param tiednimi tallennettavan tiedoston nimi
      * @throws ApuException jos tallennus epäonnistuu
      * @example
      * <pre>
@@ -80,8 +79,8 @@ public class Huollot implements Iterable<Huolto> {
      * </pre>
      * TODO:testit?
      */
-    public void tallenna(String tiednimi) throws ApuException {
-        File ftied = new File(tiednimi + "/huollot.dat");
+    public void tallenna() throws ApuException {
+        File ftied = new File(tiedostonNimi);
         
         try (PrintStream fo = new PrintStream(new FileOutputStream(ftied, false))) {
             for (Huolto huolto : huollot) {
@@ -157,7 +156,7 @@ public class Huollot implements Iterable<Huolto> {
         }
         
         try {
-            huollot.tallenna("huollot");
+            huollot.tallenna();
         } catch (ApuException e) {
             e.printStackTrace();
         }

@@ -66,11 +66,24 @@ public class Huoltokirja {
     
     
     /**
-     * Tallentaa pyörien tiedot huoltokirjaan
-     * @throws ApuException jos tallentaminen epäonnistuu
+     * Tallentaa pyörien ja huoltojen tiedot tiedostoihin
+     * Yrittää tallettaa huollot, jos pyörien tallentaminen epäonnistuu.
+     * Jos jompikumpi epäonnistuu, heittää lopuksi poikkeuksen, joka näyttää mikä epäonnistui.
+     * @throws ApuException jos pyörien tai huoltojen tallentaminen epäonnistuu
      */
     public void talleta() throws ApuException {
-       //
+        String virhe="";
+        try {
+            pyorat.tallenna();
+        } catch (ApuException e) {
+            virhe = e.getMessage();
+        }
+        try {
+            huollot.tallenna();
+        } catch (ApuException e) {
+            virhe += e.getMessage();
+        }
+        if (!virhe.equals("")) throw new ApuException(virhe);
     }
    
     
@@ -131,6 +144,12 @@ public class Huoltokirja {
                 }           
             }
         } catch (ApuException e) {
+            System.err.println(e.getMessage());
+        }
+        
+        try {
+            huoltokirja.talleta();
+        }catch (ApuException e) {
             System.err.println(e.getMessage());
         }
     }

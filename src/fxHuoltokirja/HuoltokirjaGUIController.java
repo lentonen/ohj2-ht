@@ -18,6 +18,7 @@ import huoltokirja.ApuException;
 import huoltokirja.Huolto;
 import huoltokirja.Huoltokirja;
 import huoltokirja.Pyora;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -103,6 +104,31 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     public Pyora getPyoraKohdalla() {
         return this.pyoraKohdalla;
+    }
+    
+    
+    /**
+     * Tallentaa huoltokirjaan tehdyt muutokset
+     * @return null jos tallennus onnistuu, virhe palautetaan tekstinä
+     */
+    private String tallenna() {
+        try {
+            huoltokirja.talleta();
+            return null;
+        } catch (ApuException ex) {
+              Dialogs.showMessageDialog("Tallennuksessa ongelmia! " + ex.getMessage());
+              return ex.getMessage();
+        }
+    }
+    
+    
+    /**
+     * Tarkistetaa että tiedot tallennetaan ennen sulkemista
+     * @return true jos saa sulkea sovelluksen, false jos ei
+     */
+    public boolean voikoSulkea() {
+        tallenna();
+        return true;
     }
     
     
@@ -234,7 +260,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         // pyoranTiedot.setFont(new Font("Courier New", 12));  // TODO: säädä fontit lopuksi
         panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
         chooserPyorat.clear();                                 // Tyhjentää pyörien chooserlistan
-        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().
+        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().   
     }
     
     
@@ -269,7 +295,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Sulkee ohjelman.
      */
     private void lopeta() {
-        Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
+        tallenna();
+        Platform.exit();
     }        
     
     
@@ -279,7 +306,13 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     public void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
-        // naytaJasen();
+        try {                               // Yrittää lukea huoltokirjan tiedostosta.
+            huoltokirja.lueTiedosto();
+        } catch (ApuException ex) {
+            // TODO Auto-generated catch block
+            System.err.println(ex.getMessage());;
+        }
+        paivitaLista();
     }
 
     

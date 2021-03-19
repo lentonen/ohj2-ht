@@ -18,8 +18,8 @@ public class Pyora {
     private String malli    = "";           // Pyörän malli
     private int vuosimalli  = 0 ;           // Pyörän vuosimalli
     private String runkoNro = "";           // Pyörän runkonumero
-    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."
-    
+    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu." 
+                                            // Static-attribuutti on yhteinen kaikille luokasta luoduille olioille. Eli jokaiselle pyörälle ei alusteta omaa attribuuttia.
     
     /**
      * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 

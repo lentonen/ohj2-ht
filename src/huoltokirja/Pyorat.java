@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @version 19.3.2021
  */
 public class Pyorat {
-    private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä luokassa
+    private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
     private int                 lkm               = 0;                        // Pyörien lukumäärä. Kertoo samalla mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
     private static final String tiedostonNimi  = "pyorat/pyorat.dat";         // tiedostopolku käytettävään tiedostoon
     private Pyora[]             pyorat;                                       // Taulukko jossa viitteet tallennettuihin pyöriin
@@ -64,6 +64,19 @@ public class Pyorat {
         if (lkm >= pyorat.length) throw new ApuException("Liikaa pyöriä");
         pyorat[lkm] =pyora;
         lkm++;
+        
+        /* IDEA, miten toteutetaan dynaaminen taulukko itse
+        int vanhaPituus = pyorat.length;
+        if (lkm >= vanhaPituus) {
+            int uusiPituus = 2 * vanhaPituus;
+            Pyora[] uusiTaulukko = new Pyora[uusiPituus];
+            for (int i = 0; i < vanhaPituus; i++)
+                uusiTaulukko[i] = anna(i);
+            pyorat = uusiTaulukko;    
+        }
+        pyorat[lkm] =pyora;
+        lkm++;   
+         */
     }       
     
     
