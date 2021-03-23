@@ -51,11 +51,7 @@ public class Huollot implements Iterable<Huolto> {
      * #THROWS ApuException
      * #THROWS IndexOutOfBoundsException 
      * #import java.io.File;
-     * #import java.util.ArrayList;
-     * #import java.util.Collection;
-     * #import java.util.Iterator;
      * #import java.util.List;
-     * #import java.util.Scanner;
      * 
      * Huollot huollot = new Huollot();
      * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huollot.lisaa(huolto1);
