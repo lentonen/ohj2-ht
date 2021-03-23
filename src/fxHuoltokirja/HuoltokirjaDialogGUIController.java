@@ -45,8 +45,9 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        //
+        alusta();
     }
+
 
     @Override
     public void setDefault(Pyora oletus) {
@@ -60,6 +61,12 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
 
 
     private Pyora pyoraKohdalla;
+    @FXML private TextField[] texts;
+    
+    
+    private void alusta() {
+        texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
+    }
 
     
     /**
@@ -72,12 +79,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     
     
     private void naytaPyora(Pyora pyora) {
-        if (pyora == null ) return;
-        textNimi.setText(pyoraKohdalla.getNimi());
-        textMerkki.setText(pyoraKohdalla.getMerkki());
-        textMalli.setText(pyoraKohdalla.getMalli());
-        textVuosimalli.setText(Integer.toString(pyoraKohdalla.getVuosimalli()));
-        textRunkoNro.setText(pyoraKohdalla.getRunkoNro());  
+        naytaPyora(texts, pyora); 
     }
 
     
@@ -94,6 +96,19 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
             );
         
     }
+
     
-    
+    /**
+     * Täytetään pyörän tiedot tekstikenttiin
+     * @param texts taulukko jossa on tekstikenttiä
+     * @param pyora näytettävä pyörä
+     */
+    public static void naytaPyora(TextField[] texts, Pyora pyora) {
+        if (pyora == null) return;
+        texts[0].setText(pyora.getNimi());
+        texts[1].setText(pyora.getMerkki());
+        texts[2].setText(pyora.getMalli());
+        texts[3].setText(Integer.toString(pyora.getVuosimalli()));
+        texts[4].setText(pyora.getRunkoNro());    
+    }  
 }

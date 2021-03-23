@@ -51,6 +51,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private TextField textVuosimalli;
     @FXML private TextField textRunkoNro;
     
+    
     @Override public void initialize(URL url, ResourceBundle bundle) {
         alusta(); // käydään alustamassa uusi näkymä pyörän tiedoille. Tämä on väliaikaista.  
     }
@@ -102,6 +103,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private Huoltokirja huoltokirja;                  // huoltokirja, johon pyöriä lähdetään lisäämään 
     //private TextArea pyoranTiedot = new TextArea();   // väliaikainen teksti-ikkuna, jolla voidaan näyttää lisätyn pyörän tietoja.
     private Pyora pyoraKohdalla;
+    @FXML private TextField[] texts;
     
     
     /**
@@ -269,6 +271,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         //panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
         chooserPyorat.clear();                                 // Tyhjentää pyörien chooserlistan
         chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().   
+        texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
     }
     
     
@@ -278,11 +281,12 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void naytaPyora() {
         pyoraKohdalla = chooserPyorat.getSelectedObject();  // Hakee muuttujaan listasta valitun pyörän
         if (pyoraKohdalla == null) return;                  // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
-        textNimi.setText(pyoraKohdalla.getNimi());
-        textMerkki.setText(pyoraKohdalla.getMerkki());
-        textMalli.setText(pyoraKohdalla.getMalli());
-        textVuosimalli.setText(Integer.toString(pyoraKohdalla.getVuosimalli()));
-        textRunkoNro.setText(pyoraKohdalla.getRunkoNro());     
+        HuoltokirjaDialogGUIController.naytaPyora(texts, pyoraKohdalla);
+        //textNimi.setText(pyoraKohdalla.getNimi());
+        //textMerkki.setText(pyoraKohdalla.getMerkki());
+        //textMalli.setText(pyoraKohdalla.getMalli());
+        //textVuosimalli.setText(Integer.toString(pyoraKohdalla.getVuosimalli()));
+        //textRunkoNro.setText(pyoraKohdalla.getRunkoNro());     
     }
 
     
