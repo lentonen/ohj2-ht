@@ -238,7 +238,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     /**
      * Asetetaan tarkasteltava pyörä
-     * @param pyora huoltokirja jota käyttöliittymässä käytetään
+     * @param pyora pyörä jonka tietoja käyttöliittymässä käytetään
      */
     public void setPyora(Pyora pyora) {
         this.pyoraKohdalla = pyora;

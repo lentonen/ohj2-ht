@@ -216,11 +216,13 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
 
     
     /**
-     * Avaa dialogin, jonka avulla pyörän tietoja muokataan
+     * Avaa dialogin, jonka avulla pyörän tietoja muokataan+
      */
     private void muokkaaPyoraa() {
-        ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
-                "Pyörän tiedot", null, "");  
+        HuoltokirjaDialogGUIController.muokkaaPyora(null, pyoraKohdalla);
+        
+        //ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
+        //        "Pyörän tiedot", null, pyoraKohdalla);  
     }
     
     

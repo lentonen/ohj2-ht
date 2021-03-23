@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -39,9 +38,9 @@ public class Pyorat {
     
     
     /**
-     * Lisää uuden pyörän tietorakenteeseen.
+     * Lisää uuden pyörän tietorakenteeseen. Tietorakenne kasvaa automaattisesti
+     * kun pyöriä yritetään lisätä täynnä olevaan tietorakenteeseen
      * @param pyora viite lisättävään pyörään.
-     * @throws ApuException virhe kun tietorakenne täynnä
      * @example
      * <pre name="test">
      * #THROWS ApuException 
@@ -58,15 +57,10 @@ public class Pyorat {
      * pyorat.anna(-1) === pyora3; #THROWS IndexOutOfBoundsException 
      * pyorat.lisaa(pyora4); pyorat.getLkm() === 4;
      * pyorat.lisaa(pyora5); pyorat.getLkm() === 5;
-     * pyorat.lisaa(pyora5); #THROWS ApuException 
+     * pyorat.lisaa(pyora5); // Voidaan lisätä 6.pyörä, koska tietorakenne kasvaa
      * </pre>
      */
-    public void lisaa(Pyora pyora) throws ApuException {
-        if (lkm >= pyorat.length) throw new ApuException("Liikaa pyöriä");
-        pyorat[lkm] =pyora;
-        lkm++;
-        
-        /* IDEA, miten toteutetaan dynaaminen taulukko itse
+    public void lisaa(Pyora pyora) {
         int vanhaPituus = pyorat.length;
         if (lkm >= vanhaPituus) {
             int uusiPituus = 2 * vanhaPituus;
@@ -77,7 +71,6 @@ public class Pyorat {
         }
         pyorat[lkm] =pyora;
         lkm++;   
-         */
     }       
     
     
@@ -203,18 +196,16 @@ public class Pyorat {
         
         // Yritetään lisätä pyörää taulukkoon
         // Jos taulukko on täynnä, tulostaa virheilmoituksen
-        try {
-            pyorat.lisaa(pyora1);
-            pyorat.lisaa(pyora2);
+
+        pyorat.lisaa(pyora1);
+        pyorat.lisaa(pyora2);
             
-            // Tulostetaan kaikkien pyörien tiedot näkyville
-            for  (int i = 0; i < pyorat.getLkm() ; i++) {
-                Pyora pyora = pyorat.anna(i);
-                pyora.tulosta(System.out);
-            }    
-        } catch (ApuException e) {
-            System.err.println(e.getMessage());
-        }
+        // Tulostetaan kaikkien pyörien tiedot näkyville
+        for  (int i = 0; i < pyorat.getLkm() ; i++) {
+            Pyora pyora = pyorat.anna(i);
+            pyora.tulosta(System.out);
+        }    
+
         
         // tallennetaan lisättyjen pyörien tiedot tiedostoon.
         try {

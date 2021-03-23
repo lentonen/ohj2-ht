@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxHuoltokirja.HuoltokirjaDialogGUIController">
    <left>
       <BorderPane BorderPane.alignment="CENTER">
          <left>
@@ -43,7 +43,7 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TextField text="Fuji Rakan" GridPane.columnIndex="1" />
+                        <TextField fx:id="textNimi" text="Fuji Rakan" GridPane.columnIndex="1" />
                         <Label text="Merkki" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" right="10.0" top="10.0" />
@@ -64,10 +64,10 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TextField layoutX="85.0" layoutY="23.0" text="Fuji" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField layoutX="85.0" layoutY="53.0" text="Rakan 1.3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField layoutX="85.0" layoutY="83.0" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField layoutX="85.0" layoutY="113.0" text="AVK4DF56GD" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="textMerkki" layoutX="85.0" layoutY="23.0" text="Fuji" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textMalli" layoutX="85.0" layoutY="53.0" text="Rakan 1.3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textVuosimalli" layoutX="85.0" layoutY="83.0" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="textRunkoNro" layoutX="85.0" layoutY="113.0" text="AVK4DF56GD" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" top="20.0" />
@@ -84,8 +84,8 @@
    <bottom>
       <ButtonBar BorderPane.alignment="CENTER">
          <buttons>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleDefaultOK"  text="OK" /> 
-            <Button cancelButton="true" mnemonicParsing="false"  onAction="#handleDefaultCancel" text="Peruuta" textAlignment="CENTER" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOK" text="OK" /> 
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Peruuta" textAlignment="CENTER" />
          </buttons>
          <BorderPane.margin>
             <Insets bottom="10.0" right="30.0" top="10.0" />

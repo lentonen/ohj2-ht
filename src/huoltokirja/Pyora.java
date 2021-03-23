@@ -47,6 +47,39 @@ public class Pyora {
     
     
     /**
+     * Palauttaa pyörän merkin
+     * @return pyörän merkki
+     */
+    public String getMerkki() {
+        return merkki;
+    }
+
+
+    /** Palauttaa pyörän mallin
+     * @return pyörän malli
+     */
+    public String getMalli() {
+        return malli;
+    }
+
+
+    /**Palauttaa vuosimallin
+     * @return vuosimalli
+     */
+    public int getVuosimalli() {
+        return vuosimalli;
+    }
+
+
+    /** Palauttaa pyörän runkonumeron
+     * @return pyörän runkonumero
+     */
+    public String getRunkoNro() {
+        return runkoNro;
+    }
+    
+    
+    /**
      * Tulostetaan pyörän tiedot parametrina tuotuun tietovirtaan
      * @param os tietovirta johon tiedot tulostetaan
      */
@@ -170,4 +203,7 @@ public class Pyora {
         Pyora pyora3 = new Pyora();
         pyora3.parse(" 3 |  Fuji Rakan  |  Fuji   | Rakan  | 2000   | abc123");
     }
+
+
+
 }
