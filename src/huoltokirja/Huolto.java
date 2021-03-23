@@ -154,6 +154,15 @@ public class Huolto {
     
     
     /**
+     * Palauttaa tehdyt huollot
+     * @return toimenpiteet huollossa
+     */
+    public String getToimenpiteet() {
+        return toimenpiteet;
+    }
+    
+    
+    /**
      * Palauttaa huollon pyoraNro.
      * @return pyörän numero
      */
@@ -191,4 +200,7 @@ public class Huolto {
         huolto3.parse(" 3 |  1  |  Iskarihuolto   | 125  | Alajalkojen huolto ");
         huolto3.tulosta(System.out);
     }
+
+
+
 }

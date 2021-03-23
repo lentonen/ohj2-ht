@@ -39,6 +39,11 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private ListChooser<Huolto> chooserHuollot;
     @FXML private TextField labelHakuEhto;
     
+    // Kentät huollon tiedoille
+    @FXML private TextField textAjotunnit;
+    @FXML private TextField textNimi;
+    @FXML private TextArea textToimenpiteet;
+    
     @FXML void handleUusiHuolto() {
         uusiHuolto();
     }
@@ -71,6 +76,11 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         hae();
     }
     
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        alusta();
+        }
+    
 
     /**
      * Palauttaa dialogin tuloksen sulkemisen jälkeen.
@@ -84,7 +94,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      */
     @Override
     public void handleShown() {
-        // Älä tee mitään    
+        chooserHuollot.requestFocus();   
     }
 
     /**
@@ -102,16 +112,13 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
     private Huolto huoltoKohdalla;
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
-    private TextArea huollonTiedot = new TextArea();
+    //private TextArea huollonTiedot = new TextArea();
+    @FXML private TextField[] texts;  // Tietokentät taulukossa
     
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        panelHuolto.setContent(huollonTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
-        // pyoranTiedot.setFont(new Font("Courier New", 12));    // TODO: säädä fontit lopuksi
-        panelHuolto.setFitToHeight(true);                        // Kenttä kasvaa koko alueen kokoiseksi
+    private void alusta() {
         chooserHuollot.clear(); 
         chooserHuollot.addSelectionListener(e -> naytaHuolto()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
-        }
+    }
     
     
     /**
@@ -121,11 +128,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         huoltoKohdalla = chooserHuollot.getSelectedObject();   // Hakee muuttujaan listasta valitun huollon
         if (huoltoKohdalla == null) return;                    // Huolehtii siitä, jos valitaan kohta jossa ei ole huoltoa
         
-        huollonTiedot.setText("");                             // Tämä sen vuoksi, että edellisen pyörän tiedot saadaan pois näytöltä.
-        
-        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(huollonTiedot)) {   // Haetaan os-muuttujaan printstream pyoranTiedot                                                 
-                huoltoKohdalla.tulosta(os);                                                // printstream on resurssi, joka täytyy sulkea ohjelman käytettyä sitä. try with resources huolehtii sulkemisesta automaattisesti.
-        }
+        HuoltokirjaAukiDialogGUIController.naytaHuolto(textNimi, textAjotunnit, textToimenpiteet , huoltoKohdalla);
     }
     
     
@@ -185,8 +188,10 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Muokataan huollon tietoja
      */
     private void muokkaaHuoltoa() {
-        ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaAukiDialogGUIView.fxml"),
-                "Huollon tiedot", null, "");
+        HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
+        
+        //ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaAukiDialogGUIView.fxml"),
+          //      "Huollon tiedot", null, "");
     }
     
     
