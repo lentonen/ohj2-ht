@@ -3,12 +3,13 @@ package fxHuoltokirja;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import huoltokirja.Pyora;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,10 +26,10 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     @FXML private TextField textMalli;
     @FXML private TextField textVuosimalli;
     @FXML private TextField textRunkoNro;
+    @FXML private Label labelVirhe;
     
     @Override public Pyora getResult() {
-        // TODO Auto-generated method stub
-        return null;
+        return pyoraKohdalla;
     }
 
     @Override public void handleShown() {
@@ -36,10 +37,16 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     }
 
     @FXML void handleOK() {
+        if (pyoraKohdalla != null && pyoraKohdalla.getNimi().trim().equals("")) {
+            naytaVirhe("Nimi ei saa olla tyhjä");
+            return;
+        }
+        
         ModalController.closeStage(textNimi);   
     }
     
     @FXML void handleCancel() {
+        pyoraKohdalla = null;
         ModalController.closeStage(textNimi); 
     }
 
@@ -66,11 +73,52 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     
     private void alusta() {
         texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
+        int i = 0;
+        for (TextField text : texts) {
+            final int k = ++i;
+            text.setOnKeyReleased(e -> kasitteleMuutosPyoraan(k, (TextField)e.getSource()));
+        }
+    }
+    
+    
+    private void naytaVirhe(String virhe) {
+        if (virhe == null || virhe.isEmpty()) {
+            labelVirhe.setText("");
+            labelVirhe.getStyleClass().removeAll("virhe");
+            return;
+        }
+        labelVirhe.setText(virhe);
+        labelVirhe.getStyleClass().add("virhe");
+    }
+    
+    
+    private void kasitteleMuutosPyoraan(int k, TextField text) {
+        if (pyoraKohdalla == null) return;                          // Jos pyörää ei ole valittuna, niin lähdetään pois
+        String s = text.getText();                                  // Haetaan annetun TextFieldin sisältö
+        String virhe = null;                                        // Luodaan mj, johon tallennetaan virhetekstit.
+        switch (k) {                                                // Switch suorittaa casen sen mukaan, mikä k tuodaan parametrina.
+        case 1 : virhe = pyoraKohdalla.setNimi(s); break;
+        case 2 : virhe = pyoraKohdalla.setMerkki(s); break;
+        case 3 : virhe = pyoraKohdalla.setMalli(s); break;
+        case 4 : virhe = pyoraKohdalla.setMalli(s); break;
+        case 5 : virhe = pyoraKohdalla.setVuosimalli(s); break;
+        case 6 : virhe = pyoraKohdalla.setRunkoNro(s); break;
+        default:
+        }
+        if (virhe == null) {                                        // Mitä tehdään kun syötössä ei tule virheitä
+            Dialogs.setToolTipText(text, "");                       // Ei näytetä "tip"-tekstiä
+            text.getStyleClass().removeAll("virhe");                // Poistetaan virhe-tyyli käytöstä
+            naytaVirhe(virhe);
+        } else {
+            Dialogs.setToolTipText(text, virhe);                    // Näytetään "tip"-teksti
+            text.getStyleClass().add("virhe");                      // otetaan virhe-tyyli käyttöön
+            naytaVirhe(virhe);
+        }
     }
 
     
     /**
-     * Asetetaan muokattava pyörä
+     * Asetetaan muokattava pyörä TODO: POISTA?
      * @param oletus pyörä jonka tietoja halutaan muokata
      */
     public void setPyora(Pyora oletus) {

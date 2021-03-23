@@ -16,9 +16,9 @@ import java.util.Scanner;
 public class Pyorat {
     private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
     private int                 lkm               = 0;                        // Pyörien lukumäärä. Kertoo samalla mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
-    private static final String tiedostonNimi  = "/pyorat.dat";               // tiedostopolku käytettävään tiedostoon
+    private static final String tiedostonNimi     = "/pyorat.dat";               // tiedostopolku käytettävään tiedostoon
     private Pyora[]             pyorat;                                       // Taulukko jossa viitteet tallennettuihin pyöriin
-
+    private boolean muutettu                      = false;                                         // true, jos pyorat-luokkassa lisätty tai muokattu pyöriä. False muuten.
    
     /**
      * Muodostaja pyörät-oliolle.
@@ -70,8 +70,26 @@ public class Pyorat {
             pyorat = uusiTaulukko;    
         }
         pyorat[lkm] =pyora;
-        lkm++;   
-    }       
+        lkm++;
+        muutettu = true;
+    }
+    
+    
+    /**
+     * @param pyora jonka tietoja päivitetään
+     * TODO: testit
+     */
+    public void korvaaTaiLisaa(Pyora pyora) {
+        int id = pyora.getTunnusNro();
+        for (int i = 0; i < lkm; i++) {
+            if (pyorat[i].getTunnusNro() == id) {
+                pyorat[i] = pyora;      // jos löydetään id:tä vastaava pyörä, niin korvataan se tuodulla pyörällä.
+                muutettu = true;
+                return;                
+            }
+        }
+        lisaa(pyora);
+    }
     
     
     /**
@@ -101,6 +119,8 @@ public class Pyorat {
      * </pre>
      */
     public void tallenna(String hakemisto) throws ApuException {
+        if (!muutettu) return;
+        
         File ftied = new File(hakemisto + tiedostonNimi);    
         ftied.getParentFile().mkdirs(); // Luo hakemiston mikäli sitä ei ole olemassa
         
@@ -161,6 +181,7 @@ public class Pyorat {
                 pyora.parse(s); // voisi palauttaa onnistuuko parsiminen BOOL
                 lisaa(pyora);
             }
+            muutettu = false;
         } catch (FileNotFoundException ex) {
             throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
             // } catch (IOException e) {

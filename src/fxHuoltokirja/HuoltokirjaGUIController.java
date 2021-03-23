@@ -224,13 +224,21 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
 
     
     /**
-     * Avaa dialogin, jonka avulla pyörän tietoja muokataan+
+     * Avaa dialogin, jonka avulla pyörän tietoja muokataan
      */
     private void muokkaaPyoraa() {
-        HuoltokirjaDialogGUIController.muokkaaPyora(null, pyoraKohdalla);
-        
-        //ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaDialogGUIView.fxml"),
-        //        "Pyörän tiedot", null, pyoraKohdalla);  
+        if (pyoraKohdalla == null) return;      // Ei muokata jos pyörää ei ole valittu
+        try {
+            Pyora pyora = pyoraKohdalla.clone(); // Luodaan uusi klooni valitusta pyörästä ja muokataan sitä
+            pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora);
+            if (pyora == null) return;              // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
+            huoltokirja.korvaaTailisaa(pyora);
+            paivitaLista();
+        } catch (CloneNotSupportedException e1) {
+            System.err.println(e1.getMessage());;
+        } catch (ApuException e) {
+            System.err.println("Ongelmia pyörän lisäämisessä");
+        }    
     }
     
     
@@ -281,12 +289,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void naytaPyora() {
         pyoraKohdalla = chooserPyorat.getSelectedObject();  // Hakee muuttujaan listasta valitun pyörän
         if (pyoraKohdalla == null) return;                  // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
-        HuoltokirjaDialogGUIController.naytaPyora(texts, pyoraKohdalla);
-        //textNimi.setText(pyoraKohdalla.getNimi());
-        //textMerkki.setText(pyoraKohdalla.getMerkki());
-        //textMalli.setText(pyoraKohdalla.getMalli());
-        //textVuosimalli.setText(Integer.toString(pyoraKohdalla.getVuosimalli()));
-        //textRunkoNro.setText(pyoraKohdalla.getRunkoNro());     
+        HuoltokirjaDialogGUIController.naytaPyora(texts, pyoraKohdalla); 
     }
 
     

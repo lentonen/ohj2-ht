@@ -11,7 +11,7 @@ import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttä
  * @author Henri
  * @version 19.3.2021
  */
-public class Pyora {
+public class Pyora implements Cloneable{
     private int tunnusNro;                  // Numero joka yksilöi pyörän
     private String nimi     = "";           // Pyörän nimi
     private String merkki   = "";           // Pyörän merkki
@@ -78,6 +78,73 @@ public class Pyora {
         return runkoNro;
     }
     
+    
+    /**
+     * Asettaa pyoralle annetun nimen
+     * @param s pyoralle laitettava nimi
+     * @return virheilmoitus, null jos ok
+     */
+    public String setNimi(String s) {
+        nimi = s;
+        return null;
+    }
+    
+    
+    /**
+     * Asettaa pyoralle annetun merkin
+     * @param s pyoralle laitettava merkki
+     * @return virheilmoitus, null jos ok
+     */
+    public String setMerkki(String s) {
+        merkki = s;
+        return null;
+    }
+    
+    
+    /**
+     * Asettaa pyoralle annetun malli
+     * @param s pyoralle laitettava malli
+     * @return virheilmoitus, null jos ok
+     */
+    public String setMalli(String s) {
+        malli = s;
+        return null;
+    }
+    
+    
+    /**
+     * Asettaa pyoralle annetun vuosimallin
+     * @param s pyoralle laitettava vuosimalli
+     * @return virheilmoitus, null jos ok
+     */
+    public String setVuosimalli(String s) {
+        if (!s.matches("[0-9]*")) return "Postinumeron oltava numeerinen";
+        vuosimalli = Integer.parseInt(s);
+        return null;
+    }
+    
+    
+    /**
+     * Asettaa pyoralle annetun runkonumeron
+     * @param s pyoralle laitettava runkonumero
+     * @return virheilmoitus, null jos ok
+     */
+    public String setRunkoNro(String s) {
+        runkoNro = s;
+        return null;
+    }
+    
+    
+    /**
+     * Luo kloonin pyörästä
+     * TODO: testit
+     */
+    @Override
+    public Pyora clone() throws CloneNotSupportedException {
+        Pyora uusi;
+        uusi = (Pyora)super.clone();
+        return uusi;
+    }
     
     /**
      * Tulostetaan pyörän tiedot parametrina tuotuun tietovirtaan

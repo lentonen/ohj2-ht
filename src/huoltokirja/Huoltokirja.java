@@ -33,6 +33,17 @@ public class Huoltokirja {
     
     
     /**
+     * korvaa pyörän tietorakenteessa.
+     * @param pyora pyörä jota muokataan
+     * @throws ApuException jos pyörää ei voida lisätä
+     * TODO: Testit
+     */
+    public void korvaaTailisaa(Pyora pyora) throws ApuException {
+        pyorat.korvaaTaiLisaa(pyora);
+    }
+    
+    
+    /**
      * Lisää huollon huoltokirjaan
      * @param huolto huolto joka lisätään
      * @throws ApuException jos huoltoa ei voida lisätä

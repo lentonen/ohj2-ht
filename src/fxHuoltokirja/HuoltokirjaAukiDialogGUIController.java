@@ -6,10 +6,8 @@ import java.util.ResourceBundle;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import huoltokirja.Huolto;
-import huoltokirja.Pyora;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -62,9 +60,6 @@ public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterf
 
 
     private Huolto huoltoKohdalla;
-    @FXML private TextField[] texts;
-    
-    
     private void alusta() {
         //
     }

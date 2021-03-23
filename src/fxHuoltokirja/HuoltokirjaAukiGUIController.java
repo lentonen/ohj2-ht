@@ -2,7 +2,6 @@ package fxHuoltokirja;
 
 import java.awt.Desktop;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -13,7 +12,6 @@ import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
-import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import huoltokirja.ApuException;
 import huoltokirja.Huolto;
 import huoltokirja.Huoltokirja;
@@ -189,9 +187,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      */
     private void muokkaaHuoltoa() {
         HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
-        
-        //ModalController.showModal(HuoltokirjaDialogGUIController.class.getResource("HuoltokirjaAukiDialogGUIView.fxml"),
-          //      "Huollon tiedot", null, "");
     }
     
     
