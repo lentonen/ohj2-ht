@@ -32,7 +32,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     }
 
     @Override public void handleShown() {
-        // TODO Auto-generated method stub
+        textNimi.requestFocus();
     }
 
     @FXML void handleOK() {
@@ -77,8 +77,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
         textMerkki.setText(pyoraKohdalla.getMerkki());
         textMalli.setText(pyoraKohdalla.getMalli());
         textVuosimalli.setText(Integer.toString(pyoraKohdalla.getVuosimalli()));
-        textRunkoNro.setText(pyoraKohdalla.getRunkoNro());;
-        
+        textRunkoNro.setText(pyoraKohdalla.getRunkoNro());  
     }
 
     
