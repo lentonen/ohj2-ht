@@ -21,7 +21,7 @@ import java.util.Scanner;
  *
  */
 public class Huollot implements Iterable<Huolto> {
-    private final static String tiedostonNimi ="huollot/huollot.dat";       // Tiedosto johon huollot tallennetaan
+    private final static String tiedostonNimi ="/huollot.dat";       // Tiedosto johon huollot tallennetaan
     private final Collection<Huolto> huollot= new ArrayList<Huolto>();      // tietorakenne huoltojen tallentamiseen
     
     
@@ -44,12 +44,45 @@ public class Huollot implements Iterable<Huolto> {
     
     /**
      * Lukee huoltojen tiedot tiedostosta.
+     * @param hakemisto kansio josta tiedostoa yritetään lukea
      * @throws ApuException virhe jos huoltojen lukeminen epäonnistuu
-     * TODO:testit?
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * #THROWS IndexOutOfBoundsException 
+     * #import java.io.File;
+     * #import java.util.ArrayList;
+     * #import java.util.Collection;
+     * #import java.util.Iterator;
+     * #import java.util.List;
+     * #import java.util.Scanner;
+     * 
+     * Huollot huollot = new Huollot();
+     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huollot.lisaa(huolto1);
+     * Huolto huolto2 = new Huolto(2); huolto2.arvoHuolto(); huolto2.rekisteroi(); huollot.lisaa(huolto2);
+     * String hakemisto = "testihuollot";
+     * String tiedNimi = hakemisto +"/huollot.dat";
+     * File ftied = new File(tiedNimi);
+     * ftied.getParentFile().mkdirs();
+     * ftied.delete();
+     * huollot.lueTiedosto(hakemisto); #THROWS ApuException
+     * huollot.tallenna(hakemisto);
+     * huollot = new Huollot();   // Tehdään uusi huollot-olio vanhan päälle
+     * huollot.getLkm() === 0;    // Uudessa ei pitäisi olla yhtäkään huoltoa
+     * huollot.lueTiedosto(hakemisto);
+     * huollot.getLkm() === 2;    // Uudessa pitäisi nyt olla kaksi aiemmin lisättyä huoltoa
+     * List<Huolto> eka = huollot.annaHuollot(1);
+     * eka.get(0).equals(huolto1);
+     * eka.get(1).equals(huolto1); #THROWS IndexOutOfBoundsException  // Pyörälle 1 on lisätty vain yksi huolto
+     * List<Huolto> toka = huollot.annaHuollot(2);
+     * toka.get(0).equals(huolto2);
+     * toka.get(1).equals(huolto2); #THROWS IndexOutOfBoundsException  // Pyörälle 2 on lisätty vain yksi huolto
+     * ftied.delete() === true;  // tuhoaa .dat-tiedoston
+     * ftied.getParentFile().delete() === true;  // tuhoaa testikansion
+     * </pre>
      */
-    public void lueTiedosto() throws ApuException {
-        //tiedostonNimi = hakemisto + "/huollot.dat";
-        File ftied = new File(tiedostonNimi); 
+    public void lueTiedosto(String hakemisto) throws ApuException {
+        File ftied = new File(hakemisto + tiedostonNimi); 
         
         try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
             while (fi.hasNext()) {
@@ -69,6 +102,7 @@ public class Huollot implements Iterable<Huolto> {
     
     /**
      * Tallettaa huoltojen tiedot tiedostoon huollot.dat
+     * @param hakemisto kansio johon tiedosto tallennetaan
      * @throws ApuException jos tallennus epäonnistuu
      * @example
      * <pre>
@@ -79,8 +113,9 @@ public class Huollot implements Iterable<Huolto> {
      * </pre>
      * TODO:testit?
      */
-    public void tallenna() throws ApuException {
-        File ftied = new File(tiedostonNimi);
+    public void tallenna(String hakemisto) throws ApuException {
+        File ftied = new File(hakemisto + tiedostonNimi);
+        ftied.getParentFile().mkdirs();     // Luo hakemistorakenteen, jos hakemistot puuttuvat
         
         try (PrintStream fo = new PrintStream(new FileOutputStream(ftied, false))) {
             for (Huolto huolto : huollot) {
@@ -126,7 +161,7 @@ public class Huollot implements Iterable<Huolto> {
         
         // Luetaan aiemmin lisätyt huollot tiedostosta
         try {
-            huollot.lueTiedosto();
+            huollot.lueTiedosto("huollot");
         } catch (ApuException ex) {
             System.err.println(ex.getMessage());
         }
@@ -156,7 +191,7 @@ public class Huollot implements Iterable<Huolto> {
         }
         
         try {
-            huollot.tallenna();
+            huollot.tallenna("huollot");
         } catch (ApuException e) {
             e.printStackTrace();
         }

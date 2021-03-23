@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ import java.util.Scanner;
 public class Pyorat {
     private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
     private int                 lkm               = 0;                        // Pyörien lukumäärä. Kertoo samalla mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
-    private static final String tiedostonNimi  = "pyorat/pyorat.dat";         // tiedostopolku käytettävään tiedostoon
+    private static final String tiedostonNimi  = "/pyorat.dat";               // tiedostopolku käytettävään tiedostoon
     private Pyora[]             pyorat;                                       // Taulukko jossa viitteet tallennettuihin pyöriin
 
    
@@ -94,6 +95,7 @@ public class Pyorat {
     
     /**
      * Tallettaa pyörien tiedot tiedostoon pyorat/pyorat.dat
+     * @param hakemisto hakemisto johon tiedosto tallennetaan
      * @throws ApuException jos tallennus epäonnistuu
      * @example
      * Tiedoston muoto:
@@ -101,10 +103,13 @@ public class Pyorat {
      * id |Pyörän nimi     |Merkki     |Malli       |Vuosimalli |Runkonumero |
      * 1  |Fuji Rakan      |Fuji       |Rakan 1.3   |2019       |HD65FFHH3   |
      * 3  |Ragley Trig     |Ragley     |Trig        |2020       |RLP00IUY77S |
+     * 
+     * Testaaminen suoritettu metodissa lueTiedosto(String hakemisto).
      * </pre>
      */
-    public void tallenna() throws ApuException {
-        File ftied = new File(tiedostonNimi);
+    public void tallenna(String hakemisto) throws ApuException {
+        File ftied = new File(hakemisto + tiedostonNimi);    
+        ftied.getParentFile().mkdirs(); // Luo hakemiston mikäli sitä ei ole olemassa
         
         // Yritetään avata uusi PrintStream (Tiedoston avulla luodun FileOutputStreamin avulla), jonka avulla printataan halutut tiedot FileOutputStreamiin.
         // Otetaan kiinni poikkeus, jos tiedostoa ei löydy/saada jostakin syystä avattua.
@@ -121,12 +126,38 @@ public class Pyorat {
     
     /**
      * Lukee pyörien tiedot tiedostosta ja lisää löydetyt pyörät taulukko-tietorakenteeseen.
+     * @param hakemisto hakemisto josta tiedostoa yritetään lukea
      * @throws ApuException minkälainen virheilmoitus näytetään.
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * #THROWS IndexOutOfBoundsException 
+     * #import java.io.File;
+     * 
+     * Pyorat pyorat = new Pyorat();
+     * Pyora pyora6 = new Pyora(); pyora6.arvoPyora(); pyora6.rekisteroi(); pyorat.lisaa(pyora6);
+     * Pyora pyora7 = new Pyora(); pyora7.arvoPyora(); pyora7.rekisteroi(); pyorat.lisaa(pyora7);
+     * String hakemisto = "testipyorat";
+     * String tiedNimi = hakemisto +"/pyorat.dat";
+     * File ftied = new File(tiedNimi);
+     * ftied.getParentFile().mkdirs();
+     * ftied.delete();
+     * pyorat.lueTiedosto(hakemisto); #THROWS ApuException
+     * pyorat.tallenna(hakemisto);
+     * pyorat = new Pyorat();   // Tehdään uusi pyorat-olio vanhan päälle
+     * pyorat.getLkm() === 0;   // Uudessa ei pitäisi olla yhtäkään pyörää
+     * pyorat.lueTiedosto(hakemisto);
+     * pyorat.getLkm() === 2;   // Uudessa pitäisi nyt olla kaksi aiemmin lisättyä pyörää
+     * pyorat.anna(0).equals(pyora6);
+     * pyorat.anna(1).equals(pyora7);
+     * pyorat.anna(2).equals(pyora7); #THROWS IndexOutOfBoundsException
+     * ftied.delete() === true;  // tuhoaa .dat-tiedoston
+     * ftied.getParentFile().delete() === true;  // tuhoaa testikansion
+     * </pre>
      */
-    public void lueTiedosto() throws ApuException {
-        File ftied = new File(tiedostonNimi); 
-        
+    public void lueTiedosto(String hakemisto) throws ApuException {
+        File ftied = new File(hakemisto +tiedostonNimi); 
+       
         // FileInputStream muodostaa yhteyden tiedostoon. Scanner muuttaa tietovirrasta tulevan datan merkeiksi.
         // Otetaan kiinni poikkeus, jos tiedostoa ei löydy.
         try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
@@ -139,8 +170,8 @@ public class Pyorat {
             }
         } catch (FileNotFoundException ex) {
             throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
-       // } catch (IOException e) {
-       //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
+            // } catch (IOException e) {
+            //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
         }
     }
     
@@ -155,7 +186,7 @@ public class Pyorat {
         // Luetaan aiemmin lisättyjen pyörien tiedot tiedostosta.
         // Otetaan virhe kiinni, jos ei onnistu.
         try {
-            pyorat.lueTiedosto();
+            pyorat.lueTiedosto("pyorat");
         } catch (ApuException ex) {
             System.err.println(ex.getMessage());
         }
@@ -187,7 +218,7 @@ public class Pyorat {
         
         // tallennetaan lisättyjen pyörien tiedot tiedostoon.
         try {
-            pyorat.tallenna();
+            pyorat.tallenna("pyorat");
         } catch (ApuException e) {
             System.err.println(e.getMessage());
         }

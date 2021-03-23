@@ -74,12 +74,12 @@ public class Huoltokirja {
     public void talleta() throws ApuException {
         String virhe="";
         try {
-            pyorat.tallenna();
+            pyorat.tallenna("pyorat");
         } catch (ApuException e) {
             virhe = e.getMessage();
         }
         try {
-            huollot.tallenna();
+            huollot.tallenna("huollot");
         } catch (ApuException e) {
             virhe += e.getMessage();
         }
@@ -94,8 +94,8 @@ public class Huoltokirja {
         pyorat = new Pyorat();      // Tyhjentää olemassaolevan pyorat-olion
         huollot = new Huollot();    // Tyhjentää olemassaolevan huollot-olion
      
-        pyorat.lueTiedosto();       // Lukee tiedot pyoristä
-        huollot.lueTiedosto();      // Lukee tiedot huolloista
+        pyorat.lueTiedosto("pyorat");                // Lukee tiedot pyoristä
+        huollot.lueTiedosto("huollot");              // Lukee tiedot huolloista
         
     }
     
