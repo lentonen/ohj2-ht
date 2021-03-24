@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author Henri
- * @version 19.3.2021
+ * @version 23.3.2021
  *
  */
 public class Huoltokirja {

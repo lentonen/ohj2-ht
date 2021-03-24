@@ -17,7 +17,7 @@ import java.util.Scanner;
 /**
  * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
  * @author Henri
- * @version 18.3.2021
+ * @version 23.3.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {

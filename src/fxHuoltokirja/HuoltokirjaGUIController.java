@@ -32,7 +32,7 @@ import javafx.scene.control.TextField;
 
 /**
  * @author hemalein
- * @version 19.3.2021
+ * @version 24.3.2021
  *
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
@@ -161,7 +161,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         } catch (ApuException e) {
             Dialogs.showMessageDialog("Ongelmia pyörän luomisessa");
         }
-        paivitaLista();
+        paivitaLista(pyora.getTunnusNro());
     }
     
     
@@ -233,7 +233,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora);
             if (pyora == null) return;              // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
             huoltokirja.korvaaTailisaa(pyora);
-            paivitaLista();
+            paivitaLista(pyora.getTunnusNro());
         } catch (CloneNotSupportedException e1) {
             System.err.println(e1.getMessage());;
         } catch (ApuException e) {
@@ -260,13 +260,17 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     /**
      * Päivittää listan kun uusi pyörä lisätään
+     * @param tunnusNumero Pyörä jonka kohdalla ollaan
      */
-    private void paivitaLista() {
+    private void paivitaLista(int tunnusNumero) {
         chooserPyorat.clear();
+        int index = 0;
         for (int i = 0; i < huoltokirja.getPyoria(); i++) {
             Pyora pyora = huoltokirja.annaPyora(i);
             chooserPyorat.add(pyora.getNimi(), pyora);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen vastaavaan Pyora-olioon.
+            if (pyora.getTunnusNro() == tunnusNumero) index = i;
         }
+        chooserPyorat.setSelectedIndex(index);
     }
     
     
@@ -323,7 +327,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             // TODO Auto-generated catch block
             System.err.println(ex.getMessage());;
         }
-        paivitaLista();
+        paivitaLista(0);
     }
 
     

@@ -8,7 +8,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 /**
  * Huolto-luokka yksittäiselle huollolle.
  * @author Henri
- * @version 19.3.2021
+ * @version 23.3.2021
  */
 public class Huolto {
     private int tunnusNro;                  // Numero joka yksilöi huollon

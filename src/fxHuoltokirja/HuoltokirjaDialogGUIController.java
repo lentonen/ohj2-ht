@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  * @author hemalein
- * @version 19.3.2021
+ * @version 23.3.2021
  *
  */
 public class HuoltokirjaDialogGUIController implements ModalControllerInterface<Pyora>, Initializable {
