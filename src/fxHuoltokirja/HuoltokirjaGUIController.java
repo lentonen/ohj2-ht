@@ -8,7 +8,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
@@ -28,12 +27,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
-
-
 /**
+ * Kontrolleri huoltokirjan pääikkunalle
  * @author hemalein
  * @version 24.3.2021
- *
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
@@ -153,15 +150,16 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Lisätään uusi pyörä.
      */
     private void uusiPyora() {
-        Pyora pyora = new Pyora();
-        pyora.arvoPyora();          // TODO: korvaa dialogilla, johon tiedot syötetään.
-        pyora.rekisteroi();
         try {
-            huoltokirja.lisaa(pyora);
+            Pyora uusi = new Pyora();
+            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi);
+            if (uusi == null) return;
+            uusi.rekisteroi();
+            huoltokirja.lisaa(uusi);
+            paivitaLista(uusi.getTunnusNro());
         } catch (ApuException e) {
             Dialogs.showMessageDialog("Ongelmia pyörän luomisessa");
         }
-        paivitaLista(pyora.getTunnusNro());
     }
     
     
@@ -259,7 +257,9 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     
     /**
-     * Päivittää listan kun uusi pyörä lisätään
+     * Päivittää listan, jossa pyörät on esitetty. Hoitaa myös sen, että oikea pyörä on valittuna listasta.
+     * Kun ohjelma avautuu, niin ensimmäinen pyörä on valittuna.
+     * Lisäämisen tai muokkaamisen jälkeen lisätty tai muokattu pyörä valittuna.
      * @param tunnusNumero Pyörä jonka kohdalla ollaan
      */
     private void paivitaLista(int tunnusNumero) {

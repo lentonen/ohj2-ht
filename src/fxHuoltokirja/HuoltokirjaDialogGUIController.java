@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 
 /**
+ * Kontrolleri pyörän muokkaus/lisäys -dialogille
  * @author hemalein
- * @version 23.3.2021
- *
+ * @version 24.3.2021
  */
 public class HuoltokirjaDialogGUIController implements ModalControllerInterface<Pyora>, Initializable {
     
@@ -88,7 +88,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
             return;
         }
         labelVirhe.setText(virhe);
-        labelVirhe.getStyleClass().add("virhe");
+        labelVirhe.getStyleClass().setAll("virhe"); //TODO:virhe maalaa punaiseksi
     }
     
     
@@ -100,9 +100,8 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
         case 1 : virhe = pyoraKohdalla.setNimi(s); break;
         case 2 : virhe = pyoraKohdalla.setMerkki(s); break;
         case 3 : virhe = pyoraKohdalla.setMalli(s); break;
-        case 4 : virhe = pyoraKohdalla.setMalli(s); break;
-        case 5 : virhe = pyoraKohdalla.setVuosimalli(s); break;
-        case 6 : virhe = pyoraKohdalla.setRunkoNro(s); break;
+        case 4 : virhe = pyoraKohdalla.setVuosimalli(s); break;
+        case 5 : virhe = pyoraKohdalla.setRunkoNro(s); break;
         default:
         }
         if (virhe == null) {                                        // Mitä tehdään kun syötössä ei tule virheitä
@@ -142,7 +141,6 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
                 "Muokkaa",
                 modalityStage, pyora
             );
-        
     }
 
     

@@ -118,7 +118,7 @@ public class Pyora implements Cloneable{
      * @return virheilmoitus, null jos ok
      */
     public String setVuosimalli(String s) {
-        if (!s.matches("[0-9]*")) return "Postinumeron oltava numeerinen";
+        if (!s.matches("[0-9]*")) return "vuosimallin oltava numeerinen";
         vuosimalli = Integer.parseInt(s);
         return null;
     }

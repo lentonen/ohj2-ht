@@ -1,10 +1,10 @@
 package huoltokirja;
-
 import java.util.List;
 
 /**
+ * Huoltokirja, joka sisältää pyöriä ja huoltoja. 
  * @author Henri
- * @version 23.3.2021
+ * @version 24.3.2021
  *
  */
 public class Huoltokirja {

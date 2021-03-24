@@ -33,7 +33,7 @@ public class HuoltokirjaMain extends Application {
 			
 			Huoltokirja huoltokirja = new Huoltokirja();     // Luodaan uusi huoltokirja
 			huoltokirjaCtrl.setHuoltokirja(huoltokirja);     // Asetetaan luotu huoltokirja kontrollerin käyttöön.
-			
+			    
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
