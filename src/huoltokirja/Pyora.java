@@ -12,14 +12,33 @@ import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttä
  * @version 19.3.2021
  */
 public class Pyora implements Cloneable{
-    private int tunnusNro;                  // Numero joka yksilöi pyörän
-    private String nimi     = "";           // Pyörän nimi
-    private String merkki   = "";           // Pyörän merkki
-    private String malli    = "";           // Pyörän malli
-    private int vuosimalli  = 0 ;           // Pyörän vuosimalli
-    private String runkoNro = "";           // Pyörän runkonumero
+    private int tunnusNro;                  // Numero joka yksilöi pyörän  
+    private String nimi     = "";           // Pyörän nimi                 // kenttä 1
+    private String merkki   = "";           // Pyörän merkki               // kenttä 2
+    private String malli    = "";           // Pyörän malli                // kenttä 3
+    private int vuosimalli  = 0 ;           // Pyörän vuosimalli           // kenttä 4
+    private String runkoNro = "";           // Pyörän runkonumero          // kenttä 5
     private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu." 
                                             // Static-attribuutti on yhteinen kaikille luokasta luoduille olioille. Eli jokaiselle pyörälle ei alusteta omaa attribuuttia.
+    
+    
+    /**
+     * Palauttaa pyörään liittyvien kenttien lukumäärän
+     * @return kenttien lukumäärä
+     */
+    public int getKenttia() {
+        return 5;
+    }
+    
+    
+    /**
+     * Ensimmäisen mielekkään kentän numero
+     * @return ensimmäisen kentän indeksi
+     */
+    public int ekaKentta() {
+        return 1;
+    }
+    
     
     /**
      * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 
@@ -33,6 +52,82 @@ public class Pyora implements Cloneable{
     
     
     /**
+     * Antaa kentän k nimen
+     * @param k monennenko kentän nimi annetaan
+     * @return kentän nimi
+     */
+    public String getKentanNimi(int k) {
+        switch (k) {
+        case 0: return "Tunnus nro" ;
+        case 1: return "Nimi";
+        case 2: return "Merkki";
+        case 3: return "Malli";
+        case 4: return "Vuosimalli";
+        case 5: return "Runkonumero";
+        default: return "Ei ole olemassa";
+        }
+    }
+    
+    
+    /**
+     * Antaa k:n kentän sisällön merkkijonona
+     * @param k minkä kentän sisältö palautetaan
+     * @return kentän sisältö merkkijonona
+     */
+    public String anna(int k) {
+        switch (k) {
+        case 0: return "" +tunnusNro;
+        case 1: return "" +nimi;
+        case 2: return "" +merkki;
+        case 3: return "" +malli;
+        case 4: return "" +vuosimalli;
+        case 5: return "" +runkoNro;
+        default: return "Ei ole olemassa";
+        }
+    }
+    
+    
+    /**
+     * asettaa kentän k arvoksi parametrina tuodun merkkijonon arvon
+     * @param k kenttä jonka arvo asetetaan
+     * @param jono josta kentän sisältö luetaan
+     * @return null jos asettaminen onnistuu, virheilmoituksen jos asettaminen epäonnistuu
+     */
+    public String aseta(int k, String jono) {
+        String mj = jono.trim();
+        //StringBuilder sb = new StringBuilder(mj);
+        switch (k) {
+        case 0:
+            try {
+            setTunnusNro(Integer.parseInt(mj));
+            } catch (NumberFormatException e) {
+                return "Tunnusnumero on väärin";
+            }
+            return null;
+        case 1: 
+            nimi = mj;
+            return null;
+        case 2:
+            merkki = mj;
+            return null;
+        case 3:
+            malli = mj;
+            return null;
+        case 4:
+            try {
+                vuosimalli = Integer.parseInt(mj);
+                } catch (NumberFormatException e) {
+                    return "vuosimalli on väärin";
+                }
+            return null;
+        case 5:
+            runkoNro = mj;
+            return null;
+        default: return "Ei ole olemassa";
+        }
+    }
+    
+    /**
      * Palauttaa pyörän nimen
      * @return pyörän nimi
      * @example
@@ -41,7 +136,7 @@ public class Pyora implements Cloneable{
      * pyora.getNimi() === "";
      * </pre>
      */
-    public String getNimi() {
+    public String getNimi() { // TODO:saantimetodit voi poistaa?
         return nimi;
     }
     
@@ -50,7 +145,7 @@ public class Pyora implements Cloneable{
      * Palauttaa pyörän merkin
      * @return pyörän merkki
      */
-    public String getMerkki() {
+    public String getMerkki() { // TODO:saantimetodit voi poistaa?
         return merkki;
     }
 
@@ -58,7 +153,7 @@ public class Pyora implements Cloneable{
     /** Palauttaa pyörän mallin
      * @return pyörän malli
      */
-    public String getMalli() {
+    public String getMalli() { // TODO:saantimetodit voi poistaa?
         return malli;
     }
 
@@ -66,7 +161,7 @@ public class Pyora implements Cloneable{
     /**Palauttaa vuosimallin
      * @return vuosimalli
      */
-    public int getVuosimalli() {
+    public int getVuosimalli() { // TODO:saantimetodit voi poistaa?
         return vuosimalli;
     }
 
@@ -74,7 +169,7 @@ public class Pyora implements Cloneable{
     /** Palauttaa pyörän runkonumeron
      * @return pyörän runkonumero
      */
-    public String getRunkoNro() {
+    public String getRunkoNro() { // TODO:saantimetodit voi poistaa?
         return runkoNro;
     }
     

@@ -105,7 +105,7 @@
                      <font>
                         <Font size="26.0" />
                      </font></Label>
-                  <GridPane hgap="10.0">
+                  <GridPane fx:id="gridPyora" hgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" minWidth="100.0" />
                       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="250.0" minWidth="50.0" />
@@ -150,12 +150,12 @@
                         <TextField fx:id="textMalli" editable="false" layoutX="85.0" layoutY="53.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="textVuosimalli" editable="false" layoutX="85.0" layoutY="83.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="textRunkoNro" editable="false" layoutX="85.0" layoutY="113.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" onAction="#handleMuokkaaPyoraa" text="Muokkaa" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Button fx:id="buttonMuokkaa" mnemonicParsing="false" onAction="#handleMuokkaaPyoraa" text="Muokkaa" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#handleAvaaHuoltokirja" text="Avaa huoltokirja" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Button fx:id="buttonAvaaHuoltokirja" mnemonicParsing="false" onAction="#handleAvaaHuoltokirja" text="Avaa huoltokirja" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>

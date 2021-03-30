@@ -25,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 
 
 /**
@@ -47,6 +49,10 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private TextField textMalli;
     @FXML private TextField textVuosimalli;
     @FXML private TextField textRunkoNro;
+    // Näitä testasin
+    @FXML private GridPane gridPyora;
+    @FXML private Button buttonMuokkaa;
+    @FXML private Button buttonAvaaHuoltokirja;
     
     
     @Override public void initialize(URL url, ResourceBundle bundle) {
@@ -62,7 +68,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     }
 
     @FXML private void handleMuokkaaPyoraa() {
-        muokkaaPyoraa();
+        muokkaaPyoraa(kentta);
     }
     
     @FXML private void handleAvaaHuoltokirja() {
@@ -101,6 +107,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     //private TextArea pyoranTiedot = new TextArea();   // väliaikainen teksti-ikkuna, jolla voidaan näyttää lisätyn pyörän tietoja.
     private Pyora pyoraKohdalla;
     @FXML private TextField[] texts;
+    private int kentta = 1;
     
     
     /**
@@ -152,7 +159,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void uusiPyora() {
         try {
             Pyora uusi = new Pyora();
-            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi);
+            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi, 1);
             if (uusi == null) return;
             uusi.rekisteroi();
             huoltokirja.lisaa(uusi);
@@ -224,11 +231,11 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     /**
      * Avaa dialogin, jonka avulla pyörän tietoja muokataan
      */
-    private void muokkaaPyoraa() {
+    private void muokkaaPyoraa(int k) {
         if (pyoraKohdalla == null) return;      // Ei muokata jos pyörää ei ole valittu
         try {
             Pyora pyora = pyoraKohdalla.clone(); // Luodaan uusi klooni valitusta pyörästä ja muokataan sitä
-            pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora);
+            pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora, k);
             if (pyora == null) return;              // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
             huoltokirja.korvaaTailisaa(pyora);
             paivitaLista(pyora.getTunnusNro());
@@ -279,11 +286,22 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     private void alusta() {
         //panelPyora.setContent(pyoranTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
-        // pyoranTiedot.setFont(new Font("Courier New", 12));  // TODO: säädä fontit lopuksi
+        // pyoranTiedot.setFont(new Font("Courier New", 12));    // TODO: säädä fontit lopuksi
         //panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
-        chooserPyorat.clear();                                 // Tyhjentää pyörien chooserlistan
-        chooserPyorat.addSelectionListener(e -> naytaPyora()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().   
-        texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
+        chooserPyorat.clear();                                   // Tyhjentää pyörien chooserlistan
+        chooserPyorat.addSelectionListener(e -> naytaPyora());   // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().   
+        //texts = new TextField[]{null, textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
+        texts = HuoltokirjaDialogGUIController.luoKentat(gridPyora);
+        gridPyora.add(buttonMuokkaa, 1, 5);
+        gridPyora.add(buttonAvaaHuoltokirja, 1, 6);
+        
+        for (TextField text : texts)
+            if (text != null) {
+                text.setEditable(false);
+        text.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaaPyoraa(getFieldId(e.getSource(),0)); });  
+        text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));  
+    }    
+
     }
     
     

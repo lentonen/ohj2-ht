@@ -25,7 +25,7 @@
          <content>
             <VBox alignment="TOP_CENTER">
                <children>
-                  <GridPane hgap="10.0">
+                  <GridPane fx:id ="gridPyora" hgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" minWidth="100.0" />
                       <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="250.0" minWidth="50.0" />
