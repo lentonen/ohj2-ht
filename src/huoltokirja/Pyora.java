@@ -92,6 +92,14 @@ public class Pyora implements Cloneable{
      * @param k kenttä jonka arvo asetetaan
      * @param jono josta kentän sisältö luetaan
      * @return null jos asettaminen onnistuu, virheilmoituksen jos asettaminen epäonnistuu
+     * @example
+     * <pre name="test">
+     * Pyora pyora3 = new Pyora();
+     * pyora3.aseta(0,"a") === "Tunnusnumero on väärin";
+     * pyora3.aseta(0,"3") === null;
+     * pyora3.aseta(4,"2008a") === "vuosimalli on väärin";
+     * pyora3.aseta(4,"2008") === null;
+     * </pre>
      */
     public String aseta(int k, String jono) {
         String mj = jono.trim();
@@ -127,112 +135,32 @@ public class Pyora implements Cloneable{
         }
     }
     
+    
     /**
      * Palauttaa pyörän nimen
      * @return pyörän nimi
      * @example
      * <pre name="test">
-     * Pyora pyora = new Pyora();
-     * pyora.getNimi() === "";
+     * Pyora pyora1 = new Pyora();
+     * pyora1.getNimi() === "";
      * </pre>
      */
-    public String getNimi() { // TODO:saantimetodit voi poistaa?
+    public String getNimi() {
         return nimi;
     }
     
     
     /**
-     * Palauttaa pyörän merkin
-     * @return pyörän merkki
-     */
-    public String getMerkki() { // TODO:saantimetodit voi poistaa?
-        return merkki;
-    }
-
-
-    /** Palauttaa pyörän mallin
-     * @return pyörän malli
-     */
-    public String getMalli() { // TODO:saantimetodit voi poistaa?
-        return malli;
-    }
-
-
-    /**Palauttaa vuosimallin
-     * @return vuosimalli
-     */
-    public int getVuosimalli() { // TODO:saantimetodit voi poistaa?
-        return vuosimalli;
-    }
-
-
-    /** Palauttaa pyörän runkonumeron
-     * @return pyörän runkonumero
-     */
-    public String getRunkoNro() { // TODO:saantimetodit voi poistaa?
-        return runkoNro;
-    }
-    
-    
-    /**
-     * Asettaa pyoralle annetun nimen
-     * @param s pyoralle laitettava nimi
-     * @return virheilmoitus, null jos ok
-     */
-    public String setNimi(String s) {
-        nimi = s;
-        return null;
-    }
-    
-    
-    /**
-     * Asettaa pyoralle annetun merkin
-     * @param s pyoralle laitettava merkki
-     * @return virheilmoitus, null jos ok
-     */
-    public String setMerkki(String s) {
-        merkki = s;
-        return null;
-    }
-    
-    
-    /**
-     * Asettaa pyoralle annetun malli
-     * @param s pyoralle laitettava malli
-     * @return virheilmoitus, null jos ok
-     */
-    public String setMalli(String s) {
-        malli = s;
-        return null;
-    }
-    
-    
-    /**
-     * Asettaa pyoralle annetun vuosimallin
-     * @param s pyoralle laitettava vuosimalli
-     * @return virheilmoitus, null jos ok
-     */
-    public String setVuosimalli(String s) {
-        if (!s.matches("[0-9]*")) return "vuosimallin oltava numeerinen";
-        vuosimalli = Integer.parseInt(s);
-        return null;
-    }
-    
-    
-    /**
-     * Asettaa pyoralle annetun runkonumeron
-     * @param s pyoralle laitettava runkonumero
-     * @return virheilmoitus, null jos ok
-     */
-    public String setRunkoNro(String s) {
-        runkoNro = s;
-        return null;
-    }
-    
-    
-    /**
      * Luo kloonin pyörästä
-     * TODO: testit
+     * @example
+     * <pre name="test">
+     * #THROWS CloneNotSupportedException
+     * Pyora pyora4 = new Pyora();
+     * pyora4.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * Pyora kopio = pyora4.clone();
+     * pyora4.parse(" 4 |  Kaupunkipyörä  |  Helkama   | Jopo  | 2000   | abc123");
+     * kopio.toString().equals(pyora4.toString()) === false;
+     * </pre>
      */
     @Override
     public Pyora clone() throws CloneNotSupportedException {
@@ -240,6 +168,7 @@ public class Pyora implements Cloneable{
         uusi = (Pyora)super.clone();
         return uusi;
     }
+    
     
     /**
      * Tulostetaan pyörän tiedot parametrina tuotuun tietovirtaan
@@ -261,12 +190,12 @@ public class Pyora implements Cloneable{
      * @return Vapaana oleva tunnusNro.
      * @example
      * <pre name="test">
-     *  Pyora pyora = new Pyora();
-     *  pyora.rekisteroi();
-     *  pyora.getTunnusNro() === 1;
-     *  Pyora pyora2 = new Pyora();
-     *  pyora2.rekisteroi();
-     *  pyora2.getTunnusNro() === 2;
+     *  Pyora pyora6 = new Pyora();
+     *  pyora6.rekisteroi();
+     *  pyora6.getTunnusNro() === 7;
+     *  Pyora pyora7 = new Pyora();
+     *  pyora7.rekisteroi();
+     *  pyora7.getTunnusNro() === 8;
      * </pre>
      */
     public int rekisteroi() {
@@ -281,9 +210,9 @@ public class Pyora implements Cloneable{
      * @return pyörä tolppaeroteltuna merkkijonona 
      * @example
      * <pre name="test">
-     * Pyora pyora3 = new Pyora();
-     * pyora3.parse(" 3 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
-     * pyora3.toString() === "3|Kottero|Helkama|Jopo|2000|abc123"
+     * Pyora pyora2 = new Pyora();
+     * pyora2.parse(" 2 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyora2.toString() === "2|Kottero|Helkama|Jopo|2000|abc123"
      * </pre>
      */
     @Override
@@ -303,13 +232,13 @@ public class Pyora implements Cloneable{
      * @param rivi annettu rivi josta pyörän tietoja etsitään
      * @example
      * <pre name="test">
-     * Pyora pyora4 = new Pyora();
-     * pyora4.parse(" 4 |  Fuji Rakan  |  Fuji   | Rakan  | 2000   | abc123");
-     * pyora4.getNimi() === "Fuji Rakan";
-     * pyora4.toString() === "4|Fuji Rakan|Fuji|Rakan|2000|abc123"
-     * pyora4.getTunnusNro() === 4;
-     * pyora4.rekisteroi();                  // rekisteröinti kasvattaa tunnusNro arvoa yhdellä
-     * pyora4.getTunnusNro() === 5;
+     * Pyora pyora5 = new Pyora();
+     * pyora5.parse(" 5 |  Fuji Rakan  |  Fuji   | Rakan  | 2000   | abc123");
+     * pyora5.getNimi() === "Fuji Rakan";
+     * pyora5.toString() === "5|Fuji Rakan|Fuji|Rakan|2000|abc123"
+     * pyora5.getTunnusNro() === 5;
+     * pyora5.rekisteroi();                  // rekisteröinti kasvattaa tunnusNro arvoa yhdellä
+     * pyora5.getTunnusNro() === 6;
      * </pre>
      */
     public void parse(String rivi) {
