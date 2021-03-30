@@ -24,11 +24,6 @@ import javafx.stage.Stage;
  */
 public class HuoltokirjaDialogGUIController implements ModalControllerInterface<Pyora>, Initializable {
     
-    @FXML private TextField textNimi;
-    @FXML private TextField textMerkki;
-    @FXML private TextField textMalli;
-    @FXML private TextField textVuosimalli;
-    @FXML private TextField textRunkoNro;
     @FXML private GridPane gridPyora;
     @FXML private Label labelVirhe;
     
@@ -73,11 +68,10 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     //=============================================================================================
 
 
-    private Pyora pyoraKohdalla;
-    private TextField[] texts;
-    private int kentta = 1;
-    
-    private static Pyora apuPyora = new Pyora(); // Vastaa gridpanelle paljonko kenttiä yms.
+    private Pyora pyoraKohdalla;                 // Pyörä jota käsitellään
+    private TextField[] texts;                   // Taulukko kentille
+    private int kentta = 1;                      // Valittu kenttä, oletuksena 1 
+    private static Pyora apuPyora = new Pyora(); // Vastaa gridpanelle paljonko kenttiä yms. Static sen vuoksi, että on vakion kaltainen
     
     
     /**
@@ -86,16 +80,15 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
      * @return luodut tekstikentät
      */
     public static TextField[] luoKentat(GridPane grid) {
-        grid.getChildren().clear(); // Tyhjentää gridpanen, jos siellä on jotakin ennestään
-        TextField[] textFields = new TextField[apuPyora.getKenttia()+1];
-        
-        for (int i = 0, k = apuPyora.ekaKentta(); k <= apuPyora.getKenttia(); k++, i++) {
+        grid.getChildren().clear();                                                         // Tyhjentää gridpanen, jos siellä on jotakin ennestään
+        TextField[] textFields = new TextField[apuPyora.getKenttia()];                   // +1 sen vuoksi, että ensimmäinen kenttä on 1. Paikkaan 0 jää null-viite
+        for (int i = 0, k = apuPyora.ekaKentta(); k < apuPyora.getKenttia(); k++, i++) {
             Label label = new Label(apuPyora.getKentanNimi(k));
-            grid.add(label, 0, i); // Laitetaan label gridissä sarakkeeseen 0 riville i
+            grid.add(label, 0, i);                                                          // Laitetaan label gridissä sarakkeeseen 0 riville i
             TextField text = new TextField();
             textFields[k] = text;
-            text.setId("t"+k);    // antaa kentälle id:n t1, t2, t3...
-            grid.add(text, 1, i); // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
+            text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
+            grid.add(text, 1, i);                                                           // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
         }
         return textFields;
     }
@@ -117,8 +110,9 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
             labelVirhe.getStyleClass().removeAll("virhe");
             return;
         }
-        labelVirhe.setText(virhe);
         labelVirhe.getStyleClass().setAll("virhe"); //TODO:virhe maalaa punaiseksi
+        labelVirhe.setText(virhe);
+        
     }
     
     
@@ -197,7 +191,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
      */
     public static void naytaPyora(TextField[] texts, Pyora pyora) {
         if (pyora == null) return;
-        for (int k = pyora.ekaKentta(); k <= pyora.getKenttia(); k++)
+        for (int k = pyora.ekaKentta(); k < pyora.getKenttia(); k++)
             texts[k].setText(pyora.anna(k));    
     }  
 }

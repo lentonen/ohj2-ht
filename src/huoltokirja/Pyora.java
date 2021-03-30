@@ -27,7 +27,7 @@ public class Pyora implements Cloneable{
      * @return kenttien lukumäärä
      */
     public int getKenttia() {
-        return 5;
+        return 6;
     }
     
     

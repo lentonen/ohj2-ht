@@ -43,14 +43,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private TextField labelHakuehto;
     @FXML private ComboBoxChooser<String> suodatinPyora;
     @FXML private ScrollPane panelPyora;
-    
-    @FXML private TextField textNimi;
-    @FXML private TextField textMerkki;
-    @FXML private TextField textMalli;
-    @FXML private TextField textVuosimalli;
-    @FXML private TextField textRunkoNro;
-    // Näitä testasin
-    @FXML private GridPane gridPyora;
+    @FXML private GridPane gridPyora;       
     @FXML private Button buttonMuokkaa;
     @FXML private Button buttonAvaaHuoltokirja;
     
@@ -159,7 +152,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void uusiPyora() {
         try {
             Pyora uusi = new Pyora();
-            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi, 1);
+            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi, 1);  // Uuden pyörän lisäämisessä ensimmäinen kenttä valittuna.
             if (uusi == null) return;
             uusi.rekisteroi();
             huoltokirja.lisaa(uusi);
