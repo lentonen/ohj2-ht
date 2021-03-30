@@ -294,7 +294,4 @@ public class Pyora implements Cloneable{
         Pyora pyora3 = new Pyora();
         pyora3.parse(" 3 |  Fuji Rakan  |  Fuji   | Rakan  | 2000   | abc123");
     }
-
-
-
 }

@@ -156,6 +156,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         for (Huolto huolto: huollot) {
             chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
         }
+        chooserHuollot.setSelectedIndex(0); //TODO:muuta niin, että muuttuu samalla tavalla kuin pyörän tapauksessa.
     }
     
     
