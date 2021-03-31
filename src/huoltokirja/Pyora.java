@@ -9,9 +9,9 @@ import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttä
 /**
  * Pyörä, joka huolehtii esimerkiksi tunnusNro:staan.
  * @author Henri
- * @version 19.3.2021
+ * @version 31.3.2021
  */
-public class Pyora implements Cloneable{
+public class Pyora implements Cloneable, Tietue{
     private int tunnusNro;                  // Numero joka yksilöi pyörän  
     private String nimi     = "";           // Pyörän nimi                 // kenttä 1
     private String merkki   = "";           // Pyörän merkki               // kenttä 2
@@ -26,6 +26,7 @@ public class Pyora implements Cloneable{
      * Palauttaa pyörään liittyvien kenttien lukumäärän
      * @return kenttien lukumäärä
      */
+    @Override
     public int getKenttia() {
         return 6;
     }
@@ -35,6 +36,7 @@ public class Pyora implements Cloneable{
      * Ensimmäisen mielekkään kentän numero
      * @return ensimmäisen kentän indeksi
      */
+    @Override
     public int ekaKentta() {
         return 1;
     }
@@ -56,6 +58,7 @@ public class Pyora implements Cloneable{
      * @param k monennenko kentän nimi annetaan
      * @return kentän nimi
      */
+    @Override
     public String getKentanNimi(int k) {
         switch (k) {
         case 0: return "Tunnus nro" ;
@@ -74,6 +77,7 @@ public class Pyora implements Cloneable{
      * @param k minkä kentän sisältö palautetaan
      * @return kentän sisältö merkkijonona
      */
+    @Override
     public String anna(int k) {
         switch (k) {
         case 0: return "" +tunnusNro;
@@ -101,6 +105,7 @@ public class Pyora implements Cloneable{
      * pyora3.aseta(4,"2008") === null;
      * </pre>
      */
+    @Override
     public String aseta(int k, String jono) {
         String mj = jono.trim();
         //StringBuilder sb = new StringBuilder(mj);

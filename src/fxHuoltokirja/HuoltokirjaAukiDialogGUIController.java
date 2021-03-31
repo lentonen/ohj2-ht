@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  * @author hemalein
- * @version 19.3.2021
+ * @version 31.3.2021
  *
  */
 public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterface<Huolto>, Initializable {

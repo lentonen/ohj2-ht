@@ -8,9 +8,9 @@ import fi.jyu.mit.ohj2.Mjonot;
 /**
  * Huolto-luokka yksittäiselle huollolle.
  * @author Henri
- * @version 23.3.2021
+ * @version 31.3.2021
  */
-public class Huolto {
+public class Huolto implements Cloneable, Tietue{
     private int tunnusNro;                  // Numero joka yksilöi huollon
     private int pyoraNro;                   // Pyörä jota huolto koskee
     private String nimi             = "";   // Huollon nimi
@@ -202,5 +202,85 @@ public class Huolto {
     }
 
 
+    @Override
+    public int getKenttia() {
+        return 5;
+    }
 
+
+    @Override
+    public int ekaKentta() {
+        return 2;
+    }
+
+
+    @Override
+    public String getKentanNimi(int k) {
+        switch (k) {
+        case 0: return "Huollon tunnus nro" ;                                            
+        case 1: return "Pyörän tunnus nro";
+        case 2: return "Nimi";
+        case 3: return "Ajotunnit";
+        case 4: return "Toimenpiteet";
+        default: return "Ei ole olemassa";
+        }
+    }
+
+
+    @Override
+    public String anna(int k) {
+        switch (k) {
+        case 0: return "" +tunnusNro ;                                            
+        case 1: return "" +pyoraNro;
+        case 2: return "" +nimi;
+        case 3: return "" +ajotunnit;
+        case 4: return "" +toimenpiteet;
+        default: return "Ei ole olemassa";
+        }
+    }
+
+
+    @Override
+    public String aseta(int k, String jono) {
+        String mj = jono.trim();
+        //StringBuilder sb = new StringBuilder(mj);
+        switch (k) {
+        case 0:
+            try {
+                setTunnusNro(Integer.parseInt(mj));
+                } catch (NumberFormatException e) {
+                    return "Huollon tunnusnumero on väärin";
+                }
+            return null;
+        case 1: 
+            try {
+                pyoraNro = Integer.parseInt(mj);
+                } catch (NumberFormatException e) {
+                    return "Pyörän tunnusnumero on väärin";
+                }
+            return null;
+        case 2:
+            nimi = mj;
+            return null;
+        case 3:
+            try {
+                ajotunnit = Integer.parseInt(mj);
+            } catch (NumberFormatException e) {
+                return "Ajotunnit on väärin";
+            }
+            return null;
+        case 4:
+            toimenpiteet = mj;
+            return null;
+        default: return "Ei ole olemassa";
+        }
+    }
+
+
+    @Override
+    public Huolto clone() throws CloneNotSupportedException {
+        Huolto uusi;
+        uusi = (Huolto)super.clone();
+        return uusi;
+    }
 }

@@ -32,7 +32,7 @@ import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 /**
  * Kontrolleri huoltokirjan pääikkunalle
  * @author hemalein
- * @version 24.3.2021
+ * @version 31.3.2021
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
@@ -228,7 +228,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         if (pyoraKohdalla == null) return;      // Ei muokata jos pyörää ei ole valittu
         try {
             Pyora pyora = pyoraKohdalla.clone(); // Luodaan uusi klooni valitusta pyörästä ja muokataan sitä
-            pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora, k);
+            pyora = TietueDialogController.muokkaaTietue(null, pyora, k);    
+            //pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora, k);
             if (pyora == null) return;              // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
             huoltokirja.korvaaTailisaa(pyora);
             paivitaLista(pyora.getTunnusNro());
@@ -278,13 +279,9 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Alustaa uuden väliaikaisen näkymän pyörän tiedoille.
      */
     private void alusta() {
-        //panelPyora.setContent(pyoranTiedot);                   // Korvaa alkuperäisen suunnitelman mukaisen alueen omalla väliaikaisella textArealla.
-        // pyoranTiedot.setFont(new Font("Courier New", 12));    // TODO: säädä fontit lopuksi
-        //panelPyora.setFitToHeight(true);                       // Kenttä kasvaa koko alueen kokoiseksi
         chooserPyorat.clear();                                   // Tyhjentää pyörien chooserlistan
         chooserPyorat.addSelectionListener(e -> naytaPyora());   // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio naytaPyora().   
-        //texts = new TextField[]{null, textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
-        texts = HuoltokirjaDialogGUIController.luoKentat(gridPyora);
+        texts = TietueDialogController.luoKentat(gridPyora, new Pyora());   //texts = HuoltokirjaDialogGUIController.luoKentat(gridPyora);
         gridPyora.add(buttonMuokkaa, 1, 5);
         gridPyora.add(buttonAvaaHuoltokirja, 1, 6);
         
