@@ -34,6 +34,12 @@ public interface Tietue {
     
     
     /**
+     * @return ensimmäisen ison (textArea) muokattavan kentän indeksi 
+     */
+    public abstract int ekaIsoKentta();
+    
+    
+    /**
      * Antaa kentän k nimen
      * @param k monennenko kentän nimi annetaan
      * @return kentän nimi

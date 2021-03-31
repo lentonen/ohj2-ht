@@ -212,6 +212,11 @@ public class Huolto implements Cloneable, Tietue{
     public int ekaKentta() {
         return 2;
     }
+    
+    @Override
+    public int ekaIsoKentta() {
+        return 4;
+    }
 
 
     @Override

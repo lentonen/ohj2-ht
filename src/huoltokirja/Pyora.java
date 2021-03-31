@@ -42,6 +42,11 @@ public class Pyora implements Cloneable, Tietue{
     }
     
     
+    @Override
+    public int ekaIsoKentta() {
+        return 7;
+    }
+    
     /**
      * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 
      * ajantasalla.

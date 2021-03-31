@@ -12,7 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -55,13 +57,14 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        alusta();
+        //alusta();
     }
 
 
     @Override
     public void setDefault(TYPE oletus) {
         tietueKohdalla = oletus;
+        alusta();
         naytaTietue(texts, tietueKohdalla);
         
     }
@@ -71,7 +74,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
 
     private TYPE tietueKohdalla;                 // Tietue jota käsitellään
-    private TextField[] texts;                   // Taulukko kentille
+    private TextInputControl[] texts;                   // Taulukko kentille
     private int kentta = 1;                      // Valittu kenttä, oletuksena 1 
     
     
@@ -82,24 +85,33 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
      * @param apuTietue jolta kysytään tietoja
      * @return luodut tekstikentät
      */
-    public static<TYPE extends Tietue> TextField[] luoKentat(GridPane grid, TYPE apuTietue) {
+    public static<TYPE extends Tietue> TextInputControl[] luoKentat(GridPane grid, TYPE apuTietue) {
         grid.getChildren().clear();                                                         // Tyhjentää gridpanen, jos siellä on jotakin ennestään
-        TextField[] textFields = new TextField[apuTietue.getKenttia()];                   
-        for (int i = 0, k = apuTietue.ekaKentta(); k < apuTietue.getKenttia(); k++, i++) {
-            Label label = new Label(apuTietue.getKentanNimi(k));
-            grid.add(label, 0, i);                                                          // Laitetaan label gridissä sarakkeeseen 0 riville i
-            TextField text = new TextField();
-            textFields[k] = text;
-            text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
-            grid.add(text, 1, i);                                                           // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
+            TextInputControl[] textFields = new TextInputControl[apuTietue.getKenttia()];                   
+            for (int i = 0, k = apuTietue.ekaKentta(); k < apuTietue.getKenttia(); k++, i++) {
+                Label label = new Label(apuTietue.getKentanNimi(k));
+                grid.add(label, 0, i);                                                          // Laitetaan label gridissä sarakkeeseen 0 riville i
+                if (k < apuTietue.ekaIsoKentta()) {
+                    TextField text = new TextField();
+                    textFields[k] = text;
+                    text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
+                    grid.add(text, 1, i);
+                }
+                else {
+                    TextArea text = new TextArea();
+                    textFields[k] = text;
+                    text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
+                    grid.add(text, 1, i);
+                }
+                                                                           // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
         }
-        return textFields;
+        return textFields;  
     }
     
     
     private void alusta() {
         texts = luoKentat(gridTietue, tietueKohdalla); 
-        for (TextField text : texts) {                     
+        for (TextInputControl text : texts) {                     
             if (text != null)           // Tämä poistaa ongelman, jos texts-taulukkoon luodaan johonkin kohtaa
                 text.setOnKeyReleased(e -> kasitteleMuutosTietueeseen(text));
         }
@@ -131,7 +143,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     }
     
     
-    private void kasitteleMuutosTietueeseen(TextField text) {
+    private void kasitteleMuutosTietueeseen(TextInputControl text) {
         if (tietueKohdalla == null) return;                          // Jos tietue ei ole valittuna, niin lähdetään pois
         int k = getFieldId(text,tietueKohdalla.ekaKentta());
         String s = text.getText();                                  // Haetaan annetun TextFieldin sisältö
@@ -177,7 +189,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
                 TietueDialogController.class.getResource("TietueDialogView.fxml"),
                 "Muokkaa",
                 modalityStage, oletus,
-                ctrl ->  ctrl.setKentta(kentta)   
+                ctrl ->  {ctrl.setKentta(kentta);}   
             );
     }
 
@@ -187,7 +199,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
      * @param texts taulukko jossa on tekstikenttiä
      * @param tietue näytettävä tietue
      */
-    public static void naytaTietue(TextField[] texts, Tietue tietue) {
+    public static void naytaTietue(TextInputControl[] texts, Tietue tietue) {
         if (tietue == null) return;
         for (int k = tietue.ekaKentta(); k < tietue.getKenttia(); k++)
             texts[k].setText(tietue.anna(k));    

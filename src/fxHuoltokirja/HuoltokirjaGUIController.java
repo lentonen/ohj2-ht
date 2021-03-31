@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
 import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 
@@ -97,9 +98,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     //=============================================================================================
 
     private Huoltokirja huoltokirja;                  // huoltokirja, johon pyöriä lähdetään lisäämään 
-    //private TextArea pyoranTiedot = new TextArea();   // väliaikainen teksti-ikkuna, jolla voidaan näyttää lisätyn pyörän tietoja.
     private Pyora pyoraKohdalla;
-    @FXML private TextField[] texts;
+    @FXML private TextInputControl[] texts;
     private int kentta = 1;
     
     
@@ -285,7 +285,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         gridPyora.add(buttonMuokkaa, 1, 5);
         gridPyora.add(buttonAvaaHuoltokirja, 1, 6);
         
-        for (TextField text : texts)
+        for (TextInputControl text : texts)
             if (text != null) {
                 text.setEditable(false);
         text.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaaPyoraa(getFieldId(e.getSource(),0)); });  

@@ -22,6 +22,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
@@ -42,6 +44,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private TextField textAjotunnit;
     @FXML private TextField textNimi;
     @FXML private TextArea textToimenpiteet;
+    @FXML private GridPane gridHuollot;
     
     @FXML void handleUusiHuolto() {
         uusiHuolto();
@@ -112,11 +115,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private Huolto huoltoKohdalla;
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
     //private TextArea huollonTiedot = new TextArea();
-    @FXML private TextField[] texts;  // Tietokentät taulukossa
+    @FXML private TextInputControl[] texts;  // Tietokentät taulukossa
     
     private void alusta() {
         chooserHuollot.clear(); 
         chooserHuollot.addSelectionListener(e -> naytaHuolto()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
+        //texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); TODO: laita aktiiviseksi, jos haluat käyttää tietuekontrolleria.
     }
     
     
@@ -126,7 +130,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private void naytaHuolto() {
         huoltoKohdalla = chooserHuollot.getSelectedObject();   // Hakee muuttujaan listasta valitun huollon
         if (huoltoKohdalla == null) return;                    // Huolehtii siitä, jos valitaan kohta jossa ei ole huoltoa
-        
+
         HuoltokirjaAukiDialogGUIController.naytaHuolto(textNimi, textAjotunnit, textToimenpiteet , huoltoKohdalla);
     }
     
@@ -187,7 +191,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     /**
      * Muokataan huollon tietoja
      */
-    private void muokkaaHuoltoa() {
+    private void muokkaaHuoltoa() { 
         HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
     }
     

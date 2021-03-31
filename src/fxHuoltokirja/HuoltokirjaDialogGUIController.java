@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -69,7 +70,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
 
 
     private Pyora pyoraKohdalla;                 // Pyörä jota käsitellään
-    private TextField[] texts;                   // Taulukko kentille
+    private TextInputControl[] texts;                   // Taulukko kentille
     private int kentta = 1;                      // Valittu kenttä, oletuksena 1 
     private static Pyora apuPyora = new Pyora(); // Vastaa gridpanelle paljonko kenttiä yms. Static sen vuoksi, että on vakion kaltainen
     
@@ -97,7 +98,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     private void alusta() {
         //texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
         texts = luoKentat(gridPyora);   // TODO: tässä jotakin ongelmaa
-        for (TextField text : texts) {                     
+        for (TextInputControl text : texts) {                     
             if (text != null)           // Tämä poistaa ongelman, jos texts-taulukkoon luodaan johonkin kohtaa
                 text.setOnKeyReleased(e -> kasitteleMuutosPyoraan(text));
         }
@@ -129,7 +130,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     }
     
     
-    private void kasitteleMuutosPyoraan(TextField text) {
+    private void kasitteleMuutosPyoraan(TextInputControl text) {
         if (pyoraKohdalla == null) return;                          // Jos pyörää ei ole valittuna, niin lähdetään pois
         int k = getFieldId(text,apuPyora.ekaKentta());
         String s = text.getText();                                  // Haetaan annetun TextFieldin sisältö
@@ -189,7 +190,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
      * @param texts taulukko jossa on tekstikenttiä
      * @param pyora näytettävä pyörä
      */
-    public static void naytaPyora(TextField[] texts, Pyora pyora) {
+    public static void naytaPyora(TextInputControl[] texts, Pyora pyora) {
         if (pyora == null) return;
         for (int k = pyora.ekaKentta(); k < pyora.getKenttia(); k++)
             texts[k].setText(pyora.anna(k));    
