@@ -84,7 +84,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
      */
     public static<TYPE extends Tietue> TextField[] luoKentat(GridPane grid, TYPE apuTietue) {
         grid.getChildren().clear();                                                         // Tyhjentää gridpanen, jos siellä on jotakin ennestään
-        TextField[] textFields = new TextField[apuTietue.getKenttia()];                   // +1 sen vuoksi, että ensimmäinen kenttä on 1. Paikkaan 0 jää null-viite
+        TextField[] textFields = new TextField[apuTietue.getKenttia()];                   
         for (int i = 0, k = apuTietue.ekaKentta(); k < apuTietue.getKenttia(); k++, i++) {
             Label label = new Label(apuTietue.getKentanNimi(k));
             grid.add(label, 0, i);                                                          // Laitetaan label gridissä sarakkeeseen 0 riville i
