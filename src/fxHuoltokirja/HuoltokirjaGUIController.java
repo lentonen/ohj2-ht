@@ -301,7 +301,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void naytaPyora() {
         pyoraKohdalla = chooserPyorat.getSelectedObject();  // Hakee muuttujaan listasta valitun pyörän
         if (pyoraKohdalla == null) return;                  // Huolehtii siitä, jos valitaan kohta jossa ei ole pyörää
-        HuoltokirjaDialogGUIController.naytaPyora(texts, pyoraKohdalla); 
+        TietueDialogController.naytaTietue(texts, pyoraKohdalla); 
     }
 
     

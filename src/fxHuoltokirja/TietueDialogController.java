@@ -105,6 +105,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
                 }
                                                                            // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
         }
+        grid.setMaxWidth(400);
         return textFields;  
     }
     

@@ -114,13 +114,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
     private Huolto huoltoKohdalla;
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
-    //private TextArea huollonTiedot = new TextArea();
     @FXML private TextInputControl[] texts;  // Tietokentät taulukossa
     
     private void alusta() {
         chooserHuollot.clear(); 
         chooserHuollot.addSelectionListener(e -> naytaHuolto()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
-        //texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); TODO: laita aktiiviseksi, jos haluat käyttää tietuekontrolleria.
+        texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); //TODO: laita aktiiviseksi, jos haluat käyttää tietuekontrolleria.
     }
     
     
@@ -130,8 +129,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private void naytaHuolto() {
         huoltoKohdalla = chooserHuollot.getSelectedObject();   // Hakee muuttujaan listasta valitun huollon
         if (huoltoKohdalla == null) return;                    // Huolehtii siitä, jos valitaan kohta jossa ei ole huoltoa
-
-        HuoltokirjaAukiDialogGUIController.naytaHuolto(textNimi, textAjotunnit, textToimenpiteet , huoltoKohdalla);
+        TietueDialogController.naytaTietue(texts, huoltoKohdalla);
     }
     
     
