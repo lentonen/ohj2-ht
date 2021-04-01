@@ -284,13 +284,13 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         gridPyora.add(buttonMuokkaa, 1, 5);
         gridPyora.add(buttonAvaaHuoltokirja, 1, 6);
         
-        for (TextInputControl text : texts)
+        for (TextInputControl text : texts) {
             if (text != null) {
                 text.setEditable(false);
-        text.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaaPyoraa(getFieldId(e.getSource(),0)); });  
-        text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));  
-    }    
-
+                text.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaaPyoraa(getFieldId(e.getSource(),0)); });  
+                text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));  
+            }  
+        }
     }
     
     

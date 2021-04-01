@@ -1,5 +1,7 @@
 package fxHuoltokirja;
 
+import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -55,7 +57,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     }
     
     @FXML void handleMuokkaaHuoltoa() {
-        muokkaaHuoltoa();
+        muokkaaHuoltoa(kentta);
     }
 
     @FXML void handleTulosta() {
@@ -115,6 +117,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private Huolto huoltoKohdalla = new Huolto();
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
     @FXML private TextInputControl[] texts;  // Tietokentät taulukossa
+    private int kentta = 1;
     
     private void alusta() {
         chooserHuollot.clear(); 
@@ -122,9 +125,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); 
         gridHuollot.add(buttonMuokkaa, 1, huoltoKohdalla.getKenttia()-huoltoKohdalla.ekaKentta());  // Asettaa muokkaaButtonin viimeisen kentän alapuolelle
         for (TextInputControl text : texts) {
-            if (text != null) 
+            if (text != null) {
                 text.setEditable(false);
-        }
+            text.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaaHuoltoa(getFieldId(e.getSource(),0)); });  
+            text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));
+            }
+        }  
     }
     
     
@@ -198,12 +204,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     /**
      * Muokataan huollon tietoja
      */
-    private void muokkaaHuoltoa() { 
+    private void muokkaaHuoltoa(int k) { 
         //HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
         if (huoltoKohdalla == null) return;                                     // Ei muokata jos huoltoa ei ole valittu
         try {
             Huolto huolto = huoltoKohdalla.clone();                             // Luodaan uusi klooni valitusta huollosta ja muokataan sitä
-            huolto = TietueDialogController.muokkaaTietue(null, huolto, 2);    
+            huolto = TietueDialogController.muokkaaTietue(null, huolto, k);    
             if (huolto == null) return;                                         // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
             huoltokirja.korvaaTailisaa(huolto);
             paivitaLista(huolto.getTunnusNro());
