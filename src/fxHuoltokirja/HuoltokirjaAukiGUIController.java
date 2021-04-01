@@ -20,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
@@ -29,7 +28,7 @@ import javafx.stage.Stage;
 
 /**
  * Kontrolleri valitun pyörän huoltokirjan ikkunalle.
- * @author hemalein
+ * @author Henri Leinonen
  * @version 31.3.2021
  *
  */
@@ -41,9 +40,9 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private TextField labelHakuEhto;
     
     // Kentät huollon tiedoille
-    @FXML private TextField textAjotunnit;
-    @FXML private TextField textNimi;
-    @FXML private TextArea textToimenpiteet;
+   // @FXML private TextField textAjotunnit; // TODO: poista
+   // @FXML private TextField textNimi;
+   // @FXML private TextArea textToimenpiteet;
     @FXML private GridPane gridHuollot;
     
     @FXML void handleUusiHuolto() {
@@ -137,28 +136,32 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Lisää uuden uuden huollon
      */
     private void uusiHuolto() {
-        Huolto huolto = new Huolto(pyoraKohdalla.getTunnusNro());
-        huolto.arvoHuolto();          // TODO: korvaa dialogilla, johon tiedot syötetään.
-        huolto.rekisteroi();
         try {
-            huoltokirja.lisaa(huolto);
+            Huolto uusi = new Huolto(pyoraKohdalla.getTunnusNro());
+            uusi = TietueDialogController.muokkaaTietue(null, uusi, 1);  // Uuden pyörän lisäämisessä ensimmäinen kenttä valittuna.
+            if (uusi == null) return;
+            uusi.rekisteroi();
+            huoltokirja.lisaa(uusi);
+            paivitaLista(uusi.getTunnusNro());
         } catch (ApuException e) {
             Dialogs.showMessageDialog("Ongelmia huollon luomisessa");
         }
-        paivitaLista();
     }
     
     
     /**
      * Päivittää listan kun uusi huolto lisätään
      */
-    private void paivitaLista() {
+    private void paivitaLista(int tunnusNumero) {
         chooserHuollot.clear();
+        int index = 0;
         List<Huolto> huollot = huoltokirja.annaHuollot(pyoraKohdalla);
-        for (Huolto huolto: huollot) {
+        for (int i = 0; i < huollot.size(); i++) {
+            Huolto huolto = huollot.get(i);
             chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
+            if (huolto.getTunnusNro() == tunnusNumero) index = i;
         }
-        chooserHuollot.setSelectedIndex(0); //TODO:muuta niin, että muuttuu samalla tavalla kuin pyörän tapauksessa.
+        chooserHuollot.setSelectedIndex(index); //TODO:muuta niin, että muuttuu samalla tavalla kuin pyörän tapauksessa.
     }
     
     
@@ -181,7 +184,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     
     private void hae() {
-        paivitaLista();
+        //paivitaLista();
         
     }
     
@@ -190,7 +193,19 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Muokataan huollon tietoja
      */
     private void muokkaaHuoltoa() { 
-        HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
+        //HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);
+        if (huoltoKohdalla == null) return;                                     // Ei muokata jos huoltoa ei ole valittu
+        try {
+            Huolto huolto = huoltoKohdalla.clone();                             // Luodaan uusi klooni valitusta huollosta ja muokataan sitä
+            huolto = TietueDialogController.muokkaaTietue(null, huolto, 2);    
+            if (huolto == null) return;                                         // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
+            huoltokirja.korvaaTailisaa(huolto);
+            paivitaLista(huolto.getTunnusNro());
+        } catch (CloneNotSupportedException e1) {
+            System.err.println(e1.getMessage());;
+        } catch (ApuException e) {
+            System.err.println("Ongelmia pyörän lisäämisessä");
+        }    
     }
     
     
@@ -263,7 +278,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
                              HuoltokirjaAukiGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml"),
                              "Huoltokirja",
                              modalityStage, valittuPyora,
-                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.setPyora(valittuPyora); ctrl.paivitaLista();}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
+                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.setPyora(valittuPyora); ctrl.paivitaLista(valittuPyora.getTunnusNro());}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
                          );
              }
 }

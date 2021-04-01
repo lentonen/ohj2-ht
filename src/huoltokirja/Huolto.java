@@ -7,7 +7,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * Huolto-luokka yksittäiselle huollolle.
- * @author Henri
+ * @author Henri Leinonen
  * @version 31.3.2021
  */
 public class Huolto implements Cloneable, Tietue{

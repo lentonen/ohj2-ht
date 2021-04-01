@@ -1,10 +1,7 @@
-/**
- * 
- */
 package huoltokirja;
 
 /**
- * @author Henri
+ * @author Henri Leinonen
  * @version 31.3.2021
  *
  */

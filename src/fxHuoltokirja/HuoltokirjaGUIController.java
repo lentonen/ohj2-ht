@@ -32,7 +32,7 @@ import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 
 /**
  * Kontrolleri huoltokirjan pääikkunalle
- * @author hemalein
+ * @author Henri Leinonen
  * @version 31.3.2021
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.

@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 /**
  * Kysytään tietueen tiedot dialogilla
- * @author hemalein
+ * @author Henri Leinonen
  * @version 31.3.2021
  * @param <TYPE> Käsiteltävän tietueen tyyppi
  */

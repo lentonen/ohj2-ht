@@ -3,8 +3,8 @@ import java.util.List;
 
 /**
  * Huoltokirja, joka sisältää pyöriä ja huoltoja. 
- * @author Henri
- * @version 24.3.2021
+ * @author Henri Leinonen
+ * @version 31.3.2021
  *
  */
 public class Huoltokirja {
@@ -40,6 +40,17 @@ public class Huoltokirja {
      */
     public void korvaaTailisaa(Pyora pyora) throws ApuException {
         pyorat.korvaaTaiLisaa(pyora);
+    }
+    
+    
+    /**
+     * korvaa huollon tietorakenteessa.
+     * @param huolto huolto jota muokataan
+     * @throws ApuException jos huoltoa ei voida lisätä
+     * TODO: Testit
+     */
+    public void korvaaTailisaa(Huolto huolto) throws ApuException {
+        huollot.korvaaTaiLisaa(huolto);
     }
     
     

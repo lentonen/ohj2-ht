@@ -1,6 +1,3 @@
-/**
- * 
- */
 package huoltokirja;
 
 import java.io.File;
@@ -9,20 +6,20 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
- * @author Henri
- * @version 23.3.2021
+ * @author Henri Leinonen
+ * @version 31.3.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {
-    private final static String tiedostonNimi ="/huollot.dat";       // Tiedosto johon huollot tallennetaan
-    private final Collection<Huolto> huollot= new ArrayList<Huolto>();      // tietorakenne huoltojen tallentamiseen
+    private final static String tiedostonNimi ="/huollot.dat";        // Tiedosto johon huollot tallennetaan
+    private final List<Huolto> huollot= new ArrayList<Huolto>();      // tietorakenne huoltojen tallentamiseen
+    private boolean muutettu = false;                                 // Kertoo onko tietorakenteeseen tehty muutoksia
     
     
     /**
@@ -39,6 +36,7 @@ public class Huollot implements Iterable<Huolto> {
      */
     public void lisaa(Huolto huolto) {
         huollot.add(huolto);
+        muutettu = true;
     }
     
     
@@ -88,6 +86,7 @@ public class Huollot implements Iterable<Huolto> {
                 huolto.parse(s); // voisi palauttaa onnistuuko parsiminen BOOL
                 lisaa(huolto);
             }
+            muutettu = false;
         } catch (FileNotFoundException ex) {
             throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
        // } catch (IOException e) {
@@ -110,6 +109,7 @@ public class Huollot implements Iterable<Huolto> {
      * TODO:testit?
      */
     public void tallenna(String hakemisto) throws ApuException {
+        if (!muutettu) return;
         File ftied = new File(hakemisto + tiedostonNimi);
         ftied.getParentFile().mkdirs();     // Luo hakemistorakenteen, jos hakemistot puuttuvat
         
@@ -145,6 +145,23 @@ public class Huollot implements Iterable<Huolto> {
         for (Huolto huolto: huollot)
             if (huolto.getPyoraNro() == pyoraNro) loydetyt.add(huolto);
         return loydetyt;
+    }
+    
+    
+    /**
+     * @param huolto jonka tietoja päivitetään
+     * TODO: testit
+     */
+    public void korvaaTaiLisaa(Huolto huolto) {
+        int id = huolto.getTunnusNro();
+        for (int i = 0; i < getLkm(); i++) {
+            if (huollot.get(i).getTunnusNro() == id) {
+                huollot.set(i, huolto);      // jos löydetään id:tä vastaava pyörä, niin korvataan se tuodulla pyörällä.
+                muutettu = true;
+                return;                
+            }
+        }
+        lisaa(huolto);
     }
     
     

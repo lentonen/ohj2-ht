@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 /**
  * Luokka huoltokirjan pyörille. Osaa esimerkiksi lisätä ja poistaa uuden pyörän.
- * @author Henri
- * @version 23.3.2021
+ * @author Henri Leinonen
+ * @version 31.3.2021
  */
 public class Pyorat {
     private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
