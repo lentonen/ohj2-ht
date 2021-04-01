@@ -93,6 +93,40 @@ public class Pyorat {
     
     
     /**
+     * Poistetaan pyörä tietorakenteesta
+     * @param tunnus poistettavan pyörän tunnusNro
+     * @return 0 jos ei löydy, 1 jos poistettiin
+     * TODO: testit
+     */
+    public int poista(int tunnus) {
+        int poistettavanPaikka = etsiPaikka(tunnus);
+        if (poistettavanPaikka < 0) return 0;  // Jos pyörää ei löydetä niin palautetaan 0.
+        lkm--;
+        for (int j = poistettavanPaikka; j < lkm; j++) 
+            pyorat[j] = pyorat[j+1];
+        pyorat[lkm] = null;
+        muutettu = true;
+        return 1;
+    }
+    
+    
+    /**
+     * Palauttaa tunnusta vastaavan pyörän indeksi
+     * @param tunnus tunnusNro jota etsitään
+     * @return pyörän indeksi tietorakenteessa
+     * TODO: testit
+     */
+    private int etsiPaikka(int tunnus) {
+        int indeksi = -1;
+        for (int i = 0; i < lkm; i++)
+            if (tunnus == pyorat[i].getTunnusNro()) {
+                indeksi = i;
+            }
+        return indeksi;
+    }
+
+
+    /**
      * Palauttaa viitteen pyörään, jonka viite on pyorat-taulukossa kohdassa i.
      * @param i pyorat-taulukon indeksi, josta viite halutaan
      * @return viite pyorat-taulukon kohdassa i olevaan pyoraan.
@@ -235,4 +269,7 @@ public class Pyorat {
             System.err.println(e.getMessage());
         }
     }
+
+
+
 }

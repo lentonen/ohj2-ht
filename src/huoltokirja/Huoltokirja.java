@@ -65,6 +65,18 @@ public class Huoltokirja {
     }
     
     
+    
+    /**
+     * Poistetaan pyörä huoltokirjasta
+     * @param pyora poistettava pyörä
+     * TODO:testit
+     */
+    public void poista(Pyora pyora) {
+        pyorat.poista(pyora.getTunnusNro());
+        
+    }
+    
+    
     /**
      * palauttaa pyörän, jonka tunnusnumero annettu parametrina.
      * @param i monesko pyörä palautetaan
@@ -175,4 +187,7 @@ public class Huoltokirja {
             System.err.println(e.getMessage());
         }
     }
+
+
+
 }
