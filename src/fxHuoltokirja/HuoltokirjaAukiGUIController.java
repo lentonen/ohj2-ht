@@ -38,6 +38,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private Button lisaaHuolto;
     @FXML private ListChooser<Huolto> chooserHuollot;
     @FXML private TextField labelHakuEhto;
+    @FXML private Button buttonMuokkaa;
     
     // Kentät huollon tiedoille
    // @FXML private TextField textAjotunnit; // TODO: poista
@@ -111,14 +112,15 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     
     private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
-    private Huolto huoltoKohdalla;
+    private Huolto huoltoKohdalla = new Huolto();
     private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
     @FXML private TextInputControl[] texts;  // Tietokentät taulukossa
     
     private void alusta() {
         chooserHuollot.clear(); 
-        chooserHuollot.addSelectionListener(e -> naytaHuolto()); // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
-        texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); //TODO: laita aktiiviseksi, jos haluat käyttää tietuekontrolleria.
+        chooserHuollot.addSelectionListener(e -> naytaHuolto());                                    // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
+        texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); 
+        gridHuollot.add(buttonMuokkaa, 1, huoltoKohdalla.getKenttia()-huoltoKohdalla.ekaKentta());  // Asettaa muokkaaButtonin viimeisen kentän alapuolelle
     }
     
     
@@ -161,7 +163,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
             chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
             if (huolto.getTunnusNro() == tunnusNumero) index = i;
         }
-        chooserHuollot.setSelectedIndex(index); //TODO:muuta niin, että muuttuu samalla tavalla kuin pyörän tapauksessa.
+        chooserHuollot.setSelectedIndex(index); 
     }
     
     
