@@ -228,8 +228,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         if (pyoraKohdalla == null) return;      // Ei muokata jos pyörää ei ole valittu
         try {
             Pyora pyora = pyoraKohdalla.clone(); // Luodaan uusi klooni valitusta pyörästä ja muokataan sitä
-            pyora = TietueDialogController.muokkaaTietue(null, pyora, k);    
-            //pyora = HuoltokirjaDialogGUIController.muokkaaPyora(null, pyora, k);
+            pyora = TietueDialogController.muokkaaTietue(null, pyora, k);
             if (pyora == null) return;              // Jos painaa cancel, niin palautuu null. Tällöin lähdetään pois.
             huoltokirja.korvaaTailisaa(pyora);
             paivitaLista(pyora.getTunnusNro());

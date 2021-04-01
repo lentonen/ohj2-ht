@@ -121,6 +121,10 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         chooserHuollot.addSelectionListener(e -> naytaHuolto());                                    // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
         texts = TietueDialogController.luoKentat(gridHuollot, new Huolto()); 
         gridHuollot.add(buttonMuokkaa, 1, huoltoKohdalla.getKenttia()-huoltoKohdalla.ekaKentta());  // Asettaa muokkaaButtonin viimeisen kentän alapuolelle
+        for (TextInputControl text : texts) {
+            if (text != null) 
+                text.setEditable(false);
+        }
     }
     
     
