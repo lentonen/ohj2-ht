@@ -96,7 +96,18 @@ public class Pyorat {
      * Poistetaan pyörä tietorakenteesta
      * @param tunnus poistettavan pyörän tunnusNro
      * @return 0 jos ei löydy, 1 jos poistettiin
-     * TODO: testit
+     * @example
+     * <pre name="test">
+     * Pyorat pyorat = new Pyorat();
+     * pyorat.getLkm() === 0;
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyorat.lisaa(pyora);
+     * pyorat.getLkm() === 1;
+     * pyorat.poista(1) === 0;  // pyörää ei löydy
+     * pyorat.poista(4) === 1;  // pyörä löytyy
+     * pyorat.getLkm() === 0;
+     * </pre>
      */
     public int poista(int tunnus) {
         int poistettavanPaikka = etsiPaikka(tunnus);
@@ -111,12 +122,24 @@ public class Pyorat {
     
     
     /**
-     * Palauttaa tunnusta vastaavan pyörän indeksi
+     * Palauttaa tunnusta vastaavan pyörän indeksin
      * @param tunnus tunnusNro jota etsitään
-     * @return pyörän indeksi tietorakenteessa
-     * TODO: testit
+     * @return pyörän indeksi tietorakenteessa, palauttaa -1 jos pyörää ei löydy
+     * @example
+     * <pre name="test">
+     * Pyorat pyorat = new Pyorat();
+     * Pyora pyora1 = new Pyora();
+     * Pyora pyora2 = new Pyora();
+     * pyorat.etsiPaikka(1) === -1;
+     * pyora1.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyora2.parse(" 2 |  Hybridi  |  Tunturi   | Pappa | 1999   | abc124");
+     * pyorat.lisaa(pyora1); pyorat.lisaa(pyora2);
+     * pyorat.etsiPaikka(1) === 0;
+     * pyorat.etsiPaikka(2) === 1;
+     * pyorat.etsiPaikka(3) === -1;
+     * </pre>
      */
-    private int etsiPaikka(int tunnus) {
+    public int etsiPaikka(int tunnus) {
         int indeksi = -1;
         for (int i = 0; i < lkm; i++)
             if (tunnus == pyorat[i].getTunnusNro()) {
