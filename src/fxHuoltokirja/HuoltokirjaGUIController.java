@@ -170,7 +170,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         Pyora pyora = pyoraKohdalla;
         if (pyora == null) return;        
         if (!Dialogs.showQuestionDialog("Poisto?",
-                "Poistetaanko pyörä: Fuji Rakan", "Kyllä", "Ei"))
+                "Poistetaanko pyörä: "+pyoraKohdalla.getNimi() , "Kyllä", "Ei"))
             return;
         huoltokirja.poista(pyora);
         paivitaLista(0);

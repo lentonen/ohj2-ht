@@ -134,11 +134,22 @@ public class Huollot implements Iterable<Huolto> {
     
     
     /**
-     * Palauttaa listan annetun pyörän huolloista. //TODO:testit
+     * Palauttaa listan annetun pyörän huolloista.
      * @param pyoraNro Pyörä jonka huoltoja etsitään
      * @return Viite listaan pyörän huolloista
      * @throws IndexOutOfBoundsException virhe jos yritetään etsiä sellaisen pyörän huoltoa, jota ei ole lisätty
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * Huollot huollot = new Huollot();
+     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huollot.lisaa(huolto1);
+     * huollot.annaHuollot(1).get(0) == huolto1 === true;
+     * huollot.annaHuollot(1).get(1) == huolto1 === false; #THROWS IndexOutOfBoundsException
+     * Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huolto2.rekisteroi(); huollot.lisaa(huolto2);
+     * huollot.annaHuollot(1).get(1) == huolto2 === true;
+     * Huolto huolto3 = new Huolto(2); huolto3.arvoHuolto(); huolto3.rekisteroi(); huollot.lisaa(huolto3);
+     * huollot.annaHuollot(2).get(0) == huolto3 === true;
+     * huollot.annaHuollot(3).get(0) == huolto3 === true; #THROWS IndexOutOfBoundsException
+     * </pre>
      */
     public List<Huolto> annaHuollot(int pyoraNro) throws IndexOutOfBoundsException {
         List<Huolto> loydetyt = new ArrayList<Huolto>();
@@ -149,8 +160,24 @@ public class Huollot implements Iterable<Huolto> {
     
     
     /**
+     * Korvaa (päivittää) huollon tietorakenteessa. Jos huoltoa ei löydy tietorakenteesta, niin se lisätään.
      * @param huolto jonka tietoja päivitetään
-     * TODO: testit
+     * @example
+     * <pre name="test">
+     * Huollot huollot = new Huollot();
+     * Huolto huolto1 = new Huolto(1); huolto1.rekisteroi(); huollot.lisaa(huolto1);
+     * Huolto huolto2 = new Huolto(1); huolto2.rekisteroi(); huollot.lisaa(huolto2);
+     * huolto1.getTunnusNro() === 3;  // 3 koska samassa testiluokassa aiemmin lisätty 2 pyörää.
+     * huolto2.getTunnusNro() === 4;
+     * huollot.annaHuollot(1).get(0) == huolto1 === true;
+     * huollot.annaHuollot(1).get(1) == huolto2 === true;
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 3  |  1  |  Iskari  | 100 | Öljynvaihto");
+     * huolto3.getNimi() === "Iskari";
+     * huollot.korvaaTaiLisaa(huolto3);
+     * huollot.annaHuollot(1).get(0) == huolto3 === true;
+     * huollot.annaHuollot(1).get(0).getNimi() === "Iskari";
+     * </pre>
      */
     public void korvaaTaiLisaa(Huolto huolto) {
         int id = huolto.getTunnusNro();
