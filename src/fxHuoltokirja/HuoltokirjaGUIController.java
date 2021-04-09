@@ -337,8 +337,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         try {                               // Yrittää lukea huoltokirjan tiedostosta.
             huoltokirja.lueTiedosto();
         } catch (ApuException ex) {
-            // TODO Auto-generated catch block
-            System.err.println(ex.getMessage());;
+            System.err.println(ex.getMessage());
         }
         paivitaLista(0);
     }

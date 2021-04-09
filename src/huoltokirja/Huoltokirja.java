@@ -21,11 +21,28 @@ public class Huoltokirja {
     }
     
     
+    /** palauttaa huoltojen lukumäärän
+     * @return huoltojen lukumäärä
+     */
+    public int getHuoltoja() {
+        return huollot.getLkm();
+    }
+    
+    
     /**
-     * Lsiää pyörän huoltokirjaan
+     * Lisää pyörän huoltokirjaan
      * @param pyora pyörä joka lisätään
      * @throws ApuException jos pyörää ei voida lisätä
-     * TODO: Testit
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getPyoria() === 0;
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * huoltokirja.lisaa(pyora);
+     * huoltokirja.getPyoria() === 1;
+     * huoltokirja.lisaa(pyora);
+     * huoltokirja.getPyoria() === 2;
+     * </pre>
      */
     public void lisaa(Pyora pyora) throws ApuException {
         pyorat.lisaa(pyora);
@@ -58,7 +75,15 @@ public class Huoltokirja {
      * Lisää huollon huoltokirjaan
      * @param huolto huolto joka lisätään
      * @throws ApuException jos huoltoa ei voida lisätä
-     * TODO: Testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getHuoltoja() === 0;
+     * Huolto huolto = new Huolto();
+     * huoltokirja.lisaa(huolto);
+     * huoltokirja.getHuoltoja() === 1;
+     * </pre>
      */
     public void lisaa(Huolto huolto) throws ApuException {
         huollot.lisaa(huolto);
@@ -69,7 +94,18 @@ public class Huoltokirja {
     /**
      * Poistetaan pyörä huoltokirjasta
      * @param pyora poistettava pyörä
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getPyoria() === 0;
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * huoltokirja.lisaa(pyora);
+     * huoltokirja.getPyoria() === 1;
+     * huoltokirja.poista(pyora);
+     * huoltokirja.getPyoria() === 0;
+     * </pre>
      */
     public void poista(Pyora pyora) {
         pyorat.poista(pyora.getTunnusNro());
@@ -92,9 +128,26 @@ public class Huoltokirja {
      * Palauttaa annetun pyörän huollot
      * @param pyora pyörä jonka huollot halutaan
      * @return huollot
-     * TODO: testit
+     * @throws IndexOutOfBoundsException poikkeus jos yritetään etsiä sellaisen pyörän huoltoja, jota ei ole lisätty huoltokirjaan.
+     * @example
+     * <pre name="test">
+     * #THROWS IndexOutOfBoundsException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * Huolto huolto1 = new Huolto(1);
+     * huoltokirja.lisaa(huolto1);
+     * huoltokirja.annaHuollot(pyora).get(0) == huolto1 === true;
+     * huoltokirja.annaHuollot(pyora).get(1) == huolto1 === false; #THROWS IndexOutOfBoundsException  // varmistetaan että muita huoltoja ei ole.
+     * Huolto huolto2 = new Huolto(1);
+     * huoltokirja.lisaa(huolto2);
+     * huoltokirja.annaHuollot(pyora).get(1) == huolto2 === true;
+     * Pyora pyora2 = new Pyora();
+     * pyora.parse(" 2 |  Hybridi  |  Tunturi   | ei tiedossa  | 1950   | afvgdg123");
+     * huoltokirja.annaHuollot(pyora2).get(0) == null === true; #THROWS IndexOutOfBoundsException
+     * </pre>
      */
-    public List<Huolto> annaHuollot(Pyora pyora) {
+    public List<Huolto> annaHuollot(Pyora pyora) throws IndexOutOfBoundsException {
         return huollot.annaHuollot(pyora.getTunnusNro());
     }
     
