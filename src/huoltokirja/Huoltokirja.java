@@ -53,7 +53,26 @@ public class Huoltokirja {
      * korvaa pyörän tietorakenteessa.
      * @param pyora pyörä jota muokataan
      * @throws ApuException jos pyörää ei voida lisätä
-     * TODO: Testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getPyoria() === 0;
+     * Pyora pyora1 = new Pyora();
+     * pyora1.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * huoltokirja.lisaa(pyora1);
+     * huoltokirja.getPyoria() === 1;
+     * Pyora pyora2 = new Pyora();
+     * pyora2.parse(" 1 |  Hybridi  |  Tunturi   | Pappa | 1999   | abc124");
+     * huoltokirja.korvaaTailisaa(pyora2);
+     * huoltokirja.getPyoria() === 1;
+     * huoltokirja.annaPyora(0).anna(1) === "Hybridi";
+     * Pyora pyora3 = new Pyora();
+     * pyora3.parse(" 2 |  Citypyörä  |  Trek   | City | 2010   | poi567");
+     * huoltokirja.korvaaTailisaa(pyora3);
+     * huoltokirja.getPyoria() === 2;
+     * huoltokirja.annaPyora(1).anna(1) === "Citypyörä";
+     * </pre>
      */
     public void korvaaTailisaa(Pyora pyora) throws ApuException {
         pyorat.korvaaTaiLisaa(pyora);
@@ -114,7 +133,7 @@ public class Huoltokirja {
     
     
     /**
-     * palauttaa pyörän, jonka tunnusnumero annettu parametrina.
+     * palauttaa pyörän, joka tallennettu tietorakenteen paikkaan i.
      * @param i monesko pyörä palautetaan
      * @return viite pyörään, joka paikassa i
      * @throws IndexOutOfBoundsException jos i laiton
@@ -131,6 +150,7 @@ public class Huoltokirja {
      * @throws IndexOutOfBoundsException poikkeus jos yritetään etsiä sellaisen pyörän huoltoja, jota ei ole lisätty huoltokirjaan.
      * @example
      * <pre name="test">
+     * #THROWS ApuException
      * #THROWS IndexOutOfBoundsException
      * Huoltokirja huoltokirja = new Huoltokirja();
      * Pyora pyora = new Pyora();

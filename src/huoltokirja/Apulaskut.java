@@ -12,15 +12,6 @@ package huoltokirja;
 public class Apulaskut {
 
     /**
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-    // TODO Auto-generated method stub
-    
-    }
-    
-    
-    /**
      * Arvotaan satunnainen kokonaisluku välille [ala,yla]
      * @param ala arvonnan alaraja
      * @param yla arvonnan yläraja

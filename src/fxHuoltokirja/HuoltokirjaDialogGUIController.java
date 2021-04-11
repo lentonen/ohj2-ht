@@ -97,7 +97,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
     
     private void alusta() {
         //texts = new TextField[]{textNimi, textMerkki, textMalli, textVuosimalli, textRunkoNro};
-        texts = luoKentat(gridPyora);   // TODO: tässä jotakin ongelmaa
+        texts = luoKentat(gridPyora);
         for (TextInputControl text : texts) {                     
             if (text != null)           // Tämä poistaa ongelman, jos texts-taulukkoon luodaan johonkin kohtaa
                 text.setOnKeyReleased(e -> kasitteleMuutosPyoraan(text));

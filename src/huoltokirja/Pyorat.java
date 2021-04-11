@@ -77,7 +77,25 @@ public class Pyorat {
     
     /**
      * @param pyora jonka tietoja päivitetään
-     * TODO: testit
+     * @example
+     * <pre name="test">
+     * Pyorat pyorat = new Pyorat();
+     * pyorat.getLkm() === 0;
+     * Pyora pyora1 = new Pyora();
+     * pyora1.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyorat.lisaa(pyora1);
+     * pyorat.getLkm() === 1;
+     * Pyora pyora2 = new Pyora();
+     * pyora2.parse(" 1 |  Hybridi  |  Tunturi   | Pappa | 1999   | abc124");
+     * pyorat.korvaaTaiLisaa(pyora2);
+     * pyorat.getLkm() === 1;
+     * pyorat.anna(0).anna(1) === "Hybridi";
+     * Pyora pyora3 = new Pyora();
+     * pyora3.parse(" 2 |  Citypyörä  |  Trek   | City | 2010   | poi567");
+     * pyorat.korvaaTaiLisaa(pyora3);
+     * pyorat.getLkm() === 2;
+     * pyorat.anna(1).anna(1) === "Citypyörä";
+     * </pre>
      */
     public void korvaaTaiLisaa(Pyora pyora) {
         int id = pyora.getTunnusNro();

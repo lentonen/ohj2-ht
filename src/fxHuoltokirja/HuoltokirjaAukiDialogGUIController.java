@@ -26,7 +26,6 @@ public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterf
 
     
     @Override public Huolto getResult() {
-        // TODO Auto-generated method stub
         return null;
     }
 

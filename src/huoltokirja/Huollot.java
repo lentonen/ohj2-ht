@@ -106,7 +106,7 @@ public class Huollot implements Iterable<Huolto> {
      * 2   |1    |Takajarrupalojen vaihto      |120        |Shimano 123 - jarrupalat
      * 3   |2    |Takapak. ja ketjun vaihto    |200        |Shimano678 ja Shimano 987, Lisäksi voimansiirron puhdistus ja vaihteiston säätö.
      * </pre>
-     * TODO:testit?
+     * Testattu metodin lueTiedosto kanssa yhdessä.
      */
     public void tallenna(String hakemisto) throws ApuException {
         if (!muutettu) return;
@@ -240,7 +240,6 @@ public class Huollot implements Iterable<Huolto> {
     
     @Override
     public Iterator<Huolto> iterator() {
-        // TODO Auto-generated method stub
         return null;
     }
 }

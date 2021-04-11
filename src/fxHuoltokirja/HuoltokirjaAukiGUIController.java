@@ -276,14 +276,12 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         // naytaJasen();
     }
     
-
-    // TODO: Jatka alla olevaa jotta saadaan välitettyä parametrina huoltokirja ja valittu pyörä. Nyt ei tomi 
     
     /**
-     * @param modalityStage s
-     * @param valittuPyora f
-     * @param huoltokirja s
-     * @return s
+     * @param modalityStage mille ollaan modaalisia
+     * @param valittuPyora Pyörä jota käsitellään
+     * @param huoltokirja huoltokirja jota käytetään
+     * @return Pyörä jota on käsitelty
      */
     public static Pyora avaaHuollot(Stage modalityStage, Pyora valittuPyora, Huoltokirja huoltokirja) {     
         return ModalController.<Pyora, HuoltokirjaAukiGUIController>showModal(
@@ -292,5 +290,5 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
                              modalityStage, valittuPyora,
                              ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.setPyora(valittuPyora); ctrl.paivitaLista(valittuPyora.getTunnusNro());}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
                          );
-             }
+    }
 }
