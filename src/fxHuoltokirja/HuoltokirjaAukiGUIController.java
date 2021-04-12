@@ -181,8 +181,13 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Poistaa huollon
      */
     private void poistaHuolto() {
-        Dialogs.showQuestionDialog("Poisto?",
-                "Poistetaanko huolto: Takaiskarin huolto", "Kyllä", "Ei");
+        Huolto huolto = huoltoKohdalla;
+        if (huolto == null) return;        
+        if (!Dialogs.showQuestionDialog("Poisto?",
+                "Poistetaanko huolto: "+huoltoKohdalla.getNimi() , "Kyllä", "Ei"))
+            return;
+        huoltokirja.poista(huolto);
+        paivitaLista(0); 
     }
     
     

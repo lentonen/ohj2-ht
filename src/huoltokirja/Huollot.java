@@ -193,6 +193,24 @@ public class Huollot implements Iterable<Huolto> {
     
     
     /**
+     * Poistetaan huolto
+     * @param tunnusNro poistettavan huollon tunnusnumero.
+     * @return 0 jos huoltoa ei löydy, 1 jos huolto löydetään ja poistettiin
+     * TODO:testit
+     */
+    public int poista(int tunnusNro) {
+        for (Huolto huolto : huollot) {
+            if (huolto.getTunnusNro() == tunnusNro) {
+                huollot.remove(huolto);
+                muutettu = true;
+                return 1;
+            }
+        }
+        return 0;  
+    }
+    
+    
+    /**
      * Testataan huollot-luokan toimintaa
      * @param args ei käytössä
      */

@@ -133,6 +133,17 @@ public class Huoltokirja {
     
     
     /**
+     * Poistetaan huolto huoltokirjasta.
+     * @param huolto poistettava huolto
+     * TODO:testit
+     */
+    public void poista(Huolto huolto) {
+        huollot.poista(huolto.getTunnusNro());
+        
+    }
+    
+    
+    /**
      * palauttaa pyörän, joka tallennettu tietorakenteen paikkaan i.
      * @param i monesko pyörä palautetaan
      * @return viite pyörään, joka paikassa i
@@ -260,7 +271,4 @@ public class Huoltokirja {
             System.err.println(e.getMessage());
         }
     }
-
-
-
 }

@@ -70,7 +70,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
 
 
     private Pyora pyoraKohdalla;                 // Pyörä jota käsitellään
-    private TextInputControl[] texts;                   // Taulukko kentille
+    private TextInputControl[] texts;            // Taulukko kentille
     private int kentta = 1;                      // Valittu kenttä, oletuksena 1 
     private static Pyora apuPyora = new Pyora(); // Vastaa gridpanelle paljonko kenttiä yms. Static sen vuoksi, että on vakion kaltainen
     

@@ -173,8 +173,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
                 "Poistetaanko pyörä: "+pyoraKohdalla.getNimi() , "Kyllä", "Ei"))
             return;
         huoltokirja.poista(pyora);
-        paivitaLista(0);
-        
+        paivitaLista(0); 
     }
     
     
