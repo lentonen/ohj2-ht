@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
@@ -21,6 +22,7 @@ import huoltokirja.Pyora;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
@@ -41,6 +43,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private ListChooser<Huolto> chooserHuollot;
     @FXML private TextField labelHakuEhto;
     @FXML private Button buttonMuokkaa;
+    @FXML private ComboBoxChooser<?> suodatinHuollot;
     
     // Kentät huollon tiedoille
    // @FXML private TextField textAjotunnit; // TODO: poista
@@ -131,6 +134,11 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
             text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));
             }
         }  
+        
+        suodatinHuollot.clear();
+        for (int i = huoltoKohdalla.ekaKentta(); i <huoltoKohdalla.getKenttia(); i++) {
+            suodatinHuollot.add(huoltoKohdalla.getKentanNimi(i), null);
+        }
     }
     
     
@@ -201,8 +209,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     
     private void hae() {
-        //paivitaLista();
-        
+        //
     }
     
     

@@ -101,6 +101,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private Pyora pyoraKohdalla;
     @FXML private TextInputControl[] texts;
     private int kentta = 1;
+    private static Pyora apuPyora = new Pyora();  // Pyörä jolta kysytään kenttiä.
     
     
     /**
@@ -296,6 +297,12 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
                 text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));  
             }  
         }
+        
+        
+        suodatinPyora.clear();
+        for (int i = apuPyora.ekaKentta(); i <apuPyora.getKenttia(); i++) {
+            suodatinPyora.add(apuPyora.getKentanNimi(i), null);
+        }  
     }
     
     
