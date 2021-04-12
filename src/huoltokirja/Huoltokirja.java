@@ -1,4 +1,5 @@
 package huoltokirja;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -215,6 +216,17 @@ public class Huoltokirja {
         pyorat.lueTiedosto("pyorat");                // Lukee tiedot pyoristä
         huollot.lueTiedosto("huollot");              // Lukee tiedot huolloista
         
+    }
+    
+    
+    /**
+     * Palauttaa hakuehdot täyttävät pyörät
+     * @param ehto hakuehto
+     * @param k kenttä jonka mukaan haetaan
+     * @return tietorakenne jossa hakuehdon täyttävät pyörät tallennettuna
+     */
+    public Collection<Pyora> etsi(String ehto, int k) {
+        return pyorat.etsi(ehto, k);
     }
     
     

@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -86,7 +87,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     }
     
     @FXML void handleHaku() {
-        hae();
+        paivitaLista(0);;
     }
     
     @FXML private void handleLisaaHuolto() { // Tämä on väliaikainen testi, kunnes saadaan välitettyä pyörä huoltokirjalle TODO: poista kun ei tarvita.
@@ -269,12 +270,17 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * @param tunnusNumero Pyörä jonka kohdalla ollaan
      */
     private void paivitaLista(int tunnusNumero) {
+        String ehto = labelHakuehto.getText();
+        if (ehto.indexOf('*') < 0) ehto = "*" +ehto+ "*";
+        Collection<Pyora> loydetytPyorat;
+        loydetytPyorat = huoltokirja.etsi(ehto, suodatinPyora.getSelectionModel().getSelectedIndex()+ apuPyora.ekaKentta());
         chooserPyorat.clear();
         int index = 0;
-        for (int i = 0; i < huoltokirja.getPyoria(); i++) {
-            Pyora pyora = huoltokirja.annaPyora(i);
-            chooserPyorat.add(pyora.getNimi(), pyora);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen vastaavaan Pyora-olioon.
+        int i = 0;
+        for (Pyora pyora: loydetytPyorat) {
+            chooserPyorat.add(pyora.getNimi(), pyora);
             if (pyora.getTunnusNro() == tunnusNumero) index = i;
+            i++;
         }
         chooserPyorat.setSelectedIndex(index);
     }
@@ -298,11 +304,12 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             }  
         }
         
-        
+        // Suodatinvalikon toiminta
         suodatinPyora.clear();
-        for (int i = apuPyora.ekaKentta(); i <apuPyora.getKenttia(); i++) {
+        for (int i = apuPyora.ekaKentta(); i <apuPyora.getKenttia(); i++) {     // Tyhjennetään ja haetaan kentät, jotka laitetaan hakuehtoihin.
             suodatinPyora.add(apuPyora.getKentanNimi(i), null);
-        }  
+        }
+        suodatinPyora.setSelectedIndex(0);                                      // Ensimmäinen kenttä valittuna kun ohjelma avataan.
     }
     
     
@@ -353,16 +360,21 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Käsittelee hakukenttään syötetyn hakuehdon.
      * Jos käyttäjä syöttää jotakin, näyttää punaisen varoitustekstin siitä, että ei osata hakea.
      * Kun käyttäjä tyhjentää tekstialueen, punainen väri häviää.
-     */
+     * TODO:poista kun listan päivitys hakuehdon kanssa on valmis.
+     */ 
     private void hae() {
+        String ehto = labelHakuehto.getText();
+        //if (ehto.indexOf('*') < 0) ehto = "*" +ehto+ "*";
+        //Collection<Pyora> loydetytPyorat;
+        //loydetytPyorat = huoltokirja.etsi(ehto);
         // Mitä tehdään kun kenttä on null tai tyhjä
-        if (labelHakuehto.getText() == null || labelHakuehto.getText() == "") {
+        if (ehto == null || ehto == "") {
             labelHakuError.setText("");  
             labelHakuError.getStyleClass().removeAll("virhe");      // poistaa .virhe-kohdan tyylin käytöstä.
         }
         else {
             labelHakuError.getStyleClass().setAll("virhe");         // Hakee .virhe-kohdan tyylin käyttöön.
-            labelHakuError.setText("Ei osata hakea vielä " +suodatinPyora.getSelectedText() + " : " + labelHakuehto.getText());        
+            labelHakuError.setText("Ei osata hakea vielä " +suodatinPyora.getSelectedText() + " : " + ehto);        
         }
     }
     

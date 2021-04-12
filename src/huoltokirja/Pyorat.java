@@ -5,6 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -266,6 +270,25 @@ public class Pyorat {
     
     
     /**
+     * Etsi hakuehdot täyttävät pyörät ja palauttaa ne.
+     * @param ehto jolla pyöriä etsitään
+     * @param k kenttä jonka mukaan etsitään
+     * @return hakuehdot täyttävät pyörät
+     * TODO:testit
+     */
+    public Collection<Pyora> etsi(String ehto, int k) {
+        List<Pyora> loydetyt = new ArrayList<Pyora>();
+        for (int i = 0; i < getLkm(); i++) {
+            if (Apulaskut.onkoSamat(anna(i).anna(k), ehto)) {
+                loydetyt.add(anna(i));
+            }
+        }
+        Collections.sort(loydetyt, new Pyora.Vertailija(k));
+        return loydetyt;
+    }
+    
+    
+    /**
      * Pääohjelma Pyörät-luokan testaamista varten.
      * @param args ei käytössä
      */
@@ -310,7 +333,5 @@ public class Pyorat {
             System.err.println(e.getMessage());
         }
     }
-
-
 
 }

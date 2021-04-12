@@ -2,6 +2,8 @@ package huoltokirja;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Comparator;
+
 import fi.jyu.mit.ohj2.Mjonot;
 import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttää ilman, että yhtään luokan oliota on luotu. 
                                             //          luokan sisällä olevia funktioita voidaan käyttää ilman luokan nimeä (Esim. Apulaskut.rand(1,2) --> rand(1,2))
@@ -18,8 +20,30 @@ public class Pyora implements Cloneable, Tietue{
     private String malli    = "";           // Pyörän malli                // kenttä 3
     private int vuosimalli  = 0 ;           // Pyörän vuosimalli           // kenttä 4
     private String runkoNro = "";           // Pyörän runkonumero          // kenttä 5
-    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu." 
-                                            // Static-attribuutti on yhteinen kaikille luokasta luoduille olioille. Eli jokaiselle pyörälle ei alusteta omaa attribuuttia.
+    private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."  Static-attribuutti on yhteinen kaikille luokasta luoduille olioille. Eli jokaiselle pyörälle ei alusteta omaa attribuuttia.
+                                     
+    
+    
+    
+    /**
+     * Luokka vertaa kahta pyörää keskenään
+     */
+    public static class Vertailija implements Comparator<Pyora> {
+        
+        /**
+         * Muodostaja jolle tuodaan parametrina käytetyn kentän numero
+         * @param k kenttä jonka mukaan vertaillaan
+         */
+        public Vertailija(int k) {
+            //
+        }
+        
+
+        @Override
+        public int compare(Pyora pyora1, Pyora pyora2) {
+            return pyora1.nimi.compareTo(pyora2.nimi);
+        }
+    }
     
     
     /**
