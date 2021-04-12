@@ -30,18 +30,20 @@ public class Pyora implements Cloneable, Tietue{
      */
     public static class Vertailija implements Comparator<Pyora> {
         
+        private int k;
+        
         /**
          * Muodostaja jolle tuodaan parametrina käytetyn kentän numero
          * @param k kenttä jonka mukaan vertaillaan
          */
         public Vertailija(int k) {
-            //
+            this.k = k;
         }
         
 
         @Override
         public int compare(Pyora pyora1, Pyora pyora2) {
-            return pyora1.nimi.compareTo(pyora2.nimi);
+            return pyora1.avain(k).compareTo(pyora2.avain(k));
         }
     }
     
@@ -114,6 +116,24 @@ public class Pyora implements Cloneable, Tietue{
         case 2: return "" +merkki;
         case 3: return "" +malli;
         case 4: return "" +vuosimalli;
+        case 5: return "" +runkoNro;
+        default: return "Ei ole olemassa";
+        }
+    }
+    
+    
+    /**
+     * Antaa kentän k sisällön merkkijonona
+     * @param k palautettavan kentän numero
+     * @return kentän sisältö merkkijonona
+     */
+    public String avain(int k) {
+        switch (k) {
+        case 0: return "" +String.format("%3d", tunnusNro);
+        case 1: return "" +nimi;
+        case 2: return "" +merkki;
+        case 3: return "" +malli;
+        case 4: return "" +String.format("%4d", vuosimalli);
         case 5: return "" +runkoNro;
         default: return "Ei ole olemassa";
         }
