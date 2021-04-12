@@ -39,6 +39,9 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
         //textNimi.requestFocus();
         kentta = Math.max(tietueKohdalla.ekaKentta(), Math.min(kentta, tietueKohdalla.getKenttia()));
         texts[this.kentta].requestFocus();
+        ModalController.getStage(gridTietue).setOnCloseRequest((event) -> {
+            handleCancel();      // Käsitellään raksi samoin kuin Peruuta.
+            });
     }
 
     @FXML void handleOK() {
@@ -65,8 +68,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     public void setDefault(TYPE oletus) {
         tietueKohdalla = oletus;
         alusta();
-        naytaTietue(texts, tietueKohdalla);
-        
+        naytaTietue(texts, tietueKohdalla); 
     }
 
 
@@ -74,7 +76,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
 
     private TYPE tietueKohdalla;                 // Tietue jota käsitellään
-    private TextInputControl[] texts;                   // Taulukko kentille
+    private TextInputControl[] texts;            // Taulukko kentille
     private int kentta = 1;                      // Valittu kenttä, oletuksena 1 
     
     
@@ -107,6 +109,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
         }
         grid.setMaxWidth(400);
         return textFields;  
+        
     }
     
     

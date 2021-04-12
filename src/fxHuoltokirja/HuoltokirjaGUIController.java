@@ -152,7 +152,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private void uusiPyora() {
         try {
             Pyora uusi = new Pyora();
-            uusi = HuoltokirjaDialogGUIController.muokkaaPyora(null, uusi, 1);  // Uuden pyörän lisäämisessä ensimmäinen kenttä valittuna.
+            uusi = TietueDialogController.muokkaaTietue(null, uusi, 1);  // Uuden pyörän lisäämisessä ensimmäinen kenttä valittuna.
             if (uusi == null) return;
             uusi.rekisteroi();
             huoltokirja.lisaa(uusi);
