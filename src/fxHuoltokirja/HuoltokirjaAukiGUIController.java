@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -22,7 +22,6 @@ import huoltokirja.Pyora;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
@@ -80,7 +79,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     }
     
     @FXML void handleHaku() {
-        hae();
+        paivitaLista(0);;
     }
     
     @Override
@@ -139,6 +138,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         for (int i = huoltoKohdalla.ekaKentta(); i <huoltoKohdalla.getKenttia(); i++) {
             suodatinHuollot.add(huoltoKohdalla.getKentanNimi(i), null);
         }
+        suodatinHuollot.setSelectedIndex(1);
     }
     
     
@@ -173,15 +173,30 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Päivittää listan kun uusi huolto lisätään
      */
     private void paivitaLista(int tunnusNumero) {
+        String ehto = labelHakuEhto.getText();
+        if (ehto.indexOf('*') < 0) ehto = "*" +ehto+ "*";
+        Collection<Huolto> loydetytHuollot;
+        loydetytHuollot = huoltokirja.etsiHuollot(ehto, suodatinHuollot.getSelectionModel().getSelectedIndex()+ huoltoKohdalla.ekaKentta(), pyoraKohdalla.getTunnusNro());
         chooserHuollot.clear();
         int index = 0;
-        List<Huolto> huollot = huoltokirja.annaHuollot(pyoraKohdalla);
-        for (int i = 0; i < huollot.size(); i++) {
-            Huolto huolto = huollot.get(i);
-            chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
+        int i = 0;
+        for (Huolto huolto: loydetytHuollot) {
+            chooserHuollot.add(huolto.getNimi(), huolto);
             if (huolto.getTunnusNro() == tunnusNumero) index = i;
+            i++;
         }
-        chooserHuollot.setSelectedIndex(index); 
+        chooserHuollot.setSelectedIndex(index);
+        
+        
+        //chooserHuollot.clear();
+        //int index = 0;
+        //List<Huolto> huollot = huoltokirja.annaHuollot(pyoraKohdalla);
+        //for (int i = 0; i < huollot.size(); i++) {
+        //    Huolto huolto = huollot.get(i);
+        //    chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
+        //    if (huolto.getTunnusNro() == tunnusNumero) index = i;
+        //}
+        //chooserHuollot.setSelectedIndex(index); 
     }
     
     
@@ -206,12 +221,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TulostusView.fxml"),
                 "Tulosta", null, "");  
     }
-    
-    
-    private void hae() {
-        //
-    }
-    
+      
     
     /**
      * Muokataan huollon tietoja

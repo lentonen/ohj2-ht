@@ -3,6 +3,8 @@ package huoltokirja;
 import static huoltokirja.Apulaskut.rand;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Comparator;
+
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
@@ -17,6 +19,29 @@ public class Huolto implements Cloneable, Tietue{
     private int ajotunnit;                  // Kuinka paljon pyörällä on ajettu ennen huoltoa
     private String toimenpiteet     = "";   // Huoltotoimenpiteiden kuvaus
     private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."
+    
+    
+    /**
+     * Luokka vertaa kahta huoltoa keskenään
+     */
+    public static class Vertailija implements Comparator<Huolto> {
+        
+        private int k;
+        
+        /**
+         * Muodostaja jolle tuodaan parametrina käytetyn kentän numero
+         * @param k kenttä jonka mukaan vertaillaan
+         */
+        public Vertailija(int k) {
+            this.k = k;
+        }
+        
+
+        @Override
+        public int compare(Huolto huolto1, Huolto huolto2) {
+            return huolto1.avain(k).compareTo(huolto2.avain(k));
+        }
+    }
     
     
     /**
@@ -240,6 +265,23 @@ public class Huolto implements Cloneable, Tietue{
         case 2: return "" +nimi;
         case 3: return "" +ajotunnit;
         case 4: return "" +toimenpiteet;
+        default: return "Ei ole olemassa";
+        }
+    }
+    
+    
+    /**
+     * Antaa kentän k sisällön merkkijonona
+     * @param k palautettavan kentän numero
+     * @return kentän sisältö merkkijonona
+     */
+    public String avain(int k) {
+        switch (k) {
+        case 0: return "" +String.format("%3d", tunnusNro);
+        case 1: return "" +String.format("%3d", pyoraNro);
+        case 2: return "" +nimi;
+        case 3: return "" +String.format("%5d", +ajotunnit);
+        case 4: return "" +toimenpiteet.toLowerCase();
         default: return "Ei ole olemassa";
         }
     }

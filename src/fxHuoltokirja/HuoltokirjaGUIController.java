@@ -273,7 +273,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         String ehto = labelHakuehto.getText();
         if (ehto.indexOf('*') < 0) ehto = "*" +ehto+ "*";
         Collection<Pyora> loydetytPyorat;
-        loydetytPyorat = huoltokirja.etsi(ehto, suodatinPyora.getSelectionModel().getSelectedIndex()+ apuPyora.ekaKentta());
+        loydetytPyorat = huoltokirja.etsiPyorat(ehto, suodatinPyora.getSelectionModel().getSelectedIndex()+ apuPyora.ekaKentta());
         chooserPyorat.clear();
         int index = 0;
         int i = 0;
@@ -355,29 +355,6 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         paivitaLista(0);
     }
 
-    
-    /**
-     * Käsittelee hakukenttään syötetyn hakuehdon.
-     * Jos käyttäjä syöttää jotakin, näyttää punaisen varoitustekstin siitä, että ei osata hakea.
-     * Kun käyttäjä tyhjentää tekstialueen, punainen väri häviää.
-     * TODO:poista kun listan päivitys hakuehdon kanssa on valmis.
-     */ 
-    private void hae() {
-        String ehto = labelHakuehto.getText();
-        //if (ehto.indexOf('*') < 0) ehto = "*" +ehto+ "*";
-        //Collection<Pyora> loydetytPyorat;
-        //loydetytPyorat = huoltokirja.etsi(ehto);
-        // Mitä tehdään kun kenttä on null tai tyhjä
-        if (ehto == null || ehto == "") {
-            labelHakuError.setText("");  
-            labelHakuError.getStyleClass().removeAll("virhe");      // poistaa .virhe-kohdan tyylin käytöstä.
-        }
-        else {
-            labelHakuError.getStyleClass().setAll("virhe");         // Hakee .virhe-kohdan tyylin käyttöön.
-            labelHakuError.setText("Ei osata hakea vielä " +suodatinPyora.getSelectedText() + " : " + ehto);        
-        }
-    }
-    
     
     /**
      * Väliaikainen huollon lisääminen pääikkunasta TODO: poista kun et enää tarvi!

@@ -225,8 +225,21 @@ public class Huoltokirja {
      * @param k kenttä jonka mukaan haetaan
      * @return tietorakenne jossa hakuehdon täyttävät pyörät tallennettuna
      */
-    public Collection<Pyora> etsi(String ehto, int k) {
+    public Collection<Pyora> etsiPyorat(String ehto, int k) {
         return pyorat.etsi(ehto, k);
+    }
+    
+    
+    /**
+     * Palauttaa hakuehdot täyttävät huollot
+     * @param ehto hakuehto
+     * @param k kenttä jonka mukaan haetaan
+     * @param pyoranTunnus minkä pyörän huoltoja etsitään
+     * @return tietorakenne jossa hakuehdon täyttävät huollot tallennettuna
+     * TODO:testit katso annahuollot
+     */
+    public Collection<Huolto> etsiHuollot(String ehto, int k, int pyoranTunnus) {
+        return huollot.etsi(ehto, k, pyoranTunnus);
     }
     
     

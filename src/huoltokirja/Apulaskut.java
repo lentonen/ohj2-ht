@@ -6,7 +6,7 @@ package huoltokirja;
 /**
  * Luokka huoltokirjassa käytetyille laskuille.
  * @author Henri
- * @version 25.2.2021
+ * @version 13.4.2021
  *
  */
 public class Apulaskut {
@@ -43,8 +43,6 @@ public class Apulaskut {
         String jono2 = jono.toUpperCase();
         maski2 = maski2.replaceAll("\\.", "\\\\.");
         maski2 = maski2.replaceAll("\\*", ".*");
-
-        //System.out.println("Maski = " + maski2);
         return jono2.matches(maski2);
     }
 }

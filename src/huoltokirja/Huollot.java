@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -259,5 +261,25 @@ public class Huollot implements Iterable<Huolto> {
     @Override
     public Iterator<Huolto> iterator() {
         return null;
+    }
+
+
+    /**
+     * Etsi hakuehdot täyttävät pyörät ja palauttaa ne.
+     * @param ehto jolla pyöriä etsitään
+     * @param k kenttä jonka mukaan etsitään
+     * @param pyoranTunnus minkä pyörän huoltoja etsitään
+     * @return hakuehdot täyttävät pyörät
+     * TODO:testit
+     */
+    public Collection<Huolto> etsi(String ehto, int k, int pyoranTunnus) {
+        List<Huolto> loydetyt = new ArrayList<Huolto>();
+        for (int i = 0; i < getLkm(); i++) {
+            if (Apulaskut.onkoSamat(huollot.get(i).anna(k), ehto) && huollot.get(i).getPyoraNro() == pyoranTunnus ) {
+                loydetyt.add(huollot.get(i));
+            }
+        }
+        Collections.sort(loydetyt, new Huolto.Vertailija(k));
+        return loydetyt;
     }
 }
