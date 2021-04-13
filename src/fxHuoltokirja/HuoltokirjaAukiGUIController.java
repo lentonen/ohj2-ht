@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 /**
  * Kontrolleri valitun pyörän huoltokirjan ikkunalle.
  * @author Henri Leinonen
- * @version 31.3.2021
+ * @version 13.4.2021
  *
  */
 public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Pyora>, Initializable {

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Huoltokirja, joka sisältää pyöriä ja huoltoja. 
  * @author Henri Leinonen
- * @version 31.3.2021
+ * @version 13.4.2021
  *
  */
 public class Huoltokirja {

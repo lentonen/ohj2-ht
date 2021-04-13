@@ -11,7 +11,7 @@ import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttä
 /**
  * Pyörä, joka huolehtii esimerkiksi tunnusNro:staan.
  * @author Henri Leinonen
- * @version 8.4.2021
+ * @version 13.4.2021
  */
 public class Pyora implements Cloneable, Tietue{
     private int tunnusNro;                  // Numero joka yksilöi pyörän  

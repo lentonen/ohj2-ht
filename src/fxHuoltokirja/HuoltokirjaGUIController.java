@@ -34,7 +34,7 @@ import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 /**
  * Kontrolleri huoltokirjan pääikkunalle
  * @author Henri Leinonen
- * @version 31.3.2021
+ * @version 13.4.2021
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
@@ -182,17 +182,8 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     /**
      * Avaa huoltokirjan.
      */
-    private void avaaHuoltokirja() {      
-        // Suljetaan pyöränvalintadialogi, EI KÄYTÖSSÄ
-        // ModalController.closeStage(uusiPyora);
-
-        // resurssin lataaminen       
-        // var resurssiHuoltokirjaAuki = HuoltokirjaGUIController.class.getResource("HuoltokirjaAukiGUIView.fxml");
-        // ModalController.showModal(resurssiHuoltokirjaAuki, "Huoltokirja", null, "");
-        
-       // Versio, jossa huoltokirjan aukaiseminen on kirjoitettu huoltokirjaAukiGUIControlleriin.       
+    private void avaaHuoltokirja() {           
         HuoltokirjaAukiGUIController.avaaHuollot(null, pyoraKohdalla, huoltokirja);
-
     }
     
     
