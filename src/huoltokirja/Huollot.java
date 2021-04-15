@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,7 +15,7 @@ import java.util.Scanner;
 /**
  * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
  * @author Henri Leinonen
- * @version 13.4.2021
+ * @version 15.4.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {

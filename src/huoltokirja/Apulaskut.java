@@ -53,6 +53,7 @@ public class Apulaskut {
      * Tarkistaa onko syötetty pvm laiton
      * @param pvm Päivämäärä merkkijonona
      * @return true jos päivä on laiton, false jos ei
+     * TODO:testit
      */
      public static boolean onkoLaitonPvm(String pvm) {
          try {
@@ -77,7 +78,6 @@ public class Apulaskut {
              return true;
         }
      }
-     
      
      
      /**
