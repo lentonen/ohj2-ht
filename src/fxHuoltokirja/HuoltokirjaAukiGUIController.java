@@ -138,7 +138,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
         for (int i = huoltoKohdalla.ekaKentta(); i <huoltoKohdalla.getKenttia(); i++) {
             suodatinHuollot.add(huoltoKohdalla.getKentanNimi(i), null);
         }
-        suodatinHuollot.setSelectedIndex(1);
+        suodatinHuollot.setSelectedIndex(3);
     }
     
     

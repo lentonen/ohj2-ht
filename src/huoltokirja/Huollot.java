@@ -308,4 +308,21 @@ public class Huollot implements Iterable<Huolto> {
         }
         return hinnat;  
     }
+
+
+    /**
+     * Palauttaa vuosiluvut, jolloin huoltoja on tehty
+     * @return Vuosiluvut taulukossa merkkijonona
+     * TODO:testit
+     */
+    public Collection<String> annaVuodet() {
+        List<String> vuodet = new ArrayList<String>();
+        for (Huolto huolto : huollot) {
+            String pvm = huolto.anna(2);
+            String vv = pvm.substring(pvm.lastIndexOf('.')+1);
+            if (!vuodet.contains(vv)) vuodet.add(vv); 
+        }
+        Collections.sort(vuodet);
+        return vuodet;
+    }
 }

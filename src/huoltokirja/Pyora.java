@@ -130,11 +130,11 @@ public class Pyora implements Cloneable, Tietue{
     public String avain(int k) {
         switch (k) {
         case 0: return "" +String.format("%3d", tunnusNro);
-        case 1: return "" +nimi;
-        case 2: return "" +merkki;
-        case 3: return "" +malli;
+        case 1: return "" +nimi.toLowerCase();
+        case 2: return "" +merkki.toLowerCase();
+        case 3: return "" +malli.toLowerCase();
         case 4: return "" +String.format("%4d", vuosimalli);
-        case 5: return "" +runkoNro;
+        case 5: return "" +runkoNro.toLowerCase();
         default: return "Ei ole olemassa";
         }
     }

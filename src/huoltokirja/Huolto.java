@@ -290,8 +290,8 @@ public class Huolto implements Cloneable, Tietue{
         case 0: return "" +String.format("%3d", tunnusNro);
         case 1: return "" +String.format("%3d", pyoraNro);
         case 2: return "" +pvm; // TODO: tee pvm vertailu.
-        case 3: return "" +hinta; //TODO: tee vertailu
-        case 4: return "" +nimi;
+        case 3: return "" +String.format("%4f", hinta/100);
+        case 4: return "" +nimi.toLowerCase();
         case 5: return "" +String.format("%5d", +ajotunnit);
         case 6: return "" +toimenpiteet.toLowerCase();
         default: return "Ei ole olemassa";

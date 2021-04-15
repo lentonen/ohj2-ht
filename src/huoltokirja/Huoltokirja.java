@@ -255,6 +255,15 @@ public class Huoltokirja {
     
     
     /**
+     * Palauttaa vuosiluvut, jolloin huoltoja on tehty
+     * @return Vuosiluvut taulukossa merkkijonona
+     * TODO:testit
+     */
+    public Collection<String> annaVuodet() {
+        return huollot.annaVuodet();
+    }
+    
+    /**
      * Pääohjelma luokan testaamista varten.
      * @param args ei käytössä
      */
@@ -307,5 +316,4 @@ public class Huoltokirja {
             System.err.println(e.getMessage());
         }
     }
-
 }
