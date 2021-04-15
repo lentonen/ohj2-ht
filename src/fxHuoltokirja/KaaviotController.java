@@ -5,14 +5,15 @@ package fxHuoltokirja;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
+import huoltokirja.Huoltokirja;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 
 /**
@@ -20,7 +21,7 @@ import javafx.scene.control.Button;
  * @version 19.3.2021
  *
  */
-public class KaaviotController implements ModalControllerInterface<String>, Initializable {
+public class KaaviotController implements ModalControllerInterface<Huoltokirja>, Initializable {
 
     @FXML private Button buttonOK;
     @FXML private BarChart<String, Number> chartPylvaat;
@@ -29,13 +30,9 @@ public class KaaviotController implements ModalControllerInterface<String>, Init
         ModalController.closeStage(buttonOK);
     }
 
-    @FXML
-    void handleTulosta() {
-        Dialogs.showMessageDialog("Ei osata vielä tulostaa");
-    }
-    
+
     @Override
-    public String getResult() {
+    public Huoltokirja getResult() {
         return null;
     }
 
@@ -45,7 +42,7 @@ public class KaaviotController implements ModalControllerInterface<String>, Init
     }
 
     @Override
-    public void setDefault(String oletus) {
+    public void setDefault(Huoltokirja oletus) {
         // 
     }
 
@@ -59,21 +56,61 @@ public class KaaviotController implements ModalControllerInterface<String>, Init
 
     //=============================================================================================
     
+    private Huoltokirja huoltokirja;
+    private double[] hinnat;
     
     private void alusta() {
-        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        series1.setName("Hinta");
-        series1.getData().add(new XYChart.Data<>("tammikuu", 20));
-        series1.getData().add(new XYChart.Data<>("helmikuu", 100));
-        series1.getData().add(new XYChart.Data<>("maaliskuu", 80));
-        series1.getData().add(new XYChart.Data<>("huhtikuu", 180));
-        series1.getData().add(new XYChart.Data<>("toukokuu", 20));
-        series1.getData().add(new XYChart.Data<>("kesäkuu", 0));
-        chartPylvaat.getData().add(series1);    
+        //
+    }
+    
+    
+    /**
+     * Avaa kaaviot modaalisena
+     * @param modalityStage mille ollaan modaalisia
+     * @param huoltokirja huoltokirja jota käytetään
+     * @return huoltokirja jota on käytetty
+     */
+    public static Huoltokirja avaaKaaviot(Stage modalityStage, Huoltokirja huoltokirja) {     
+        return ModalController.<Huoltokirja, KaaviotController>showModal(
+                             KaaviotController.class.getResource("KaaviotGUIView.fxml"),
+                             "Huoltokirja",
+                             modalityStage, huoltokirja,
+                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.haejaAsetaHinnat();}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
+                         );
     }
 
     
-    
+    /**
+     * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon
+     */
+    private void haejaAsetaHinnat() {
+        hinnat = huoltokirja.annaHinnat();
+        asetaHinnat(hinnat);
+        
+    }
+
+    /**
+     * Asettaa taulukon hinnat kaavioon
+     * @param hintaTaul
+     */
+    private void asetaHinnat(double[] hintaTaul) {
+        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
+        series1.setName("Huoltojen hinnat");
+        for (int i = 0; i < hintaTaul.length; i++) {
+            series1.getData().add(new XYChart.Data<>(""+(i+1), hintaTaul[i]));
+        }
+        chartPylvaat.getData().add(series1); 
+        
+    }
+
+    /**
+     * Asettaa huoltokirjan käyttöön
+     * @param huoltokirja
+     */
+    private void setHuoltokirja(Huoltokirja huoltokirja) {
+        this.huoltokirja = huoltokirja;
+    }
+   
 }
     
   

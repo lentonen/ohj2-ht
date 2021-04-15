@@ -244,6 +244,16 @@ public class Huoltokirja {
     
     
     /**
+     * Palauttaa taulukon hinnoista
+     * @return taulukko hinnoista
+     * TODO:testit ja tarkemmat kuvaukset
+     */
+    public double[] annaHinnat() {
+        return huollot.annaHinnat();
+    }
+    
+    
+    /**
      * Pääohjelma luokan testaamista varten.
      * @param args ei käytössä
      */
@@ -296,4 +306,5 @@ public class Huoltokirja {
             System.err.println(e.getMessage());
         }
     }
+
 }

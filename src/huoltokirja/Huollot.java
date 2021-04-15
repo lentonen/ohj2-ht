@@ -282,4 +282,19 @@ public class Huollot implements Iterable<Huolto> {
         Collections.sort(loydetyt, new Huolto.Vertailija(k));
         return loydetyt;
     }
+
+
+    /**
+     * Laskee kaikki hinnat ensimmäiseen taulukon paikkaan
+     * TODO: korjaa niin että lajittelee hinnat kuukausittain
+     * @return taulukollinen hintoja
+     */
+    public double[] annaHinnat() {
+        double[] hinnat = new double[12];
+        for (Huolto huolto: huollot) {
+            double hinta = Double.parseDouble(huolto.anna(3)); 
+            hinnat[0] += hinta;
+        }
+        return hinnat;  
+    }
 }

@@ -97,8 +97,9 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     @FXML
     void handleAvaaKaaviot() {
-        ModalController.showModal(HuoltokirjaGUIController.class.getResource("KaaviotGUIView.fxml"),
-                "Kaaviot", null,"");
+        KaaviotController.avaaKaaviot(null, huoltokirja);
+        //ModalController.showModal(HuoltokirjaGUIController.class.getResource("KaaviotGUIView.fxml"),
+        //        "Kaaviot", null,"");
     }
     
 

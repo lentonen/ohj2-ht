@@ -15,6 +15,8 @@ import fi.jyu.mit.ohj2.Mjonot;
 public class Huolto implements Cloneable, Tietue{
     private int tunnusNro;                  // Numero joka yksilöi huollon
     private int pyoraNro;                   // Pyörä jota huolto koskee
+    private String pvm;
+    private double hinta;
     private String nimi             = "";   // Huollon nimi
     private int ajotunnit;                  // Kuinka paljon pyörällä on ajettu ennen huoltoa
     private String toimenpiteet     = "";   // Huoltotoimenpiteiden kuvaus
@@ -118,6 +120,8 @@ public class Huolto implements Cloneable, Tietue{
         return "" + 
                tunnusNro      + "|" +
                pyoraNro       + "|" +
+               pvm            + "|" +
+               hinta          + "|" +
                nimi           + "|" +
                ajotunnit      + "|" +
                toimenpiteet;
@@ -143,6 +147,8 @@ public class Huolto implements Cloneable, Tietue{
         StringBuilder sb = new StringBuilder(rivi);
         setTunnusNro(Mjonot.erota(sb, '|', getTunnusNro()));
         pyoraNro = Mjonot.erota(sb, '|', pyoraNro);
+        pvm = Mjonot.erota(sb, '|', pvm);
+        hinta = Mjonot.erota(sb, '|', hinta);
         nimi = Mjonot.erota(sb, '|', nimi);
         ajotunnit = Mjonot.erota(sb, '|', ajotunnit);
         toimenpiteet = Mjonot.erota(sb, '|', toimenpiteet);
@@ -229,7 +235,7 @@ public class Huolto implements Cloneable, Tietue{
 
     @Override
     public int getKenttia() {
-        return 5;
+        return 7;
     }
 
 
@@ -240,7 +246,7 @@ public class Huolto implements Cloneable, Tietue{
     
     @Override
     public int ekaIsoKentta() {
-        return 4;
+        return 6;
     }
 
 
@@ -249,9 +255,11 @@ public class Huolto implements Cloneable, Tietue{
         switch (k) {
         case 0: return "Huollon tunnus nro" ;                                            
         case 1: return "Pyörän tunnus nro";
-        case 2: return "Nimi";
-        case 3: return "Ajotunnit";
-        case 4: return "Toimenpiteet";
+        case 2: return "Päivämäärä";
+        case 3: return "Hinta";
+        case 4: return "Nimi";
+        case 5: return "Ajotunnit";
+        case 6: return "Toimenpiteet";
         default: return "Ei ole olemassa";
         }
     }
@@ -262,9 +270,11 @@ public class Huolto implements Cloneable, Tietue{
         switch (k) {
         case 0: return "" +tunnusNro ;                                            
         case 1: return "" +pyoraNro;
-        case 2: return "" +nimi;
-        case 3: return "" +ajotunnit;
-        case 4: return "" +toimenpiteet;
+        case 2: return "" +pvm;
+        case 3: return "" +hinta;
+        case 4: return "" +nimi;
+        case 5: return "" +ajotunnit;
+        case 6: return "" +toimenpiteet;
         default: return "Ei ole olemassa";
         }
     }
@@ -279,9 +289,11 @@ public class Huolto implements Cloneable, Tietue{
         switch (k) {
         case 0: return "" +String.format("%3d", tunnusNro);
         case 1: return "" +String.format("%3d", pyoraNro);
-        case 2: return "" +nimi;
-        case 3: return "" +String.format("%5d", +ajotunnit);
-        case 4: return "" +toimenpiteet.toLowerCase();
+        case 2: return "" +pvm; // TODO: tee pvm vertailu.
+        case 3: return "" +hinta; //TODO: tee vertailu
+        case 4: return "" +nimi;
+        case 5: return "" +String.format("%5d", +ajotunnit);
+        case 6: return "" +toimenpiteet.toLowerCase();
         default: return "Ei ole olemassa";
         }
     }
@@ -307,18 +319,31 @@ public class Huolto implements Cloneable, Tietue{
                 }
             return null;
         case 2:
-            nimi = mj;
+            boolean onkoLaiton = Apulaskut.onkoLaitonPvm(mj);
+            if (onkoLaiton == true) return "Päivämäärä on väärin";
+            pvm = mj;   
             return null;
         case 3:
+            try {
+            hinta = Double.parseDouble(mj);
+            } catch (NumberFormatException e) {
+                return "hinta väärin";
+            }
+            return null;
+        case 4:
+            nimi = mj;
+            return null;
+        case 5:
             try {
                 ajotunnit = Integer.parseInt(mj);
             } catch (NumberFormatException e) {
                 return "Ajotunnit on väärin";
             }
             return null;
-        case 4:
+        case 6:
             toimenpiteet = mj;
             return null;
+       
         default: return "Ei ole olemassa";
         }
     }
