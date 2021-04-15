@@ -3,6 +3,7 @@ package fxHuoltokirja;
 
 
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.ModalController;
@@ -17,8 +18,8 @@ import javafx.stage.Stage;
 
 
 /**
- * @author hemalein
- * @version 19.3.2021
+ * @author Henri Leinonen
+ * @version 15.4.2021
  *
  */
 public class KaaviotController implements ModalControllerInterface<Huoltokirja>, Initializable {
@@ -95,12 +96,11 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
      */
     private void asetaHinnat(double[] hintaTaul) {
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        series1.setName("Huoltojen hinnat");
+        series1.setName("Myynnit vuonna " +Calendar.getInstance().get(Calendar.YEAR));
         for (int i = 0; i < hintaTaul.length; i++) {
             series1.getData().add(new XYChart.Data<>(""+(i+1), hintaTaul[i]));
         }
-        chartPylvaat.getData().add(series1); 
-        
+        chartPylvaat.getData().add(series1);    
     }
 
     /**

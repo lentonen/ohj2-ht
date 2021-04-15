@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -285,15 +286,25 @@ public class Huollot implements Iterable<Huolto> {
 
 
     /**
-     * Laskee kaikki hinnat ensimmäiseen taulukon paikkaan
-     * TODO: korjaa niin että lajittelee hinnat kuukausittain
+     * Laskee huoltojen yhteenlasketut hinnat kuukausittain taulukkoon.
      * @return taulukollinen hintoja
      */
     public double[] annaHinnat() {
         double[] hinnat = new double[12];
         for (Huolto huolto: huollot) {
-            double hinta = Double.parseDouble(huolto.anna(3)); 
-            hinnat[0] += hinta;
+            String pvm = huolto.anna(2);
+            String kk = pvm.substring(pvm.indexOf('.')+1, pvm.lastIndexOf('.'));
+            String vv = pvm.substring(pvm.lastIndexOf('.')+1);
+            int kuluvaVuosi = Calendar.getInstance().get(Calendar.YEAR);
+            if (Integer.parseInt(vv) == kuluvaVuosi) {
+                try {
+                    int kuukausi = Integer.parseInt(kk);
+                    double hinta = Double.parseDouble(huolto.anna(3)); 
+                    hinnat[kuukausi-1] += hinta;
+                } catch (NumberFormatException e) {
+                    // Jos ei pystytä parsimaan, ei tehdä mitään ja siirrytään seuraavaan huoltoon
+                }
+            }
         }
         return hinnat;  
     }
