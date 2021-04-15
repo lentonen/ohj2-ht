@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import huoltokirja.Huoltokirja;
@@ -26,6 +27,7 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
 
     @FXML private Button buttonOK;
     @FXML private BarChart<String, Number> chartPylvaat;
+    @FXML private ComboBoxChooser<String> vuosiChooser;
 
     @FXML private void handleOK() {
         ModalController.closeStage(buttonOK);
@@ -49,19 +51,28 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        alusta();
-        
+        alusta();  
+    }
+    
+    @FXML
+    void handleVuosi() {
+        haeKaavio();
     }
 
 
-
     //=============================================================================================
-    
+
     private Huoltokirja huoltokirja;
     private double[] hinnat;
+    private XYChart.Series<String, Number> kuukausiHinnat = new XYChart.Series<>();
     
     private void alusta() {
-        //
+        vuosiChooser.clear();
+        //for (int i = apuPyora.ekaKentta(); i <apuPyora.getKenttia(); i++) {     // Tyhjennetään ja haetaan kentät, jotka laitetaan hakuehtoihin.
+        vuosiChooser.add("2021", null);
+        vuosiChooser.add("2020", null);
+        //}
+        vuosiChooser.setSelectedIndex(0);
     }
     
     
@@ -76,7 +87,7 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
                              KaaviotController.class.getResource("KaaviotGUIView.fxml"),
                              "Huoltokirja",
                              modalityStage, huoltokirja,
-                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.haejaAsetaHinnat();}  // tähän varmaan pitäisi lisätä myös setPyora, jos halutaan ottaa käyttöön parametrina tuotu pyörä?
+                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.haejaAsetaHinnat(Calendar.getInstance().get(Calendar.YEAR));}
                          );
     }
 
@@ -84,25 +95,49 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
     /**
      * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon
      */
-    private void haejaAsetaHinnat() {
-        hinnat = huoltokirja.annaHinnat();
+    private void haejaAsetaHinnat(int vuosi) {
+        hinnat = huoltokirja.annaHinnat(vuosi);
         asetaHinnat(hinnat);
+        
+    }
+    
+    
+    /**
+     * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon
+     */
+    private void haeJaPaivitaHinnat(int vuosi) {
+        hinnat = huoltokirja.annaHinnat(vuosi);
+        paivitaHinnat(hinnat);
         
     }
 
     /**
-     * Asettaa taulukon hinnat kaavioon
-     * @param hintaTaul
+     * Asettaa taulukon hinnat kaavioon. Käyttää kuluvaa vuotta.
+     * @param hintaTaul taulukko josta hinnat haetaan
      */
     private void asetaHinnat(double[] hintaTaul) {
-        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        series1.setName("Myynnit vuonna " +Calendar.getInstance().get(Calendar.YEAR));
+        kuukausiHinnat.getData().clear();
+        kuukausiHinnat.setName("Myynnit vuonna " +vuosiChooser.getSelectedText());
         for (int i = 0; i < hintaTaul.length; i++) {
-            series1.getData().add(new XYChart.Data<>(""+(i+1), hintaTaul[i]));
+            kuukausiHinnat.getData().add(new XYChart.Data<>(""+(i+1), hintaTaul[i]));
         }
-        chartPylvaat.getData().add(series1);    
+        chartPylvaat.getData().add(kuukausiHinnat);
+    }
+    
+    
+
+    /**
+     * Asettaa taulukon hinnat kaavioon. Käyttää kuluvaa vuotta.
+     * @param hintaTaul taulukko josta hinnat haetaan
+     */
+    private void paivitaHinnat(double[] hintaTaul) {
+        for (int i = 0; i < hintaTaul.length; i++) {
+            kuukausiHinnat.getData().get(i).setYValue(hintaTaul[i]);
+            kuukausiHinnat.setName("Myynnit vuonna " +vuosiChooser.getSelectedText());
+        }
     }
 
+    
     /**
      * Asettaa huoltokirjan käyttöön
      * @param huoltokirja
@@ -110,7 +145,12 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja>,
     private void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
     }
-   
+    
+    
+    private void haeKaavio() {
+        int vuosi = Integer.parseInt(vuosiChooser.getSelectedText());
+        haeJaPaivitaHinnat(vuosi);
+    }
 }
     
   

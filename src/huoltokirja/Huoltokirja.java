@@ -245,11 +245,12 @@ public class Huoltokirja {
     
     /**
      * Palauttaa taulukon hinnoista
+     * @param vuosi minkä vuoden hinnat haetaan
      * @return taulukko hinnoista
      * TODO:testit ja tarkemmat kuvaukset
      */
-    public double[] annaHinnat() {
-        return huollot.annaHinnat();
+    public double[] annaHinnat(int vuosi) {
+        return huollot.annaHinnat(vuosi);
     }
     
     

@@ -287,16 +287,16 @@ public class Huollot implements Iterable<Huolto> {
 
     /**
      * Laskee huoltojen yhteenlasketut hinnat kuukausittain taulukkoon.
+     * @param vuosi minkä vuoden hinnat haetaan
      * @return taulukollinen hintoja
      */
-    public double[] annaHinnat() {
+    public double[] annaHinnat(int vuosi) {
         double[] hinnat = new double[12];
         for (Huolto huolto: huollot) {
             String pvm = huolto.anna(2);
             String kk = pvm.substring(pvm.indexOf('.')+1, pvm.lastIndexOf('.'));
             String vv = pvm.substring(pvm.lastIndexOf('.')+1);
-            int kuluvaVuosi = Calendar.getInstance().get(Calendar.YEAR);
-            if (Integer.parseInt(vv) == kuluvaVuosi) {
+            if (Integer.parseInt(vv) == vuosi) {
                 try {
                     int kuukausi = Integer.parseInt(kk);
                     double hinta = Double.parseDouble(huolto.anna(3)); 
