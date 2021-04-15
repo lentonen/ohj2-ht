@@ -48,6 +48,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private GridPane gridPyora;       
     @FXML private Button buttonMuokkaa;
     @FXML private Button buttonAvaaHuoltokirja;
+    @FXML private Button buttonKaavio;
     
     
     @Override public void initialize(URL url, ResourceBundle bundle) {
@@ -92,6 +93,12 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     @FXML private void handleLisaaHuolto() { // Tämä on väliaikainen testi, kunnes saadaan välitettyä pyörä huoltokirjalle TODO: poista kun ei tarvita.
         lisäähuolto();
+    }
+    
+    @FXML
+    void handleAvaaKaaviot() {
+        ModalController.showModal(HuoltokirjaGUIController.class.getResource("KaaviotGUIView.fxml"),
+                "Kaaviot", null,"");
     }
     
 
