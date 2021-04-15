@@ -61,21 +61,18 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
     
 
     /**
-     * Avaa kaaviot modaalisena
-     * @param modalityStage mille ollaan modaalisia
-     * @param huoltokirja huoltokirja jota käytetään
-     * @return huoltokirja jota on käytetty
+     * Asettaa huoltokirjan käyttöön
+     * @param huoltokirja
      */
-    public static Huoltokirja avaaKaaviot(Stage modalityStage, Huoltokirja huoltokirja) {     
-        return ModalController.<Huoltokirja, KaaviotController>showModal(
-                             KaaviotController.class.getResource("KaaviotGUIView.fxml"),
-                             "Huoltokirja",
-                             modalityStage, huoltokirja,
-                             ctrl -> {ctrl.setHuoltokirja(huoltokirja); ctrl.haejaAsetaHinnat(Calendar.getInstance().get(Calendar.YEAR));ctrl.asetaVuosiChooser();}
-                         );
+    private void setHuoltokirja(Huoltokirja huoltokirja) {
+        this.huoltokirja = huoltokirja;
     }
-
     
+    
+    /**
+     * Hakee vuosilukuvalikkoon kaikki vuodet, jolloin huoltoja on tehty. Valikosta on valittuna nykyinen
+     * vuosi, jos silloin on tehty huoltoja.
+     */
     private void asetaVuosiChooser() {
         vuosiChooser.clear();
         Collection<String> vuodet = huoltokirja.annaVuodet();
@@ -88,16 +85,6 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
         }
         vuosiChooser.setSelectedIndex(k); 
     }
-
-
-    /**
-     * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon
-     */
-    private void haejaAsetaHinnat(int vuosi) {
-        hinnat = huoltokirja.annaHinnat(vuosi);
-        asetaHinnat(hinnat);
-        
-    }
     
     
     /**
@@ -109,6 +96,7 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
         
     }
 
+    
     /**
      * Asettaa taulukon hinnat kaavioon. Käyttää kuluvaa vuotta.
      * @param hintaTaul taulukko josta hinnat haetaan
@@ -123,7 +111,6 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
     }
     
     
-
     /**
      * Asettaa taulukon hinnat kaavioon.
      * @param hintaTaul taulukko josta hinnat haetaan
@@ -137,21 +124,42 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
 
     
     /**
-     * Asettaa huoltokirjan käyttöön
-     * @param huoltokirja
-     */
-    private void setHuoltokirja(Huoltokirja huoltokirja) {
-        this.huoltokirja = huoltokirja;
-    }
-    
-    
-    /**
      * Päivittää kaavioon valitun vuoden datan.
      */
     private void haeKaavio() {
         int vuosi = Integer.parseInt(vuosiChooser.getSelectedText());
         haeJaPaivitaHinnat(vuosi);
     }
+    
+    
+    /**
+     * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon.
+     */
+    private void haejaAsetaHinnat() {
+        int vuosiluku = Integer.parseInt(vuosiChooser.getSelectedText());
+        hinnat = huoltokirja.annaHinnat(vuosiluku);
+        asetaHinnat(hinnat);
+    }
+    
+    
+    /**
+     * Avaa kaaviot modaalisena
+     * @param modalityStage mille ollaan modaalisia
+     * @param huoltokirja huoltokirja jota käytetään
+     * @return huoltokirja jota on käytetty
+     */
+    public static Huoltokirja avaaKaaviot(Stage modalityStage, Huoltokirja huoltokirja) {     
+        return ModalController.<Huoltokirja, KaaviotController>showModal(
+                             KaaviotController.class.getResource("KaaviotGUIView.fxml"),
+                             "Huoltokirja",
+                             modalityStage, huoltokirja,
+                             ctrl -> {ctrl.setHuoltokirja(huoltokirja);ctrl.asetaVuosiChooser();ctrl.haejaAsetaHinnat();}
+                         );
+    }
+
+
+    
+    
 }
     
   
