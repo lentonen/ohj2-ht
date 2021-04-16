@@ -215,11 +215,10 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     
     /**
-     * Tulostaa valitun pyörän huoltokirjan
+     * Avaa tulostusikkunan, johon tuodaan listaan lisätyt pyörät
      */
     private void tulosta() {
-        ModalController.showModal(HuoltokirjaAukiGUIController.class.getResource("TulostusView.fxml"),
-                "Tulosta", null, "");  
+        TulostusController.tulostaHuoltokirja(null, pyoraKohdalla, huoltokirja);
     }
       
     

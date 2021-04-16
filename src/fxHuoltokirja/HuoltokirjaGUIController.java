@@ -2,19 +2,15 @@ package fxHuoltokirja;
 
 import java.awt.Desktop;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
-import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import huoltokirja.ApuException;
 import huoltokirja.Huolto;
 import huoltokirja.Huoltokirja;
@@ -25,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
@@ -200,31 +195,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      * Avaa tulostusikkunan, johon tuodaan listaan lisätyt pyörät
      */
     private void tulosta() {
-        TulostusController tulostusCtrl = TulostusController.tulosta(null);  // Avaa Modaalisen ikkunan ikkunan, joka palauttaa tulostuksen kontrollerin. Ei välitetä parametreja. Parametrina voitaisiin välitää String-merkkijono, joka näytettäsiin tulostusalueessa.
-        TulostaPyorat(tulostusCtrl.getTextArea());                           // Tulostetaan lisättyjen pyörien tiedot tulostusalueelle
-    }
-    
-    
-    /**
-     * Lisää käyttäjän luomat pyörät tulostusalueeseen
-     * @param textArea Tulostusalue johon pyörien tiedot lisätään.
-     */
-    public void TulostaPyorat(TextArea textArea) {
-        try (PrintStream out = TextAreaOutputStream.getTextPrintStream(textArea);) {    // try-with sulkee resurssin automaattisesti
-            out.println("HUOLTOKIRJA");
-                Pyora pyora = pyoraKohdalla;
-                out.println("=========================================\n\nPYÖRÄN TIEDOT:");
-                pyora.tulosta(out);
-                                
-                // Tulostetaan myös huollot
-                out.println("HUOLLOT:");
-                List<Huolto> loytyneet = huoltokirja.annaHuollot(pyora);
-                Collections.sort(loytyneet, new Huolto.Vertailija(5)); // Järjestää tulostuksen ajotuntien mukaan
-                for (Huolto huolto : loytyneet) {
-                    huolto.tulosta(out);
-                }
-                out.println("");     
-        }     
+        TulostusController.tulostaHuoltokirja(null, pyoraKohdalla, huoltokirja);
     }
 
     
