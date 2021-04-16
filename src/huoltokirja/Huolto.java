@@ -97,9 +97,9 @@ public class Huolto implements Cloneable, Tietue{
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);              // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
-        out.println("HuoltoID: "+tunnusNro + "\n"           // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
-                + "PyöräID: "+pyoraNro + "\n"
-                + "Nimi: "+nimi + "\n" 
+        out.println//("HuoltoID: "+tunnusNro + "\n"           // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
+                //+ "PyöräID: "+pyoraNro + "\n"
+                ("Nimi: "+nimi + "\n" 
                 +"Ajotunnit: "+ajotunnit + "\n" 
                 +"Toimenpiteet: "+toimenpiteet + "\n");
     }

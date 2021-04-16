@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -210,19 +211,19 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     public void TulostaPyorat(TextArea textArea) {
         try (PrintStream out = TextAreaOutputStream.getTextPrintStream(textArea);) {    // try-with sulkee resurssin automaattisesti
-            out.println("Huoltokirja \n----------------------------------------------\n");
-            for (int i = 0; i<huoltokirja.getPyoria(); i++) {
-                Pyora pyora = huoltokirja.annaPyora(i);
-                out.println("=========================================");
+            out.println("HUOLTOKIRJA");
+                Pyora pyora = pyoraKohdalla;
+                out.println("=========================================\n\nPYÖRÄN TIEDOT:");
                 pyora.tulosta(out);
-                
+                                
                 // Tulostetaan myös huollot
+                out.println("HUOLLOT:");
                 List<Huolto> loytyneet = huoltokirja.annaHuollot(pyora);
+                Collections.sort(loytyneet, new Huolto.Vertailija(5)); // Järjestää tulostuksen ajotuntien mukaan
                 for (Huolto huolto : loytyneet) {
                     huolto.tulosta(out);
                 }
-                out.println("----------------------------------------------");
-            }
+                out.println("");     
         }     
     }
 

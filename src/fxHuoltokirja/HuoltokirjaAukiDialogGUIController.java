@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 
 /**
+ * HUOM! TÄMÄ EI OLE KÄYTÖSSÄ. KÄYTÖSSÄ ON TIETUEDIALOG.
  * @author hemalein
  * @version 31.3.2021
  *

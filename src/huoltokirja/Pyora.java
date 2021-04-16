@@ -230,8 +230,8 @@ public class Pyora implements Cloneable, Tietue{
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);    // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
-        out.println("ID: "+tunnusNro + "\n"       // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
-                + "Nimi: "+nimi + "\n"            // Printstreamiin annetttu sisältö muutetaan OutPutStreamille sopivaksi automaattisesti.
+        out.println//("ID: "+tunnusNro + "\n"       // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
+                ("Nimi: "+nimi + "\n"            // Printstreamiin annetttu sisältö muutetaan OutPutStreamille sopivaksi automaattisesti.
                 +"Merkki: "+merkki + "\n" 
                 +"Malli: "+malli + "\n"
                 +"vuosimalli: "+vuosimalli + "\n"

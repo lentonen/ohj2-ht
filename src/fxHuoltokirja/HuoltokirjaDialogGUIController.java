@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 
 /**
+ * HUOM! TÄMÄ EI OLE KÄYTÖSSÄ. KÄYTÖSSÄ ON TIETUEDIALOG.
  * Kontrolleri pyörän muokkaus/lisäys -dialogille
  * @author hemalein
  * @version 31.3.2021
