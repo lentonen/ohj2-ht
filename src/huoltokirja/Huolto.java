@@ -289,7 +289,13 @@ public class Huolto implements Cloneable, Tietue{
         switch (k) {
         case 0: return "" +String.format("%3d", tunnusNro);
         case 1: return "" +String.format("%3d", pyoraNro);
-        case 2: return "" +pvm; // TODO: tee pvm vertailu.
+        case 2: {
+            StringBuilder sb = new StringBuilder(pvm);
+            int pp = Integer.parseInt(Mjonot.erota(sb, '.'));
+            int kk = Integer.parseInt(Mjonot.erota(sb, '.'));
+            int vv = Integer.parseInt(sb.toString());
+            return ""+vv+String.format("%2d", kk)+String.format("%2d", pp);
+        }
         case 3: return "" +String.format("%4f", hinta/100);
         case 4: return "" +nimi.toLowerCase();
         case 5: return "" +String.format("%5d", +ajotunnit);
