@@ -111,8 +111,8 @@ public class Huolto implements Cloneable, Tietue{
      * @example
      * <pre name="test">
      * Huolto huolto1 = new Huolto();
-     * huolto1.parse(" 1  |  1  |  Jarruhuolto  | 75 | puhdistin ja vaihdoin");
-     * huolto1.toString() === "1|1|Jarruhuolto|75|puhdistin ja vaihdoin";
+     * huolto1.parse(" 1  |  1  |2.1.2021 |150 |  Jarruhuolto  | 75 | puhdistin ja vaihdoin");
+     * huolto1.toString() === "1|1|2.1.2021|150.0|Jarruhuolto|75|puhdistin ja vaihdoin";
      * </pre>
      */
     @Override
@@ -134,10 +134,10 @@ public class Huolto implements Cloneable, Tietue{
      * @example
      * <pre name="test">
      * Huolto huolto2 = new Huolto();
-     * huolto2.parse(" 2  |  2  |  Iskari  | 100 | Öljynvaihto");
+     * huolto2.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
      * huolto2.getNimi() === "Iskari";
      * huolto2.getAjotunnit() === 100;
-     * huolto2.toString() === "2|2|Iskari|100|Öljynvaihto"
+     * huolto2.toString() === "2|2|1.1.2020|200.0|Iskari|100|Öljynvaihto"
      * huolto2.getTunnusNro() === 2;
      * huolto2.rekisteroi();                  // rekisteröinti kasvattaa tunnusNro arvoa yhdellä
      * huolto2.getTunnusNro() === 3;
@@ -284,6 +284,24 @@ public class Huolto implements Cloneable, Tietue{
      * Antaa kentän k sisällön merkkijonona
      * @param k palautettavan kentän numero
      * @return kentän sisältö merkkijonona
+     * @example
+     * <pre name="test">
+     * Huolto huolto = new Huolto();
+     * huolto.aseta(0,"1");
+     * huolto.avain(0) ==="  1";
+     * huolto.aseta(1,"12");
+     * huolto.avain(1) ===" 12";
+     * huolto.aseta(2,"1.1.2021");
+     * huolto.avain(2) ==="2021 1 1";
+     * huolto.aseta(3,"150.23");
+     * huolto.avain(3) ==="0.15023";
+     * huolto.aseta(4,"FUJI");
+     * huolto.avain(4) ==="fuji";
+     * huolto.aseta(5,"150");
+     * huolto.avain(5) ==="  150";
+     * huolto.aseta(6,"Putsattiin");
+     * huolto.avain(6) ==="putsattiin";
+     * </pre>
      */
     public String avain(int k) {
         switch (k) {
@@ -296,7 +314,7 @@ public class Huolto implements Cloneable, Tietue{
             int vv = Integer.parseInt(sb.toString());
             return ""+vv+String.format("%2d", kk)+String.format("%2d", pp);
         }
-        case 3: return "" +String.format("%4f", hinta/100);
+        case 3: return "" +String.format("%.5f", hinta/1000);
         case 4: return "" +nimi.toLowerCase();
         case 5: return "" +String.format("%5d", +ajotunnit);
         case 6: return "" +toimenpiteet.toLowerCase();
