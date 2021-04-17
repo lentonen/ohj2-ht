@@ -39,7 +39,7 @@ public interface Tietue {
      * Pyora pyora = new Pyora();
      * pyora.ekaIsoKentta() === 7;
      * Huolto huolto = new Huolto();
-     * huolto.ekaIsoKentta() === 4;
+     * huolto.ekaIsoKentta() === 6;
      * </pre>
      */
     public abstract int ekaIsoKentta();
@@ -58,9 +58,11 @@ public interface Tietue {
      * pyora.getKentanNimi(4) === "Vuosimalli";
      * pyora.getKentanNimi(5) === "Runkonumero";
      * Huolto huolto = new Huolto();
-     * huolto.getKentanNimi(2) === "Nimi";
-     * huolto.getKentanNimi(3) === "Ajotunnit";
-     * huolto.getKentanNimi(4) === "Toimenpiteet";
+     * huolto.getKentanNimi(2) === "Päivämäärä";
+     * huolto.getKentanNimi(3) === "Hinta";
+     * huolto.getKentanNimi(4) === "Nimi";
+     * huolto.getKentanNimi(5) === "Ajotunnit";
+     * huolto.getKentanNimi(6) === "Toimenpiteet";
      * 
      * </pre>
      */
@@ -81,10 +83,12 @@ public interface Tietue {
      * pyora.anna(4) === "2000";
      * pyora.anna(5) === "abc123";
      * Huolto huolto = new Huolto();
-     * huolto.parse(" 2  |  2  |  Iskari  | 100 | Öljynvaihto");
-     * huolto.anna(2) === "Iskari";
-     * huolto.anna(3) === "100";
-     * huolto.anna(4) === "Öljynvaihto";
+     * huolto.parse(" 2  |  2  |1.1.2020|150|  Iskari  | 100 | Öljynvaihto");
+     * huolto.anna(2) === "1.1.2020";
+     * huolto.anna(3) === "150.0";
+     * huolto.anna(4) === "Iskari";
+     * huolto.anna(5) === "100";
+     * huolto.anna(6) === "Öljynvaihto";
      * </pre>
      */
     public abstract String anna(int k);
@@ -111,7 +115,14 @@ public interface Tietue {
      * Luo kloonin tietueesta
      * @return kloonattu tietue
      * @throws CloneNotSupportedException jos kloonausta ei tueta
-     * TODO: testit
+     * Pyora pyora1 = new Pyora();
+     * pyora1.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyora2 = pyora1.clone();
+     * pyora2.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
+     * pyora1.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
+     * pyora2.parse" 1 |  Maastopyörä  |  Fuji   | Rakan  | 2019   | kjh543");
+     * pyora1.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
+     * pyora2.toString() === "1|Maastopyörä|Fuji|Rakan|2019|kjh543";
      */
     public abstract Tietue clone() throws CloneNotSupportedException;
     
