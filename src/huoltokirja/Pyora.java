@@ -126,6 +126,21 @@ public class Pyora implements Cloneable, Tietue{
      * Antaa kentän k sisällön merkkijonona
      * @param k palautettavan kentän numero
      * @return kentän sisältö merkkijonona
+     * @example
+     * <pre name="test">
+     * Pyora pyora = new Pyora();
+     * pyora.aseta(0,"15");
+     * pyora.avain(0) ===" 15";
+     * pyora.aseta(1,"Gravel");
+     * pyora.avain(1) ==="gravel";
+     * pyora.aseta(2,"TREK");
+     * pyora.avain(2) ==="trek";
+     * pyora.aseta(3,"CS2880");
+     * pyora.avain(3) ==="cs2880";
+     * pyora.aseta(4,"2015");
+     * pyora.avain(4) ==="2015";
+     * pyora.aseta(5,"ABC123");
+     * pyora.avain(5) ==="abc123";
      */
     public String avain(int k) {
         switch (k) {
