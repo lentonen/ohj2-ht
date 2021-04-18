@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -52,8 +51,8 @@ public class Pyorat {
      * Pyora pyora1 = new Pyora(), pyora2 = new Pyora(); Pyora pyora3 = new Pyora(); Pyora pyora4 = new Pyora(); Pyora pyora5 = new Pyora();
      * pyorat.getLkm() === 0;
      * pyorat.lisaa(pyora1); pyorat.getLkm() === 1;
-     * pyorat.lisaa(pyora2); pyorat.getLkm() === 2;
-     * pyorat.lisaa(pyora3); pyorat.getLkm() === 3;
+     * pyorat.lisaa(pyora2); pyorat.getLkm() === 2; 
+     * pyorat.lisaa(pyora3); pyorat.getLkm() === 3; 
      * pyorat.anna(0) === pyora1;
      * pyorat.anna(1) === pyora2;
      * pyorat.anna(2) === pyora3;
@@ -274,9 +273,40 @@ public class Pyorat {
      * @param ehto jolla pyöriä etsitään
      * @param k kenttä jonka mukaan etsitään
      * @return hakuehdot täyttävät pyörät
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #import java.util.List;
+     * Pyorat pyorat = new Pyorat();
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * pyorat.lisaa(pyora);
+     * Pyora pyora2 = new Pyora();
+     * pyora2.parse(" 5 |  Kaupunkipyörä  |  Helkama   | Jopo  | 2020   | fgh236");
+     * pyorat.lisaa(pyora2);
+     * Pyora pyora3 = new Pyora();
+     * pyora3.parse(" 5 |  Gravel  |  Helkama   | CS2800  | 2010   | GR4321");
+     * pyorat.lisaa(pyora3);
+     * List<Pyora> loydetyt = pyorat.etsi("*K*", 1);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == pyora2 === true;
+     * loydetyt.get(1) == pyora === true;
+     * loydetyt = pyorat.etsi("*Helkama*", 2);
+     * loydetyt.size() === 3;
+     * loydetyt = pyorat.etsi("*S*", 3);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == pyora3 === true;
+     * loydetyt = pyorat.etsi("*20*", 4);
+     * loydetyt.size() === 3;
+     * loydetyt.get(0) == pyora === true;
+     * loydetyt.get(1) == pyora3 === true;
+     * loydetyt.get(2) == pyora2 === true;
+     * loydetyt = pyorat.etsi("*1*", 5);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == pyora === true;
+     * loydetyt.get(1) == pyora3 === true;
+     * </pre>
      */
-    public Collection<Pyora> etsi(String ehto, int k) {
+    public List<Pyora> etsi(String ehto, int k) {
         List<Pyora> loydetyt = new ArrayList<Pyora>();
         for (int i = 0; i < getLkm(); i++) {
             if (Apulaskut.onkoSamat(anna(i).anna(k), ehto)) {
@@ -333,5 +363,4 @@ public class Pyorat {
             System.err.println(e.getMessage());
         }
     }
-
 }
