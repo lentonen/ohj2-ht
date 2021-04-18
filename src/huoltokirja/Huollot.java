@@ -296,6 +296,25 @@ public class Huollot implements Iterable<Huolto> {
      * Laskee huoltojen yhteenlasketut hinnat kuukausittain taulukkoon.
      * @param vuosi minkä vuoden hinnat haetaan
      * @return taulukollinen hintoja
+     * @example
+     * <pre name="test">
+     * Huollot huollot = new Huollot();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
+     * huollot.lisaa(huolto);
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.6.2020|300  | Jarru  | 100 | palat");
+     * huollot.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 4  |  4  | 1.12.2019|400  | Jarru  | 100 | palat");
+     * huollot.lisaa(huolto3);
+     * double[] hinnat = huollot.annaHinnat(2020);
+     * hinnat[0] ~~~ 200;
+     * hinnat[5] ~~~ 300;
+     * hinnat[11] ~~~ 0;
+     * hinnat = huollot.annaHinnat(2019);
+     * hinnat[11] ~~~ 400;
+     * </pre>
      */
     public double[] annaHinnat(int vuosi) {
         double[] hinnat = new double[12];
