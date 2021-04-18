@@ -19,9 +19,9 @@ import java.util.Scanner;
 public class Pyorat {
     private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
     private int                 lkm               = 0;                        // Pyörien lukumäärä. Kertoo samalla mihin kohtaan taulukkoa seuraavan pyörän viite lisätään
-    private static final String tiedostonNimi     = "/pyorat.dat";               // tiedostopolku käytettävään tiedostoon
+    private static final String tiedostonNimi     = "/pyorat.dat";            // tiedostopolku käytettävään tiedostoon
     private Pyora[]             pyorat;                                       // Taulukko jossa viitteet tallennettuihin pyöriin
-    private boolean muutettu                      = false;                                         // true, jos pyorat-luokkassa lisätty tai muokattu pyöriä. False muuten.
+    private boolean muutettu                      = false;                    // true, jos pyorat-luokkassa lisätty tai muokattu pyöriä. False muuten.
    
     /**
      * Muodostaja pyörät-oliolle.
