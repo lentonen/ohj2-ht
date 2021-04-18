@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -273,14 +272,36 @@ public class Huollot implements Iterable<Huolto> {
 
 
     /**
-     * Etsi hakuehdot täyttävät pyörät ja palauttaa ne.
-     * @param ehto jolla pyöriä etsitään
+     * Etsi hakuehdot täyttävät huollot ja palauttaa ne.
+     * @param ehto jolla huoltoja etsitään
      * @param k kenttä jonka mukaan etsitään
      * @param pyoranTunnus minkä pyörän huoltoja etsitään
-     * @return hakuehdot täyttävät pyörät
-     * TODO:testit
+     * @return hakuehdot täyttävät huollot
+     * @example
+     * <pre name="test">
+     * Huollot huollot = new Huollot();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2019|200  | Iskari  | 100 | Öljynvaihto");
+     * huollot.lisaa(huolto);
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.6.2020|300  | Jarru  | 120 | palat");
+     * huollot.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 3  |  2  | 1.12.2021|400  | Vaihteisto  | 140 | Pakka");
+     * huollot.lisaa(huolto3);
+     * List<Huolto> loydetyt = huollot.etsi("*2019*", 2, 2);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == huolto === true;
+     * loydetyt = huollot.etsi("*300*", 3, 3);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == huolto2 === true;
+     * loydetyt = huollot.etsi("*i*", 4, 2);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == huolto === true;
+     * loydetyt.get(1) == huolto3 === true;
+     * </pre>
      */
-    public Collection<Huolto> etsi(String ehto, int k, int pyoranTunnus) {
+    public List<Huolto> etsi(String ehto, int k, int pyoranTunnus) {
         List<Huolto> loydetyt = new ArrayList<Huolto>();
         for (int i = 0; i < getLkm(); i++) {
             if (Apulaskut.onkoSamat(huollot.get(i).anna(k), ehto) && huollot.get(i).getPyoraNro() == pyoranTunnus ) {
