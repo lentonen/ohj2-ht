@@ -15,7 +15,7 @@ import java.util.Scanner;
 /**
  * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 18.4.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {
@@ -167,18 +167,26 @@ public class Huollot implements Iterable<Huolto> {
      * @example
      * <pre name="test">
      * Huollot huollot = new Huollot();
-     * Huolto huolto1 = new Huolto(1); huolto1.rekisteroi(); huollot.lisaa(huolto1);
-     * Huolto huolto2 = new Huolto(1); huolto2.rekisteroi(); huollot.lisaa(huolto2);
-     * huolto1.getTunnusNro() === 3;  // 3 koska samassa testiluokassa aiemmin lisätty 2 pyörää.
-     * huolto2.getTunnusNro() === 4;
+     * Huolto huolto1 = new Huolto(1); 
+     * huolto1.parse(" 1  |  1  |1.1.2019|50.00|  Iskari  | 100 | Öljynvaihto");
+     * huollot.lisaa(huolto1);
+     * Huolto huolto2 = new Huolto(1); 
+     * huolto2.parse(" 2  |  1  |1.2.2019|25.00|  Jarrut  | 150 | palat");
+     * huollot.lisaa(huolto2);
+     * huolto1.getTunnusNro() === 1;  
+     * huolto2.getTunnusNro() === 2;
      * huollot.annaHuollot(1).get(0) == huolto1 === true;
      * huollot.annaHuollot(1).get(1) == huolto2 === true;
      * Huolto huolto3 = new Huolto();
-     * huolto3.parse(" 3  |  1  |  Iskari  | 100 | Öljynvaihto");
+     * huolto3.parse(" 1  |  1  |1.1.2019|51.00|  Iskari  | 100 | Öljynvaihto");
      * huolto3.getNimi() === "Iskari";
      * huollot.korvaaTaiLisaa(huolto3);
      * huollot.annaHuollot(1).get(0) == huolto3 === true;
      * huollot.annaHuollot(1).get(0).getNimi() === "Iskari";
+     * Huolto huolto4 = new Huolto();
+     * huolto4.parse(" 3  |  1  |1.3.2019|150.00|  Satulatolppa | 175 | Tiivisteet");
+     * huollot.korvaaTaiLisaa(huolto4);
+     * huollot.annaHuollot(1).get(2) == huolto4 === true;
      * </pre>
      */
     public void korvaaTaiLisaa(Huolto huolto) {
@@ -312,9 +320,28 @@ public class Huollot implements Iterable<Huolto> {
     /**
      * Palauttaa vuosiluvut, jolloin huoltoja on tehty
      * @return Vuosiluvut taulukossa merkkijonona
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #THROWS IndexOutOfBoundsException
+     * Huollot huollot = new Huollot();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
+     * huollot.lisaa(huolto);
+     * huollot.annaVuodet().get(0) === "2020";
+     * huollot.annaVuodet().get(1) ===""; #THROWS IndexOutOfBoundsException
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.1.2021|200  | Jarru  | 100 | palat");
+     * huollot.lisaa(huolto2);
+     * huollot.annaVuodet().get(1) === "2021";
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 4  |  4  | 1.1.2019|200  | Jarru  | 100 | palat");
+     * huollot.lisaa(huolto3);
+     * huollot.annaVuodet().get(0) === "2019";
+     * huollot.annaVuodet().get(1) === "2020";
+     * huollot.annaVuodet().get(2) === "2021";
+     * </pre>
      */
-    public Collection<String> annaVuodet() {
+    public List<String> annaVuodet() {
         List<String> vuodet = new ArrayList<String>();
         for (Huolto huolto : huollot) {
             String pvm = huolto.anna(2);
