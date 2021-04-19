@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Huoltokirja, joka sisältää pyöriä ja huoltoja. 
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 19.4.2021
  *
  */
 public class Huoltokirja {
@@ -263,8 +263,41 @@ public class Huoltokirja {
      * @param ehto hakuehto
      * @param k kenttä jonka mukaan haetaan
      * @return tietorakenne jossa hakuehdon täyttävät pyörät tallennettuna
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * #import java.util.List;
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * huoltokirja.lisaa(pyora);
+     * Pyora pyora2 = new Pyora();
+     * pyora2.parse(" 5 |  Kaupunkipyörä  |  Helkama   | Jopo  | 2020   | fgh236");
+     * huoltokirja.lisaa(pyora2);
+     * Pyora pyora3 = new Pyora();
+     * pyora3.parse(" 5 |  Gravel  |  Helkama   | CS2800  | 2010   | GR4321");
+     * huoltokirja.lisaa(pyora3);
+     * List<Pyora> loydetyt = huoltokirja.etsiPyorat("*K*", 1);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == pyora2 === true;
+     * loydetyt.get(1) == pyora === true;
+     * loydetyt = huoltokirja.etsiPyorat("*Helkama*", 2);
+     * loydetyt.size() === 3;
+     * loydetyt = huoltokirja.etsiPyorat("*S*", 3);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == pyora3 === true;
+     * loydetyt = huoltokirja.etsiPyorat("*20*", 4);
+     * loydetyt.size() === 3;
+     * loydetyt.get(0) == pyora === true;
+     * loydetyt.get(1) == pyora3 === true;
+     * loydetyt.get(2) == pyora2 === true;
+     * loydetyt = huoltokirja.etsiPyorat("*1*", 5);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == pyora === true;
+     * loydetyt.get(1) == pyora3 === true;
+     * </pre>
      */
-    public Collection<Pyora> etsiPyorat(String ehto, int k) {
+    public List<Pyora> etsiPyorat(String ehto, int k) {
         return pyorat.etsi(ehto, k);
     }
     
@@ -275,18 +308,60 @@ public class Huoltokirja {
      * @param k kenttä jonka mukaan haetaan
      * @param pyoranTunnus minkä pyörän huoltoja etsitään
      * @return tietorakenne jossa hakuehdon täyttävät huollot tallennettuna
-     * TODO:testit katso annahuollot
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2019|200  | Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(huolto);
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.6.2020|300  | Jarru  | 120 | palat");
+     * huoltokirja.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 3  |  2  | 1.12.2021|400  | Vaihteisto  | 140 | Pakka");
+     * huoltokirja.lisaa(huolto3);
+     * List<Huolto> loydetyt = huoltokirja.etsiHuollot("*2019*", 2, 2);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == huolto === true;
+     * loydetyt = huoltokirja.etsiHuollot("*300*", 3, 3);
+     * loydetyt.size() === 1;
+     * loydetyt.get(0) == huolto2 === true;
+     * loydetyt = huoltokirja.etsiHuollot("*i*", 4, 2);
+     * loydetyt.size() === 2;
+     * loydetyt.get(0) == huolto === true;
+     * loydetyt.get(1) == huolto3 === true;
+     * </pre>
      */
-    public Collection<Huolto> etsiHuollot(String ehto, int k, int pyoranTunnus) {
+    public List<Huolto> etsiHuollot(String ehto, int k, int pyoranTunnus) {
         return huollot.etsi(ehto, k, pyoranTunnus);
     }
     
     
     /**
-     * Palauttaa taulukon hinnoista
+     * Palauttaa taulukon tietyn vuoden hinnoista. Taulukossa hinnat kuukausittain. 0 = tammikuu, 11 = joulukuu.
      * @param vuosi minkä vuoden hinnat haetaan
      * @return taulukko hinnoista
-     * TODO:testit ja tarkemmat kuvaukset
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(huolto);
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.6.2020|300  | Jarru  | 100 | palat");
+     * huoltokirja.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 4  |  4  | 1.12.2019|400  | Jarru  | 100 | palat");
+     * huoltokirja.lisaa(huolto3);
+     * double[] hinnat = huoltokirja.annaHinnat(2020);
+     * hinnat[0] ~~~ 200;hinnat[1] ~~~ 0; hinnat[2] ~~~ 0; hinnat[3] ~~~ 0; hinnat[4] ~~~ 0;hinnat[5] ~~~ 300;
+     * hinnat[6] ~~~ 0; hinnat[7] ~~~ 0; hinnat[8] ~~~ 0; hinnat[9] ~~~ 0; hinnat[10] ~~~ 0; hinnat[11] ~~~ 0;
+     * hinnat = huoltokirja.annaHinnat(2019);
+     * hinnat[0] ~~~ 0; hinnat[1] ~~~ 0; hinnat[2] ~~~ 0; hinnat[3] ~~~ 0; hinnat[4] ~~~ 0; hinnat[5] ~~~ 0;
+     * hinnat[6] ~~~ 0; hinnat[7] ~~~ 0; hinnat[8] ~~~ 0; hinnat[9] ~~~ 0; hinnat[10] ~~~ 0; hinnat[11] ~~~ 400;
+     * </pre>
      */
     public double[] annaHinnat(int vuosi) {
         return huollot.annaHinnat(vuosi);

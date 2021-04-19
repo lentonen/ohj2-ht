@@ -205,7 +205,28 @@ public class Huollot implements Iterable<Huolto> {
      * Poistetaan huolto
      * @param tunnusNro poistettavan huollon tunnusnumero.
      * @return 0 jos huoltoa ei löydy, 1 jos huolto löydetään ja poistettiin
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * Huollot huollot = new Huollot();
+     * Huolto huolto1 = new Huolto(1); 
+     * huolto1.parse(" 1  |  1  |1.1.2019|50.00|  Iskari  | 100 | Öljynvaihto");
+     * huollot.lisaa(huolto1);
+     * Huolto huolto2 = new Huolto(1); 
+     * huolto2.parse(" 2  |  2  |1.2.2019|25.00|  Jarrut  | 150 | palat");
+     * huollot.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 3  |  3  |3.3.2019|500.00|  Iskari  | 200 | Kaikki");
+     * huollot.lisaa(huolto3);
+     * huollot.getLkm() === 3;
+     * huollot.poista(4) === 0;
+     * huollot.getLkm() === 3;
+     * huollot.poista(3) === 1;
+     * huollot.getLkm() === 2;
+     * huollot.poista(2) === 1;
+     * huollot.getLkm() === 1;
+     * huollot.poista(1) === 1;
+     * huollot.getLkm() === 0;
+     * </pre>
      */
     public int poista(int tunnusNro) {
         for (Huolto huolto : huollot) {
