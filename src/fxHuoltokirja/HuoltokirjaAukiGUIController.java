@@ -43,11 +43,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @FXML private TextField labelHakuEhto;
     @FXML private Button buttonMuokkaa;
     @FXML private ComboBoxChooser<?> suodatinHuollot;
-    
-    // Kentät huollon tiedoille
-   // @FXML private TextField textAjotunnit; // TODO: poista
-   // @FXML private TextField textNimi;
-   // @FXML private TextArea textToimenpiteet;
     @FXML private GridPane gridHuollot;
     
     @FXML void handleUusiHuolto() {

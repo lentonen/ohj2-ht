@@ -128,7 +128,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
             labelVirhe.getStyleClass().removeAll("virhe");
             return;
         }
-        labelVirhe.getStyleClass().setAll("virhe"); //TODO:virhe maalaa punaiseksi
+        labelVirhe.getStyleClass().setAll("virhe");
         labelVirhe.setText(virhe);
         
     }
@@ -163,15 +163,6 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
         }
     }
 
-    
-    /**
-     * Asetetaan muokattava tietue TODO: POISTA?
-     * @param oletus tietue jonka tietoja halutaan muokata
-     */
-    public void setTietue(TYPE oletus) {
-        this.tietueKohdalla = oletus;
-    }  
-    
     
     /**
      * @param kentta

@@ -112,7 +112,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
             labelVirhe.getStyleClass().removeAll("virhe");
             return;
         }
-        labelVirhe.getStyleClass().setAll("virhe"); //TODO:virhe maalaa punaiseksi
+        labelVirhe.getStyleClass().setAll("virhe");
         labelVirhe.setText(virhe);
         
     }
@@ -149,7 +149,7 @@ public class HuoltokirjaDialogGUIController implements ModalControllerInterface<
 
     
     /**
-     * Asetetaan muokattava pyörä TODO: POISTA?
+     * Asetetaan muokattava pyörä
      * @param oletus pyörä jonka tietoja halutaan muokata
      */
     public void setPyora(Pyora oletus) {

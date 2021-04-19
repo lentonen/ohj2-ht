@@ -12,7 +12,6 @@ import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import huoltokirja.ApuException;
-import huoltokirja.Huolto;
 import huoltokirja.Huoltokirja;
 import huoltokirja.Pyora;
 import javafx.application.Platform;
@@ -87,9 +86,6 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         paivitaLista(0);;
     }
     
-    @FXML private void handleLisaaHuolto() { // Tämä on väliaikainen testi, kunnes saadaan välitettyä pyörä huoltokirjalle TODO: poista kun ei tarvita.
-        lisäähuolto();
-    }
     
     @FXML
     void handleAvaaKaaviot() {
@@ -324,22 +320,5 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
             System.err.println(ex.getMessage());
         }
         paivitaLista(0);
-    }
-
-    
-    /**
-     * Väliaikainen huollon lisääminen pääikkunasta TODO: poista kun et enää tarvi!
-     */
-    private void lisäähuolto() {
-        if (pyoraKohdalla == null) return;
-        Huolto huolto = new Huolto(pyoraKohdalla.getTunnusNro());
-        huolto.arvoHuolto();          
-        huolto.rekisteroi();
-        try {
-            huoltokirja.lisaa(huolto);
-            naytaPyora();
-        } catch (ApuException e) {
-            Dialogs.showMessageDialog("Ongelmia huollon luomisessa");
-        }
     }
 }

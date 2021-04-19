@@ -8,7 +8,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 /**
  * Luokka huoltokirjassa käytetyille laskuille.
  * @author Henri
- * @version 13.4.2021
+ * @version 19.4.2021
  *
  */
 public class Apulaskut {
@@ -50,10 +50,18 @@ public class Apulaskut {
     
     
     /**
-     * Tarkistaa onko syötetty pvm laiton
+     * Tarkistaa onko syötetty pvm laiton.
      * @param pvm Päivämäärä merkkijonona
      * @return true jos päivä on laiton, false jos ei
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * onkoLaitonPvm("1.1.2020") === false;
+     * onkoLaitonPvm("31.12.2020") === false;
+     * onkoLaitonPvm("29.2.2020") === false;
+     * onkoLaitonPvm("29.2.2021") === true;
+     * onkoLaitonPvm("30.2.2020") === true;
+     * onkoLaitonPvm("14.6.2020") === false;
+     * </pre>
      */
      public static boolean onkoLaitonPvm(String pvm) {
          try {
@@ -68,7 +76,7 @@ public class Apulaskut {
                      { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
                      { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }};
              
-             if (kk > 12 || pp > kkPituudet[karkausvuosi(vv)][kk-1] || pp < 1 || kk < 1 || vv < 2020 || vv > 2050) return true;
+             if (kk > 12 || pp > kkPituudet[karkausvuosi(vv)][kk-1] || pp < 1 || kk < 1 ) return true;
              return false; 
          }
          catch (NumberFormatException e) {
@@ -101,4 +109,16 @@ public class Apulaskut {
          if ( vv % 4 == 0 ) return 1;
          return 0;
      }
+     
+     
+     /**
+      * Pääohjelma testaamista varten
+     * @param args ei käytössä
+     */
+    public static void main(String[] args) {
+         boolean testi = onkoLaitonPvm("29.2.2000");
+         System.out.println(testi);
+     }
+     
+     
 }
