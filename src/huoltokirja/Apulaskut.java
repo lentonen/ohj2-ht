@@ -43,8 +43,8 @@ public class Apulaskut {
     public static boolean onkoSamat(final String jono, final String maski) {
         String maski2 = maski.trim().toUpperCase();
         String jono2 = jono.toUpperCase();
-        maski2 = maski2.replaceAll("\\.", "\\\\.");
-        maski2 = maski2.replaceAll("\\*", ".*");
+        maski2 = maski2.replaceAll("\\.", "\\\\.");  // . on regexp mikä merkki tahansa. Sen takia replace
+        maski2 = maski2.replaceAll("\\*", ".*");     // regexp tähteä vastaa .*
         return jono2.matches(maski2);
     }
     

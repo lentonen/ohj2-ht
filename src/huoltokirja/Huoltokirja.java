@@ -84,7 +84,29 @@ public class Huoltokirja {
      * korvaa huollon tietorakenteessa.
      * @param huolto huolto jota muokataan
      * @throws ApuException jos huoltoa ei voida lisätä
-     * TODO: Testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * #import java.util.List;
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getHuoltoja() === 0;
+     * Huolto huolto1 = new Huolto(1); 
+     * huolto1.parse(" 1  |  1  |1.1.2019|50.00|  Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(huolto1);
+     * huoltokirja.getHuoltoja() === 1;
+     * Huolto huolto2 = new Huolto(1); 
+     * huolto2.parse(" 1  |  1  |1.2.2019|25.00|  Jarrut  | 150 | palat");
+     * huoltokirja.korvaaTailisaa(huolto2);
+     * huoltokirja.getHuoltoja() === 1;
+     * List<Huolto> loydetyt = huoltokirja.annaHuollot(pyora);
+     * loydetyt.get(0).getNimi() === "Jarrut";
+     * Huolto huolto3 = new Huolto(1); 
+     * huolto3.parse(" 2  |  1  |1.2.2019|25.00|  Jarrut  | 150 | palat");
+     * huoltokirja.korvaaTailisaa(huolto3);
+     * huoltokirja.getHuoltoja() === 2;
+     * </pre>
      */
     public void korvaaTailisaa(Huolto huolto) throws ApuException {
         huollot.korvaaTaiLisaa(huolto);
@@ -136,7 +158,24 @@ public class Huoltokirja {
     /**
      * Poistetaan huolto huoltokirjasta.
      * @param huolto poistettava huolto
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * huoltokirja.getHuoltoja() === 0;
+     * Huolto huolto1 = new Huolto(1); 
+     * huolto1.parse(" 1  |  1  |1.1.2019|50.00|  Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(huolto1);
+     * huoltokirja.getHuoltoja() === 1;
+     * Huolto huolto2 = new Huolto(1); 
+     * huolto2.parse(" 2  |  2  |2.2.2019|150.00|  Vaihteisto  | 150 | Pakka");
+     * huoltokirja.lisaa(huolto2);
+     * huoltokirja.getHuoltoja() === 2;
+     * huoltokirja.poista(huolto1);
+     * huoltokirja.getHuoltoja() === 1;
+     * huoltokirja.poista(huolto2);
+     * huoltokirja.getHuoltoja() === 0;
+     * </pre>
      */
     public void poista(Huolto huolto) {
         huollot.poista(huolto.getTunnusNro());
