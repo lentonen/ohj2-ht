@@ -371,10 +371,29 @@ public class Huoltokirja {
     /**
      * Palauttaa vuosiluvut, jolloin huoltoja on tehty
      * @return Vuosiluvut taulukossa merkkijonona
-     * TODO:testit
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(huolto);
+     * Huolto huolto2 = new Huolto();
+     * huolto2.parse(" 3  |  3  | 1.6.2021|300  | Jarru  | 100 | palat");
+     * huoltokirja.lisaa(huolto2);
+     * Huolto huolto3 = new Huolto();
+     * huolto3.parse(" 4  |  4  | 1.12.2018|400  | Jarru  | 100 | palat");
+     * huoltokirja.lisaa(huolto3);
+     * List<String> vuodet = huoltokirja.annaVuodet();
+     * vuodet.size() === 3;
+     * vuodet.get(0) ==="2018";
+     * vuodet.get(1) ==="2020";
+     * vuodet.get(2) ==="2021";
+     * </pre>
      */
-    public Collection<String> annaVuodet() {
+    public List<String> annaVuodet() {
         return huollot.annaVuodet();
+        
     }
     
     /**
