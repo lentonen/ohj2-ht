@@ -28,7 +28,7 @@
    <center>
       <BarChart fx:id="chartPylvaat" prefHeight="457.0" prefWidth="818.0" BorderPane.alignment="CENTER">
         <xAxis>
-          <CategoryAxis label="Testi" side="BOTTOM" />
+          <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />

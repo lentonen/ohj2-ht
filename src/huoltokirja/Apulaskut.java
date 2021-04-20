@@ -1,6 +1,3 @@
-/**
- * 
- */
 package huoltokirja;
 
 import fi.jyu.mit.ohj2.Mjonot;
@@ -9,7 +6,6 @@ import fi.jyu.mit.ohj2.Mjonot;
  * Luokka huoltokirjassa käytetyille laskuille.
  * @author Henri
  * @version 19.4.2021
- *
  */
 public class Apulaskut {
 
@@ -31,7 +27,6 @@ public class Apulaskut {
      * @param jono tutkittava jono
      * @param maski jono joka sisältää *-merkkejä
      * @return true jos samat maskin mielessä
-     * 
      * @example
      * <pre name="test">
      * onkoSamat("Matti Nykänen","    matti* ") === true;
@@ -50,9 +45,9 @@ public class Apulaskut {
     
     
     /**
-     * Tarkistaa onko syötetty pvm laiton.
+     * Tarkistaa onko syötetty pvm laiton. Huoltokirjaan ei hyväksytä huoltoja, jotka on tehty ennen vuotta 1990.
      * @param pvm Päivämäärä merkkijonona
-     * @return true jos päivä on laiton, false jos ei
+     * @return true jos päivä on laiton, false jos pvm hyväksytään
      * @example
      * <pre name="test">
      * onkoLaitonPvm("1.1.2020") === false;
@@ -61,6 +56,7 @@ public class Apulaskut {
      * onkoLaitonPvm("29.2.2021") === true;
      * onkoLaitonPvm("30.2.2020") === true;
      * onkoLaitonPvm("14.6.2020") === false;
+     * onkoLaitonPvm("30.2.1989") === true;  // ei hyväksytä ennen 2020 tehtyjä huoltoja.
      * </pre>
      */
      public static boolean onkoLaitonPvm(String pvm) {
@@ -76,7 +72,7 @@ public class Apulaskut {
                      { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
                      { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }};
              
-             if (kk > 12 || pp > kkPituudet[karkausvuosi(vv)][kk-1] || pp < 1 || kk < 1 ) return true;
+             if (kk > 12 || pp > kkPituudet[karkausvuosi(vv)][kk-1] || pp < 1 || kk < 1 || vv < 1990) return true;
              return false; 
          }
          catch (NumberFormatException e) {
@@ -118,7 +114,5 @@ public class Apulaskut {
     public static void main(String[] args) {
          boolean testi = onkoLaitonPvm("29.2.2000");
          System.out.println(testi);
-     }
-     
-     
+     }     
 }

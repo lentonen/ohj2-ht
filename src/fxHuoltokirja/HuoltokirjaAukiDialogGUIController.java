@@ -50,7 +50,7 @@ public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterf
 
     @Override
     public void setDefault(Huolto oletus) {
-        huoltoKohdalla = oletus;
+       // huoltoKohdalla = oletus;
         naytaHuolto(oletus);
         
     }
@@ -59,7 +59,7 @@ public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterf
     //=============================================================================================
 
 
-    private Huolto huoltoKohdalla;
+    //private Huolto huoltoKohdalla;
     private void alusta() {
         //
     }
@@ -69,9 +69,9 @@ public class HuoltokirjaAukiDialogGUIController implements ModalControllerInterf
      * Asetetaan muokattava pyörä
      * @param oletus pyörä jonka tietoja halutaan muokata
      */
-    public void setHuolto(Huolto oletus) {
-        huoltoKohdalla = oletus;
-    }
+    //public void setHuolto(Huolto oletus) {
+        //huoltoKohdalla = oletus;
+   // }
     
     
     private void naytaHuolto(Huolto huolto) {

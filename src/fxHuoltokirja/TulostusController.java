@@ -1,11 +1,8 @@
 package fxHuoltokirja;
 
-
-
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
-
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.TextAreaOutputStream;
@@ -20,9 +17,9 @@ import javafx.stage.Stage;
 
 
 /**
- * @author hemalein
- * @version 19.3.2021
- *
+ * Kontrolleri tulostukselle.
+ * @author Henri Leinonen
+ * @version 20.4.2021
  */
 public class TulostusController implements ModalControllerInterface<Huoltokirja> {
 
@@ -37,7 +34,6 @@ public class TulostusController implements ModalControllerInterface<Huoltokirja>
         tulostaHuoltokirja();
     }
     
-
     @Override
     public Huoltokirja getResult() {
         return null;
@@ -58,15 +54,17 @@ public class TulostusController implements ModalControllerInterface<Huoltokirja>
     Huoltokirja huoltokirja;
     Pyora pyoraKohdalla;
     
+    /**
+     * Avaa tulostusikkunan huoltokirjan tulostamiselle.
+     */
     private void tulostaHuoltokirja() {
-        // Dialogs.showMessageDialog("Ei osata vielä tulostaa");
         PrinterJob job = PrinterJob.createPrinterJob();
-                  if ( job != null && job.showPrintDialog(null) ) {
-                      WebEngine webEngine = new WebEngine();
-                      webEngine.loadContent("<pre>" + tulostusAlue.getText() + "</pre>");
-                      webEngine.print(job);
-                      job.endJob();
-                  }        
+            if ( job != null && job.showPrintDialog(null) ) {
+                WebEngine webEngine = new WebEngine();
+                webEngine.loadContent("<pre>" + tulostusAlue.getText() + "</pre>");
+                webEngine.print(job);
+                job.endJob();
+            }        
     }
     
     
@@ -78,18 +76,6 @@ public class TulostusController implements ModalControllerInterface<Huoltokirja>
         return tulostusAlue;
     }
     
-    
-    /**
-     * Avaa modaalisen ikkunan tulostamista varten
-     * @param tulostus tulostettava teskti
-     * @return kontrolleri, jolta voidaan pyytää lisää tietoa
-     */
-    /*public static TulostusController tulosta(String tulostus) {
-        TulostusController tulostusCtrl = 
-          ModalController.showModeless(TulostusController.class.getResource("TulostusView.fxml"),
-                                       "Tulostus", tulostus);
-        return tulostusCtrl;
-    }*/
     
     /**
      * Avaa tulostuksen modaalisena
@@ -108,6 +94,9 @@ public class TulostusController implements ModalControllerInterface<Huoltokirja>
     }
 
     
+    /**
+     * Asetetaan tulostettava teksti huoltokirjaan.
+     */
     private void setTulostusAlue() {
         tulostusAlue.clear();
         try (PrintStream out = TextAreaOutputStream.getTextPrintStream(tulostusAlue);) {    // try-with sulkee resurssin automaattisesti
@@ -125,15 +114,22 @@ public class TulostusController implements ModalControllerInterface<Huoltokirja>
                 }
                 out.println("");     
         }     
-        
-    }
-
-    private void setPyora(Pyora pyora) {
-        pyoraKohdalla = pyora;
-        
     }
 
     
+    /**
+     * Asetetaan tulostettava pyörä
+     * @param pyora pyörä jonka huoltokirja halutaan tulostaa
+     */
+    private void setPyora(Pyora pyora) {
+        pyoraKohdalla = pyora;   
+    }
+
+    
+    /**
+     * Asetetaan käsiteltävä huoltokirja
+     * @param huoltokirja jota käsitellään.
+     */
     private void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
     }

@@ -3,23 +3,27 @@ package huoltokirja;
 import static huoltokirja.Apulaskut.rand;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
 
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * Huolto-luokka yksittäiselle huollolle.
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 20.4.2021
  */
 public class Huolto implements Cloneable, Tietue{
-    private int tunnusNro;                  // Numero joka yksilöi huollon
-    private int pyoraNro;                   // Pyörä jota huolto koskee
-    private String pvm;
-    private double hinta;
-    private String nimi             = "";   // Huollon nimi
-    private int ajotunnit;                  // Kuinka paljon pyörällä on ajettu ennen huoltoa
-    private String toimenpiteet     = "";   // Huoltotoimenpiteiden kuvaus
+    private int tunnusNro;                  // Numero joka yksilöi huollon                      kenttä [0]
+    private int pyoraNro;                   // Pyörä jota huolto koskee                         kenttä [1]
+    private String pvm;                     // Huollon pvm.                                     kenttä [2]
+    private double hinta;                   // Huollon hinta                                    kenttä [3]
+    private String nimi             = "";   // Huollon nimi                                     kenttä [4]
+    private int ajotunnit;                  // Kuinka paljon pyörällä on ajettu ennen huoltoa   kenttä [5]
+    private String toimenpiteet     = "";   // Huoltotoimenpiteiden kuvaus                      kenttä [6]
     private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."
     
     
@@ -50,16 +54,31 @@ public class Huolto implements Cloneable, Tietue{
      * Oletusmuodostaja
      */
     public Huolto() {
-        // attribuutit alustetaan esittelyssä. Int-tyyppiset alustuvat automaattisesti nollaksi, jos muuta ei anneta.
+        asetaNykyinenPvm();
     }
     
-    
+
     /**
      * muodostaja jolle viedään pyörän numero.
      * @param pyoraID pyörä, johon huolto halutaan liittää
      */
     public Huolto(int pyoraID) {
         this.pyoraNro = pyoraID;
+        asetaNykyinenPvm();
+        
+    }
+    
+    
+    /**
+     * Asettaa huollolle nykyisen päivämäärän.
+     */
+    private void asetaNykyinenPvm() {
+     // Asettaa huollolle automaattisesti nykyisen päivämäärän.
+        Date date = Calendar.getInstance().getTime();
+        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        String tanaan = formatter.format(date);
+        this.pvm = tanaan;
+        aseta(2, tanaan);
     }
     
     
@@ -97,7 +116,7 @@ public class Huolto implements Cloneable, Tietue{
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);              // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
-        out.println//("HuoltoID: "+tunnusNro + "\n"           // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
+        out.println//("HuoltoID: "+tunnusNro + "\n"         // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
                 //+ "PyöräID: "+pyoraNro + "\n"
                 ("Nimi: "+nimi + "\n" 
                 +"Ajotunnit: "+ajotunnit + "\n" 
@@ -112,18 +131,18 @@ public class Huolto implements Cloneable, Tietue{
      * <pre name="test">
      * Huolto huolto1 = new Huolto();
      * huolto1.parse(" 1  |  1  |2.1.2021 |150 |  Jarruhuolto  | 75 | puhdistin ja vaihdoin");
-     * huolto1.toString() === "1|1|2.1.2021|150.0|Jarruhuolto|75|puhdistin ja vaihdoin";
+     * huolto1.toString() === "1|1|2.1.2021|150.00|Jarruhuolto|75|puhdistin ja vaihdoin";
      * </pre>
      */
     @Override
     public String toString() {
         return "" + 
-               tunnusNro      + "|" +
-               pyoraNro       + "|" +
-               pvm            + "|" +
-               hinta          + "|" +
-               nimi           + "|" +
-               ajotunnit      + "|" +
+               tunnusNro                              + "|" +
+               pyoraNro                               + "|" +
+               pvm                                    + "|" +
+               String.format("%.2f", hinta )          + "|" +
+               nimi                                   + "|" +
+               ajotunnit                              + "|" +
                toimenpiteet;
     }
     
@@ -137,10 +156,8 @@ public class Huolto implements Cloneable, Tietue{
      * huolto2.parse(" 2  |  2  | 1.1.2020|200  | Iskari  | 100 | Öljynvaihto");
      * huolto2.getNimi() === "Iskari";
      * huolto2.getAjotunnit() === 100;
-     * huolto2.toString() === "2|2|1.1.2020|200.0|Iskari|100|Öljynvaihto"
+     * huolto2.toString() === "2|2|1.1.2020|200.00|Iskari|100|Öljynvaihto"
      * huolto2.getTunnusNro() === 2;
-     * huolto2.rekisteroi();                  // rekisteröinti kasvattaa tunnusNro arvoa yhdellä
-     * huolto2.getTunnusNro() === 3;
      * </pre>
      */
     public void parse(String rivi) {
@@ -162,10 +179,10 @@ public class Huolto implements Cloneable, Tietue{
      * <pre name="test">
      *  Huolto huolto3 = new Huolto();
      *  huolto3.rekisteroi();
-     *  huolto3.getTunnusNro() === 4;   // TunnusNro = 4, koska huolto 2 rekisteröitiin kahdesti.
+     *  huolto3.getTunnusNro() === 3;  
      *  Huolto huolto4 = new Huolto();
      *  huolto4.rekisteroi();
-     *  huolto4.getTunnusNro() === 5;
+     *  huolto4.getTunnusNro() === 4;
      * </pre>
      */
     public int rekisteroi() {
@@ -212,27 +229,6 @@ public class Huolto implements Cloneable, Tietue{
     }
     
 
-    /**
-     * Pääohjelma Huolto-olion testaamiseen.
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-        Huolto huolto = new Huolto(1);
-        huolto.arvoHuolto();
-        huolto.rekisteroi();
-        huolto.tulosta(System.out);
-        
-        Huolto huolto2 = new Huolto(5);
-        huolto2.arvoHuolto();
-        huolto2.rekisteroi();
-        huolto2.tulosta(System.out);
-        
-        Huolto huolto3 = new Huolto();
-        huolto3.parse(" 3 |  1  |  Iskarihuolto   | 125  | Alajalkojen huolto ");
-        huolto3.tulosta(System.out);
-    }
-
-
     @Override
     public int getKenttia() {
         return 7;
@@ -244,13 +240,14 @@ public class Huolto implements Cloneable, Tietue{
         return 2;
     }
     
+    
     @Override
     public int ekaIsoKentta() {
         return 6;
     }
 
 
-    @Override
+    @Override  // testit Tietue-luokassa
     public String getKentanNimi(int k) {
         switch (k) {
         case 0: return "Huollon tunnus nro" ;                                            
@@ -265,7 +262,7 @@ public class Huolto implements Cloneable, Tietue{
     }
 
 
-    @Override
+    @Override // testit Tietue-luokassa
     public String anna(int k) {
         switch (k) {
         case 0: return "" +tunnusNro ;                                            
@@ -281,7 +278,7 @@ public class Huolto implements Cloneable, Tietue{
     
     
     /**
-     * Antaa kentän k sisällön merkkijonona
+     * Antaa kentän k sisällön vertailuun sopivana merkkijonona
      * @param k palautettavan kentän numero
      * @return kentän sisältö merkkijonona
      * @example
@@ -322,11 +319,46 @@ public class Huolto implements Cloneable, Tietue{
         }
     }
 
-
-    @Override
+    
+    /**
+     * @example
+     * <pre name="test">
+     * Huolto huolto = new Huolto();
+     * huolto.aseta(0,"1") === null;
+     * huolto.avain(0) ==="  1";
+     * huolto.aseta(0,"1a") === "Huollon tunnusnumero on väärin";
+     * huolto.avain(0) ==="  1";
+     * 
+     * huolto.aseta(1,"12") === null;
+     * huolto.avain(1) ===" 12";
+     * huolto.aseta(1,"12a") === "Pyörän tunnusnumero on väärin";
+     * huolto.avain(1) ===" 12";
+     * 
+     * huolto.aseta(2,"1.1.2021") === null;
+     * huolto.avain(2) ==="2021 1 1";
+     * huolto.aseta(2,"32.1.2021") === "Päivämäärä on väärin";
+     * huolto.avain(2) ==="2021 1 1";
+     * 
+     * huolto.aseta(3,"150.23") === null;
+     * huolto.avain(3) ==="0.15023";
+     * huolto.aseta(3,"150.23g") === "hinta väärin";
+     * huolto.avain(3) ==="0.15023";
+     * 
+     * huolto.aseta(4,"FUJI") === null;
+     * huolto.avain(4) ==="fuji";
+     * 
+     * huolto.aseta(5,"150") === null;
+     * huolto.avain(5) ==="  150";
+     * huolto.aseta(5,"150a") ==="Ajotunnit on väärin";
+     * huolto.avain(5) ==="  150";
+     * 
+     * huolto.aseta(6,"Putsattiin") === null;
+     * huolto.avain(6) ==="putsattiin";
+     * </pre>
+     */
+    @Override // Testejä avain-metodin yhteydessä sekä Tietue-luokassa
     public String aseta(int k, String jono) {
         String mj = jono.trim();
-        //StringBuilder sb = new StringBuilder(mj);
         switch (k) {
         case 0:
             try {
@@ -343,8 +375,7 @@ public class Huolto implements Cloneable, Tietue{
                 }
             return null;
         case 2:
-            boolean onkoLaiton = Apulaskut.onkoLaitonPvm(mj);
-            if (onkoLaiton == true) return "Päivämäärä on väärin";
+            if (Apulaskut.onkoLaitonPvm(mj)) return "Päivämäärä on väärin";
             pvm = mj;   
             return null;
         case 3:
@@ -367,16 +398,36 @@ public class Huolto implements Cloneable, Tietue{
         case 6:
             toimenpiteet = mj;
             return null;
-       
         default: return "Ei ole olemassa";
         }
     }
 
 
-    @Override
+    @Override // Testit tietue-luokassa
     public Huolto clone() throws CloneNotSupportedException {
         Huolto uusi;
         uusi = (Huolto)super.clone();
         return uusi;
+    }
+    
+    
+    /**
+     * Pääohjelma Huolto-luokan testaamiseen.
+     * @param args ei käytössä
+     */
+    public static void main(String[] args) {
+        Huolto huolto = new Huolto(1);
+        huolto.arvoHuolto();
+       // huolto.rekisteroi();
+        huolto.tulosta(System.out);
+        
+        Huolto huolto2 = new Huolto(5);
+        huolto2.arvoHuolto();
+       // huolto2.rekisteroi();
+        huolto2.tulosta(System.out);
+        
+        Huolto huolto3 = new Huolto();
+        huolto3.parse(" 3 |  1  |  Iskarihuolto   | 125  | Alajalkojen huolto ");
+        huolto3.tulosta(System.out);
     }
 }

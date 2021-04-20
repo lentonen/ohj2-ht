@@ -2,7 +2,7 @@ package huoltokirja;
 
 /**
  * @author Henri Leinonen
- * @version 31.3.2021
+ * @version 20.4.2021
  *
  */
 public interface Tietue {
@@ -21,7 +21,9 @@ public interface Tietue {
     
     
     /**
-     * @return Ensimmäisen muokattavat kentän indeksi
+     * Saantimetodi ensimmäiselle käyttäjälle näytettävän kentän indeksille.
+     * @return Ensimmäisen muokattavat kentän indeksi.
+     * @example
      * <pre name="test">
      * Pyora pyora = new Pyora();
      * pyora.ekaKentta() === 1;
@@ -33,6 +35,7 @@ public interface Tietue {
     
     
     /**
+     * Saantimetodi ensimmäiselle isolle tekstikentälle (textArea).
      * @return ensimmäisen ison (textArea) muokattavan kentän indeksi 
      * @example
      * <pre name="test">
@@ -115,14 +118,27 @@ public interface Tietue {
      * Luo kloonin tietueesta
      * @return kloonattu tietue
      * @throws CloneNotSupportedException jos kloonausta ei tueta
+     * @example
+     * <pre name="test">
+     * #THROWS CloneNotSupportedException
      * Pyora pyora1 = new Pyora();
      * pyora1.parse(" 4 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
-     * pyora2 = pyora1.clone();
+     * Pyora pyora2 = pyora1.clone();
      * pyora2.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
      * pyora1.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
-     * pyora2.parse" 1 |  Maastopyörä  |  Fuji   | Rakan  | 2019   | kjh543");
+     * pyora2.parse(" 1 |  Maastopyörä  |  Fuji   | Rakan  | 2019   | kjh543");
      * pyora1.toString() === "4|Kottero|Helkama|Jopo|2000|abc123";
      * pyora2.toString() === "1|Maastopyörä|Fuji|Rakan|2019|kjh543";
+     * 
+     * Huolto huolto1 = new Huolto();
+     * huolto1.parse(" 2  |  2  |1.1.2020|150.00|  Iskari  | 100 | Öljynvaihto");
+     * Huolto huolto2 = huolto1.clone();
+     * huolto2.toString() === "2|2|1.1.2020|150.00|Iskari|100|Öljynvaihto";
+     * huolto1.toString() === "2|2|1.1.2020|150.00|Iskari|100|Öljynvaihto";
+     * huolto2.parse("3  |  3  |2.2.2021|15.00| Jarrupalat  | 150 | vaihto");
+     * huolto1.toString() === "2|2|1.1.2020|150.00|Iskari|100|Öljynvaihto";
+     * huolto2.toString() === "3|3|2.2.2021|15.00|Jarrupalat|150|vaihto";
+     * </pre>
      */
     public abstract Tietue clone() throws CloneNotSupportedException;
     
@@ -138,7 +154,5 @@ public interface Tietue {
      * </pre>
      */
     @Override
-    public String toString();
-    
-
+    public abstract String toString();
 }

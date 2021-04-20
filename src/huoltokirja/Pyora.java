@@ -3,7 +3,6 @@ package huoltokirja;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Comparator;
-
 import fi.jyu.mit.ohj2.Mjonot;
 import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttää ilman, että yhtään luokan oliota on luotu. 
                                             //          luokan sisällä olevia funktioita voidaan käyttää ilman luokan nimeä (Esim. Apulaskut.rand(1,2) --> rand(1,2))
@@ -11,19 +10,17 @@ import static huoltokirja.Apulaskut.*;      // Static = luokkaa voidaan käyttä
 /**
  * Pyörä, joka huolehtii esimerkiksi tunnusNro:staan.
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 20.4.2021
  */
 public class Pyora implements Cloneable, Tietue{
-    private int tunnusNro;                  // Numero joka yksilöi pyörän  
-    private String nimi     = "";           // Pyörän nimi                 // kenttä 1
-    private String merkki   = "";           // Pyörän merkki               // kenttä 2
-    private String malli    = "";           // Pyörän malli                // kenttä 3
-    private int vuosimalli  = 0 ;           // Pyörän vuosimalli           // kenttä 4
-    private String runkoNro = "";           // Pyörän runkonumero          // kenttä 5
+    private int tunnusNro;                  // Numero joka yksilöi pyörän     kenttä [0]
+    private String nimi     = "";           // Pyörän nimi                    kenttä [1]
+    private String merkki   = "";           // Pyörän merkki                  kenttä [2]
+    private String malli    = "";           // Pyörän malli                   kenttä [3]
+    private int vuosimalli  = 0 ;           // Pyörän vuosimalli              kenttä [4]
+    private String runkoNro = "";           // Pyörän runkonumero             kenttä [5]
     private static int seuraavaNro = 1;     // Ilmaisee seuraavan vapaana olevan tunnusnumeron, static = "on olemassa, vaikka olioita ei olisi luotu."  Static-attribuutti on yhteinen kaikille luokasta luoduille olioille. Eli jokaiselle pyörälle ei alusteta omaa attribuuttia.
-                                     
-    
-    
+
     
     /**
      * Luokka vertaa kahta pyörää keskenään
@@ -48,20 +45,12 @@ public class Pyora implements Cloneable, Tietue{
     }
     
     
-    /**
-     * Palauttaa pyörään liittyvien kenttien lukumäärän
-     * @return kenttien lukumäärä
-     */
     @Override
     public int getKenttia() {
         return 6;
     }
     
     
-    /**
-     * Ensimmäisen mielekkään kentän numero
-     * @return ensimmäisen kentän indeksi
-     */
     @Override
     public int ekaKentta() {
         return 1;
@@ -72,6 +61,7 @@ public class Pyora implements Cloneable, Tietue{
     public int ekaIsoKentta() {
         return 7;
     }
+    
     
     /**
      * Asettaa tunnusnumeron ja varmistaa, että seuraavaNro on 
@@ -84,12 +74,7 @@ public class Pyora implements Cloneable, Tietue{
     }
     
     
-    /**
-     * Antaa kentän k nimen
-     * @param k monennenko kentän nimi annetaan
-     * @return kentän nimi
-     */
-    @Override
+    @Override // testit Tietue-luokassa
     public String getKentanNimi(int k) {
         switch (k) {
         case 0: return "Tunnus nro" ;
@@ -103,12 +88,7 @@ public class Pyora implements Cloneable, Tietue{
     }
     
     
-    /**
-     * Antaa k:n kentän sisällön merkkijonona
-     * @param k minkä kentän sisältö palautetaan
-     * @return kentän sisältö merkkijonona
-     */
-    @Override
+    @Override // testit Tietue-luokassa
     public String anna(int k) {
         switch (k) {
         case 0: return "" +tunnusNro;
@@ -123,7 +103,7 @@ public class Pyora implements Cloneable, Tietue{
     
     
     /**
-     * Antaa kentän k sisällön merkkijonona
+     * Antaa kentän k sisällön vertailuun sopivana merkkijonona
      * @param k palautettavan kentän numero
      * @return kentän sisältö merkkijonona
      * @example
@@ -245,8 +225,8 @@ public class Pyora implements Cloneable, Tietue{
      */
     public void tulosta(OutputStream os) {
         PrintStream out = new PrintStream(os);    // OutputStream käytössä tulevaisuutta varten. Printstreamilla mm. prinln-metodi. 
-        out.println//("ID: "+tunnusNro + "\n"       // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
-                ("Nimi: "+nimi + "\n"            // Printstreamiin annetttu sisältö muutetaan OutPutStreamille sopivaksi automaattisesti.
+        out.println//("ID: "+tunnusNro + "\n"     // OutputStreamin hankala käyttö ohitetaan luomalla printstream ja käyttämällä sitä tulostamiseen.
+                ("Nimi: "+nimi + "\n"             // Printstreamiin annetttu sisältö muutetaan OutPutStreamille sopivaksi automaattisesti.
                 +"Merkki: "+merkki + "\n" 
                 +"Malli: "+malli + "\n"
                 +"vuosimalli: "+vuosimalli + "\n"
@@ -261,10 +241,10 @@ public class Pyora implements Cloneable, Tietue{
      * <pre name="test">
      *  Pyora pyora6 = new Pyora();
      *  pyora6.rekisteroi();
-     *  pyora6.getTunnusNro() === 7;
+     *  pyora6.getTunnusNro() === 16;
      *  Pyora pyora7 = new Pyora();
      *  pyora7.rekisteroi();
-     *  pyora7.getTunnusNro() === 8;
+     *  pyora7.getTunnusNro() === 17;
      * </pre>
      */
     public int rekisteroi() {
@@ -306,8 +286,6 @@ public class Pyora implements Cloneable, Tietue{
      * pyora5.getNimi() === "Fuji Rakan";
      * pyora5.toString() === "5|Fuji Rakan|Fuji|Rakan|2000|abc123"
      * pyora5.getTunnusNro() === 5;
-     * pyora5.rekisteroi();                  // rekisteröinti kasvattaa tunnusNro arvoa yhdellä
-     * pyora5.getTunnusNro() === 6;
      * </pre>
      */
     public void parse(String rivi) {
@@ -350,13 +328,13 @@ public class Pyora implements Cloneable, Tietue{
         // Luodaan ensimmäinen pyörä arvotuilla tiedoilla, rekisteröidään ja tulostetaan
         Pyora pyora = new Pyora();
         pyora.arvoPyora();              
-        pyora.rekisteroi();             
+       //pyora.rekisteroi();             
         pyora.tulosta(System.out);
         
         // Luodaan toinen pyörä arvotuilla tiedoilla, rekisteröidään ja tulostetaan
         Pyora pyora2 = new Pyora();
         pyora2.arvoPyora();
-        pyora2.rekisteroi();
+        //pyora2.rekisteroi();
         pyora2.tulosta(System.out);
         
         // Luodaan kolmas pyörä ja muodostetaan pyörän tiedot annetusta merkkijonosta.

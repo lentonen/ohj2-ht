@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Luokka huoltokirjan pyörille. Osaa esimerkiksi lisätä ja poistaa uuden pyörän.
  * @author Henri Leinonen
- * @version 18.4.2021
+ * @version 20.4.2021
  */
 public class Pyorat {
     private static final int    MAX_PYORIA        = 5;                        // pyörien maksimimäärä alussa
@@ -226,8 +226,8 @@ public class Pyorat {
      * #import java.io.File;
      * 
      * Pyorat pyorat = new Pyorat();
-     * Pyora pyora6 = new Pyora(); pyora6.arvoPyora(); pyora6.rekisteroi(); pyorat.lisaa(pyora6);
-     * Pyora pyora7 = new Pyora(); pyora7.arvoPyora(); pyora7.rekisteroi(); pyorat.lisaa(pyora7);
+     * Pyora pyora6 = new Pyora(); pyora6.arvoPyora(); pyorat.lisaa(pyora6);
+     * Pyora pyora7 = new Pyora(); pyora7.arvoPyora(); pyorat.lisaa(pyora7);
      * String hakemisto = "testipyorat";
      * String tiedNimi = hakemisto +"/pyorat.dat";
      * File ftied = new File(tiedNimi);
@@ -262,8 +262,6 @@ public class Pyorat {
             muutettu = false;
         } catch (FileNotFoundException ex) {
             throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
-            // } catch (IOException e) {
-            //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
         }
     }
     
@@ -336,12 +334,12 @@ public class Pyorat {
         // Luodaan pyörä1 arvotuilla tiedoilla ja rekisteröidään
         Pyora pyora1 = new Pyora();
         pyora1.arvoPyora();
-        pyora1.rekisteroi();
+        //pyora1.rekisteroi();
         
         //Luodaan pyörä2 arvotuilla tiedoilla ja rekisteröidään
         Pyora pyora2 = new Pyora();
         pyora2.arvoPyora();
-        pyora2.rekisteroi();
+        //pyora2.rekisteroi();
         
         // Yritetään lisätä pyörää taulukkoon
         // Jos taulukko on täynnä, tulostaa virheilmoituksen

@@ -4,8 +4,7 @@ import java.util.List;
 /**
  * Huoltokirja, joka sisältää pyöriä ja huoltoja. 
  * @author Henri Leinonen
- * @version 19.4.2021
- *
+ * @version 20.4.2021
  */
 public class Huoltokirja {
     private Pyorat pyorat = new Pyorat();           // Huoltokirjan pyörät 
@@ -21,7 +20,8 @@ public class Huoltokirja {
     }
     
     
-    /** palauttaa huoltojen lukumäärän
+    /** 
+     * palauttaa huoltojen lukumäärän
      * @return huoltojen lukumäärä
      */
     public int getHuoltoja() {
@@ -130,10 +130,9 @@ public class Huoltokirja {
         huollot.lisaa(huolto);
     }
     
-    
-    
+     
     /**
-     * Poistetaan pyörä huoltokirjasta
+     * Poistaa pyörän huoltokirjasta
      * @param pyora poistettava pyörä
      * @example
      * <pre name="test">
@@ -155,7 +154,7 @@ public class Huoltokirja {
     
     
     /**
-     * Poistetaan huolto huoltokirjasta.
+     * Poistaa huollon huoltokirjasta.
      * @param huolto poistettava huolto
      * @example
      * <pre name="test">
@@ -178,7 +177,6 @@ public class Huoltokirja {
      */
     public void poista(Huolto huolto) {
         huollot.poista(huolto.getTunnusNro());
-        
     }
     
     
@@ -187,6 +185,21 @@ public class Huoltokirja {
      * @param i monesko pyörä palautetaan
      * @return viite pyörään, joka paikassa i
      * @throws IndexOutOfBoundsException jos i laiton
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Pyora pyora1 = new Pyora(), pyora2 = new Pyora(); Pyora pyora3 = new Pyora();
+     * huoltokirja.getPyoria() === 0;
+     * huoltokirja.lisaa(pyora1); huoltokirja.getPyoria() === 1;
+     * huoltokirja.lisaa(pyora2); huoltokirja.getPyoria() === 2; 
+     * huoltokirja.lisaa(pyora3); huoltokirja.getPyoria() === 3; 
+     * huoltokirja.annaPyora(0) === pyora1;
+     * huoltokirja.annaPyora(1) === pyora2;
+     * huoltokirja.annaPyora(2) === pyora3;
+     * huoltokirja.annaPyora(3) === pyora3;  #THROWS IndexOutOfBoundsException 
+     * huoltokirja.annaPyora(-1) === pyora3; #THROWS IndexOutOfBoundsException 
+     * </pre>
      */
     public Pyora annaPyora(int i) throws IndexOutOfBoundsException {
         return pyorat.anna(i);
@@ -196,7 +209,7 @@ public class Huoltokirja {
     /**
      * Palauttaa annetun pyörän huollot
      * @param pyora pyörä jonka huollot halutaan
-     * @return huollot
+     * @return huollot listana
      * @throws IndexOutOfBoundsException poikkeus jos yritetään etsiä sellaisen pyörän huoltoja, jota ei ole lisätty huoltokirjaan.
      * @example
      * <pre name="test">
@@ -227,7 +240,7 @@ public class Huoltokirja {
      * Yrittää tallettaa huollot, jos pyörien tallentaminen epäonnistuu.
      * Jos jompikumpi epäonnistuu, heittää lopuksi poikkeuksen, joka näyttää mikä epäonnistui.
      * @throws ApuException jos pyörien tai huoltojen tallentaminen epäonnistuu
-     */
+     */  // Testit Pyorat- ja Huollot-luokissa
     public void talleta() throws ApuException {
         String virhe="";
         try {
@@ -244,16 +257,16 @@ public class Huoltokirja {
     }
    
     
-     /**
-     * @throws ApuException kps lukeminen epäonnistuu
-     */
+    /**
+     * Lukee pyörien ja huoltojen tiedot tiedostosta.
+     * @throws ApuException jos lukeminen epäonnistuu
+     */  // Testit Pyorat- ja Huollot-luokissa
     public void lueTiedosto() throws ApuException {
         pyorat = new Pyorat();      // Tyhjentää olemassaolevan pyorat-olion
         huollot = new Huollot();    // Tyhjentää olemassaolevan huollot-olion
      
         pyorat.lueTiedosto("pyorat");                // Lukee tiedot pyoristä
-        huollot.lueTiedosto("huollot");              // Lukee tiedot huolloista
-        
+        huollot.lueTiedosto("huollot");              // Lukee tiedot huolloista   
     }
     
     
@@ -395,6 +408,7 @@ public class Huoltokirja {
         
     }
     
+    
     /**
      * Pääohjelma luokan testaamista varten.
      * @param args ei käytössä
@@ -411,11 +425,11 @@ public class Huoltokirja {
         try {
             Pyora pyora1 = new Pyora();
             pyora1.arvoPyora();
-            pyora1.rekisteroi();
+            //pyora1.rekisteroi();
         
             Pyora pyora2 = new Pyora();
             pyora2.arvoPyora();
-            pyora2.rekisteroi();
+            //pyora2.rekisteroi();
         
             huoltokirja.lisaa(pyora1);
             huoltokirja.lisaa(pyora2);
@@ -423,11 +437,11 @@ public class Huoltokirja {
             int id1 = pyora1.getTunnusNro();
             int id2 = pyora2.getTunnusNro();
             
-            Huolto huolto1 = new Huolto(id1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huoltokirja.lisaa(huolto1);
-            Huolto huolto2 = new Huolto(id1); huolto2.arvoHuolto(); huolto2.rekisteroi(); huoltokirja.lisaa(huolto2);
-            Huolto huolto3 = new Huolto(id2); huolto3.arvoHuolto(); huolto3.rekisteroi(); huoltokirja.lisaa(huolto3);
-            Huolto huolto4 = new Huolto(id2); huolto4.arvoHuolto(); huolto4.rekisteroi(); huoltokirja.lisaa(huolto4);
-            Huolto huolto5 = new Huolto(id2); huolto5.arvoHuolto(); huolto5.rekisteroi(); huoltokirja.lisaa(huolto5);
+            Huolto huolto1 = new Huolto(id1); huolto1.arvoHuolto(); huoltokirja.lisaa(huolto1);
+            Huolto huolto2 = new Huolto(id1); huolto2.arvoHuolto(); huoltokirja.lisaa(huolto2);
+            Huolto huolto3 = new Huolto(id2); huolto3.arvoHuolto(); huoltokirja.lisaa(huolto3);
+            Huolto huolto4 = new Huolto(id2); huolto4.arvoHuolto(); huoltokirja.lisaa(huolto4);
+            Huolto huolto5 = new Huolto(id2); huolto5.arvoHuolto(); huoltokirja.lisaa(huolto5);
         
             for (int i = 0; i < huoltokirja.getPyoria(); i++) {
                 Pyora pyora = huoltokirja.annaPyora(i);

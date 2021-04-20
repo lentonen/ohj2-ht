@@ -29,7 +29,7 @@ import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 /**
  * Kontrolleri huoltokirjan pääikkunalle
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 20.4.2021
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
@@ -47,7 +47,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     
     @Override public void initialize(URL url, ResourceBundle bundle) {
-        alusta(); // käydään alustamassa uusi näkymä pyörän tiedoille. Tämä on väliaikaista.  
+        alusta();
     }
 
     @FXML private void handleUusiPyora() {
@@ -86,14 +86,10 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
         paivitaLista(0);;
     }
     
-    
     @FXML
     void handleAvaaKaaviot() {
         KaaviotController.avaaKaaviot(null, huoltokirja);
-        //ModalController.showModal(HuoltokirjaGUIController.class.getResource("KaaviotGUIView.fxml"),
-        //        "Kaaviot", null,"");
     }
-    
 
 
     //=============================================================================================
@@ -102,7 +98,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     private Pyora pyoraKohdalla;
     @FXML private TextInputControl[] texts;
     private int kentta = 1;
-    private static Pyora apuPyora = new Pyora();  // Pyörä jolta kysytään kenttiä.
+    private static Pyora apuPyora = new Pyora();      // Pyörä jolta kysytään kenttiä.
     
     
     /**
@@ -254,7 +250,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     
     /**
-     * Alustaa uuden väliaikaisen näkymän pyörän tiedoille.
+     * Alustaa huoltokirjan pääikkunan valikon, suodattimen ja painikkeita.
      */
     private void alusta() {
         chooserPyorat.clear();                                   // Tyhjentää pyörien chooserlistan

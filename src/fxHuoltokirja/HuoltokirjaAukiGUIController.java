@@ -1,7 +1,6 @@
 package fxHuoltokirja;
 
 import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -9,7 +8,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
-
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
@@ -32,7 +30,7 @@ import javafx.stage.Stage;
 /**
  * Kontrolleri valitun pyörän huoltokirjan ikkunalle.
  * @author Henri Leinonen
- * @version 15.4.2021
+ * @version 20.4.2021
  *
  */
 public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Pyora>, Initializable {
@@ -80,41 +78,31 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         alusta();
-        }
+    }
     
-
-    /**
-     * Palauttaa dialogin tuloksen sulkemisen jälkeen.
-     */
-    @Override public Pyora getResult() {
+    @Override public Pyora getResult() {  //Palauttaa dialogin tuloksen
         return null;
     }
 
-    /**
-     * Mitä tehdään kun dialogi on näytetty.
-     */
     @Override
-    public void handleShown() {
+    public void handleShown() {  // mitä tehdään kun dialogi on näytetty
         chooserHuollot.requestFocus();   
     }
 
-    /**
-     * Mitä näytetään oletuksena.
-     */
     @Override
-    public void setDefault(Pyora oletus) {
-        //;   
+    public void setDefault(Pyora oletus) {  // Mitä näytetään oletuksena
+        //  
     }
 
 
     //=============================================================================================
-    
-    
-    private Pyora pyoraKohdalla; // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
+   
+    private Pyora pyoraKohdalla;                     // Pyörä jonka huoltoja käsitellään. Tuodaan avaamisessa.
     private Huolto huoltoKohdalla = new Huolto();
-    private Huoltokirja huoltokirja; // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
-    @FXML private TextInputControl[] texts;  // Tietokentät taulukossa
+    private Huoltokirja huoltokirja;                 // Käytössä oleva huoltokirja, joka tuodaan kun huoltokirja avataan
+    @FXML private TextInputControl[] texts;          // Tietokentät taulukossa
     private int kentta = 1;
+    
     
     private void alusta() {
         chooserHuollot.clear(); 
@@ -128,7 +116,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
             text.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(text,kentta));
             }
         }  
-        
         suodatinHuollot.clear();
         for (int i = huoltoKohdalla.ekaKentta(); i <huoltoKohdalla.getKenttia(); i++) {
             suodatinHuollot.add(huoltoKohdalla.getKentanNimi(i), null);
@@ -148,7 +135,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     
     /**
-     * Lisää uuden uuden huollon
+     * Lisätään uusi huolto
      */
     private void uusiHuolto() {
         try {
@@ -181,17 +168,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
             i++;
         }
         chooserHuollot.setSelectedIndex(index);
-        
-        
-        //chooserHuollot.clear();
-        //int index = 0;
-        //List<Huolto> huollot = huoltokirja.annaHuollot(pyoraKohdalla);
-        //for (int i = 0; i < huollot.size(); i++) {
-        //    Huolto huolto = huollot.get(i);
-        //    chooserHuollot.add(huolto.getNimi(), huolto);  // Laittaa listaan kohdassa i olevan pyörän nimen ja viitteen Pyora-olioon.
-        //    if (huolto.getTunnusNro() == tunnusNumero) index = i;
-        //}
-        //chooserHuollot.setSelectedIndex(index); 
     }
     
     
@@ -266,10 +242,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      * Sulkee huoltokirjan
      */
     private void lopeta() {
-        // Suljetaan huoltokirjadialogi
         ModalController.closeStage(lisaaHuolto);         
-        
-        //Dialogs.showMessageDialog("Suljetaan ohjelma. Ei osata!");
     }
     
     
@@ -279,7 +252,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      */
     public void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
-        // naytaJasen();
     }
     
     
@@ -289,7 +261,6 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
      */
     public void setPyora(Pyora pyora) {
         this.pyoraKohdalla = pyora;
-        // naytaJasen();
     }
     
     

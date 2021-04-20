@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /**
  * Kysytään tietueen tiedot dialogilla
  * @author Henri Leinonen
- * @version 31.3.2021
+ * @version 20.4.2021
  * @param <TYPE> Käsiteltävän tietueen tyyppi
  */
 public class TietueDialogController<TYPE extends Tietue> implements ModalControllerInterface<TYPE>, Initializable {
@@ -30,13 +30,11 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     @FXML private GridPane gridTietue;
     @FXML private Label labelVirhe;
     
-    
     @Override public TYPE getResult() {
         return tietueKohdalla;
     }
 
     @Override public void handleShown() {
-        //textNimi.requestFocus();
         kentta = Math.max(tietueKohdalla.ekaKentta(), Math.min(kentta, tietueKohdalla.getKenttia()));
         texts[this.kentta].requestFocus();
         ModalController.getStage(gridTietue).setOnCloseRequest((event) -> {
@@ -60,9 +58,8 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        //alusta();
+        //
     }
-
 
     @Override
     public void setDefault(TYPE oletus) {
@@ -88,7 +85,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
      * @return luodut tekstikentät
      */
     public static<TYPE extends Tietue> TextInputControl[] luoKentat(GridPane grid, TYPE apuTietue) {
-        grid.getChildren().clear();                                                         // Tyhjentää gridpanen, jos siellä on jotakin ennestään
+        grid.getChildren().clear();                                                             // Tyhjentää gridpanen, jos siellä on jotakin ennestään
             TextInputControl[] textFields = new TextInputControl[apuTietue.getKenttia()];                   
             for (int i = 0, k = apuTietue.ekaKentta(); k < apuTietue.getKenttia(); k++, i++) {
                 Label label = new Label(apuTietue.getKentanNimi(k));
@@ -96,23 +93,24 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
                 if (k < apuTietue.ekaIsoKentta()) {
                     TextField text = new TextField();
                     textFields[k] = text;
-                    text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
+                    text.setId("t"+k);                                                          // antaa kentälle id:n t1, t2, t3...
                     grid.add(text, 1, i);
                 }
                 else {
                     TextArea text = new TextArea();
                     textFields[k] = text;
-                    text.setId("t"+k);                                                              // antaa kentälle id:n t1, t2, t3...
-                    grid.add(text, 1, i);
-                }
-                                                                           // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
+                    text.setId("t"+k);                                                          // antaa kentälle id:n t1, t2, t3...
+                    grid.add(text, 1, i);                                                       // Laitetaan tekstikenttä gridissä sarakkeeseen 1 riville i
+                }                                                             
         }
         grid.setMaxWidth(400);
         return textFields;  
-        
     }
     
     
+    /**
+     * Alustetaan dialogi
+     */
     private void alusta() {
         texts = luoKentat(gridTietue, tietueKohdalla); 
         for (TextInputControl text : texts) {                     
@@ -122,6 +120,10 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     }
     
     
+    /**
+     * Näytetään virhe dialogiassa
+     * @param virhe teksti joka näytetään.
+     */
     private void naytaVirhe(String virhe) {
         if (virhe == null || virhe.isEmpty()) {
             labelVirhe.setText("");
@@ -130,7 +132,6 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
         }
         labelVirhe.getStyleClass().setAll("virhe");
         labelVirhe.setText(virhe);
-        
     }
     
     
@@ -147,11 +148,15 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     }
     
     
+    /**
+     * Käsittelee muutoksen tekstikentässä.
+     * @param text minkä kentän muutosta käsitellään
+     */
     private void kasitteleMuutosTietueeseen(TextInputControl text) {
         if (tietueKohdalla == null) return;                          // Jos tietue ei ole valittuna, niin lähdetään pois
         int k = getFieldId(text,tietueKohdalla.ekaKentta());
         String s = text.getText();                                  // Haetaan annetun TextFieldin sisältö
-        String virhe = tietueKohdalla.aseta(k, s);                   // Luodaan mj, johon tallennetaan virhetekstit.
+        String virhe = tietueKohdalla.aseta(k, s);                  // Luodaan mj, johon tallennetaan virhetekstit.
         if (virhe == null) {                                        // Mitä tehdään kun syötössä ei tule virheitä
             Dialogs.setToolTipText(text, "");                       // Ei näytetä "tip"-tekstiä
             text.getStyleClass().removeAll("virhe");                // Poistetaan virhe-tyyli käytöstä
@@ -165,6 +170,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
     
     /**
+     * Asetetaan kenttä.
      * @param kentta
      */
     private void setKentta(int kentta) {
@@ -173,6 +179,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
 
     
     /**
+     * Avaa dialogin josta voidaan muuttaa tietueen tietoja.
      * @param <TYPE> Tietueen tyyppi
      * @param modalityStage mille ollaan modaalisia
      * @param oletus tietue jota halutaan käsitellä

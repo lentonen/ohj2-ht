@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Huollot-luokka yksittäisen pyörän huoltojen tallettamiseen.
  * @author Henri Leinonen
- * @version 19.4.2021
+ * @version 20.4.2021
  *
  */
 public class Huollot implements Iterable<Huolto> {
@@ -27,7 +27,7 @@ public class Huollot implements Iterable<Huolto> {
      * oletusmuodostaja
      */
     public Huollot() {
-        // Ei tarvita mitään vielä tässä vaiheessa
+        // Ei tarvita mitään.
     }
     
     
@@ -51,10 +51,9 @@ public class Huollot implements Iterable<Huolto> {
      * #THROWS IndexOutOfBoundsException 
      * #import java.io.File;
      * #import java.util.List;
-     * 
      * Huollot huollot = new Huollot();
-     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huollot.lisaa(huolto1);
-     * Huolto huolto2 = new Huolto(2); huolto2.arvoHuolto(); huolto2.rekisteroi(); huollot.lisaa(huolto2);
+     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huollot.lisaa(huolto1);
+     * Huolto huolto2 = new Huolto(2); huolto2.arvoHuolto(); huollot.lisaa(huolto2);
      * String hakemisto = "testihuollot";
      * String tiedNimi = hakemisto +"/huollot.dat";
      * File ftied = new File(tiedNimi);
@@ -89,9 +88,7 @@ public class Huollot implements Iterable<Huolto> {
             }
             muutettu = false;
         } catch (FileNotFoundException ex) {
-            throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);
-       // } catch (IOException e) {
-       //     throw new ApuException("Ongelmia tiedoston kanssa " +ftied.getAbsolutePath());    
+            throw new ApuException("Ei saa luettua tiedostoa " +tiedostonNimi);   
         }
     }
     
@@ -123,8 +120,7 @@ public class Huollot implements Iterable<Huolto> {
         }
     }
 
-    
-    
+     
     /**
      * Palauttaa tallennettujen huoltojen lukumäärän
      * @return huoltojen lukumäärä
@@ -137,17 +133,17 @@ public class Huollot implements Iterable<Huolto> {
     /**
      * Palauttaa listan annetun pyörän huolloista.
      * @param pyoraNro Pyörä jonka huoltoja etsitään
-     * @return Viite listaan pyörän huolloista
+     * @return viite listaan, johon tallennettu pyörän huollot
      * @throws IndexOutOfBoundsException virhe jos yritetään etsiä sellaisen pyörän huoltoa, jota ei ole lisätty
      * @example
      * <pre name="test">
      * Huollot huollot = new Huollot();
-     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); huollot.lisaa(huolto1);
+     * Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huollot.lisaa(huolto1);
      * huollot.annaHuollot(1).get(0) == huolto1 === true;
      * huollot.annaHuollot(1).get(1) == huolto1 === false; #THROWS IndexOutOfBoundsException
-     * Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huolto2.rekisteroi(); huollot.lisaa(huolto2);
+     * Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huollot.lisaa(huolto2);
      * huollot.annaHuollot(1).get(1) == huolto2 === true;
-     * Huolto huolto3 = new Huolto(2); huolto3.arvoHuolto(); huolto3.rekisteroi(); huollot.lisaa(huolto3);
+     * Huolto huolto3 = new Huolto(2); huolto3.arvoHuolto(); huollot.lisaa(huolto3);
      * huollot.annaHuollot(2).get(0) == huolto3 === true;
      * huollot.annaHuollot(3).get(0) == huolto3 === true; #THROWS IndexOutOfBoundsException
      * </pre>
@@ -237,58 +233,6 @@ public class Huollot implements Iterable<Huolto> {
             }
         }
         return 0;  
-    }
-    
-    
-    /**
-     * Testataan huollot-luokan toimintaa
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-        Huollot huollot = new Huollot();
-        
-        // Luetaan aiemmin lisätyt huollot tiedostosta
-        try {
-            huollot.lueTiedosto("huollot");
-        } catch (ApuException ex) {
-            System.err.println(ex.getMessage());
-        }
-        
-        // Arvotaan huoltoja pyörälle 1
-        Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); 
-        Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huolto2.rekisteroi(); 
-        
-        // Arvotaan huoltoja pyörälle 2
-        Huolto huolto3 = new Huolto(2); huolto3.arvoHuolto(); huolto3.rekisteroi();     
-        Huolto huolto4 = new Huolto(2); huolto4.arvoHuolto(); huolto4.rekisteroi(); 
-        Huolto huolto5 = new Huolto(2); huolto5.arvoHuolto(); huolto5.rekisteroi(); 
-        
-        // Lisätään arvotut huollot
-        huollot.lisaa(huolto1);
-        huollot.lisaa(huolto2);
-        huollot.lisaa(huolto3);
-        huollot.lisaa(huolto4);
-        huollot.lisaa(huolto5);
-        
-        // Tulostetaan pyörän 1 / 2 huollot
-        int i = 2; // minkä pyörän huollot tulostetaan
-        System.out.println("Pyörän " +i +" huollot:\n");
-        List<Huolto> pyoranHuollot = huollot.annaHuollot(i);
-        for (Huolto huolto : pyoranHuollot) {
-            huolto.tulosta(System.out);
-        }
-        
-        try {
-            huollot.tallenna("huollot");
-        } catch (ApuException e) {
-            e.printStackTrace();
-        }
-    }
-  
-    
-    @Override
-    public Iterator<Huolto> iterator() {
-        return null;
     }
 
 
@@ -380,7 +324,7 @@ public class Huollot implements Iterable<Huolto> {
 
     /**
      * Palauttaa vuosiluvut, jolloin huoltoja on tehty
-     * @return Vuosiluvut taulukossa merkkijonona
+     * @return Vuosiluvut listassa merkkijonoina
      * @example
      * <pre name="test">
      * #THROWS IndexOutOfBoundsException
@@ -411,5 +355,57 @@ public class Huollot implements Iterable<Huolto> {
         }
         Collections.sort(vuodet);
         return vuodet;
+    }
+    
+    
+    @Override
+    public Iterator<Huolto> iterator() {
+        return null;  // Ei tarvita tällä hetkellä, koska käytetään listaa huoltojen tallentamiseen.
+    }
+    
+    
+    /**
+     * Testataan huollot-luokan toimintaa
+     * @param args ei käytössä
+     */
+    public static void main(String[] args) {
+        Huollot huollot = new Huollot();
+        
+        // Luetaan aiemmin lisätyt huollot tiedostosta
+        try {
+            huollot.lueTiedosto("huollot");
+        } catch (ApuException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        // Arvotaan huoltoja pyörälle 1
+        Huolto huolto1 = new Huolto(1); huolto1.arvoHuolto(); huolto1.rekisteroi(); 
+        Huolto huolto2 = new Huolto(1); huolto2.arvoHuolto(); huolto2.rekisteroi(); 
+        
+        // Arvotaan huoltoja pyörälle 2
+        Huolto huolto3 = new Huolto(2); huolto3.arvoHuolto(); huolto3.rekisteroi();     
+        Huolto huolto4 = new Huolto(2); huolto4.arvoHuolto(); huolto4.rekisteroi(); 
+        Huolto huolto5 = new Huolto(2); huolto5.arvoHuolto(); huolto5.rekisteroi(); 
+        
+        // Lisätään arvotut huollot
+        huollot.lisaa(huolto1);
+        huollot.lisaa(huolto2);
+        huollot.lisaa(huolto3);
+        huollot.lisaa(huolto4);
+        huollot.lisaa(huolto5);
+        
+        // Tulostetaan pyörän 1 / 2 huollot
+        int i = 2; // minkä pyörän huollot tulostetaan
+        System.out.println("Pyörän " +i +" huollot:\n");
+        List<Huolto> pyoranHuollot = huollot.annaHuollot(i);
+        for (Huolto huolto : pyoranHuollot) {
+            huolto.tulosta(System.out);
+        }
+        
+        try {
+            huollot.tallenna("huollot");
+        } catch (ApuException e) {
+            e.printStackTrace();
+        }
     }
 }
