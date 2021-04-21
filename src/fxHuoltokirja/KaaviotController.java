@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 /**
  * Kontrolleri huoltokirjan kaaviot-näkymälle.
  * @author Henri Leinonen
- * @version 20.4.2021
+ * @version 21.4.2021
  *
  */
 public class KaaviotController implements ModalControllerInterface<Huoltokirja> {
@@ -59,7 +59,7 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
 
     /**
      * Asettaa huoltokirjan käyttöön
-     * @param huoltokirja
+     * @param huoltokirja käytössä oleva huoltokirja
      */
     private void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
@@ -86,7 +86,7 @@ public class KaaviotController implements ModalControllerInterface<Huoltokirja> 
     
     /**
      * Hakee hinnat huoltokirjalta ja asettaa hinnat kaavioon
-     * @param minkä vuoden hinnat haetaan
+     * @param vuosi minkä vuoden hinnat haetaan
      */
     private void haeJaPaivitaHinnat(int vuosi) {
         hinnat = huoltokirja.annaHinnat(vuosi);

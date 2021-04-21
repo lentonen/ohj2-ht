@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /**
  * Kysytään tietueen tiedot dialogilla
  * @author Henri Leinonen
- * @version 20.4.2021
+ * @version 21.4.2021
  * @param <TYPE> Käsiteltävän tietueen tyyppi
  */
 public class TietueDialogController<TYPE extends Tietue> implements ModalControllerInterface<TYPE>, Initializable {
@@ -109,7 +109,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     
     
     /**
-     * Alustetaan dialogi
+     * Alustetaan dialogi. Luodaan kentät ja alustetaan muutoksenkäsittely näppäimiä painettaessa.
      */
     private void alusta() {
         texts = luoKentat(gridTietue, tietueKohdalla); 
@@ -171,7 +171,7 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     
     /**
      * Asetetaan kenttä.
-     * @param kentta
+     * @param kentta mitä kenttää käsitellään
      */
     private void setKentta(int kentta) {
         this.kentta = kentta;

@@ -239,17 +239,51 @@ public class Huoltokirja {
      * Tallentaa pyörien ja huoltojen tiedot tiedostoihin
      * Yrittää tallettaa huollot, jos pyörien tallentaminen epäonnistuu.
      * Jos jompikumpi epäonnistuu, heittää lopuksi poikkeuksen, joka näyttää mikä epäonnistui.
+     * @param hakemisto tiedostopolku, johon kansiot tallennetaan. Annetaan muodossa "folder/folder/"
      * @throws ApuException jos pyörien tai huoltojen tallentaminen epäonnistuu
-     */  // Testit Pyorat- ja Huollot-luokissa
-    public void talleta() throws ApuException {
+     * @example
+     * <pre name="test">
+     * #THROWS ApuException
+     * #import java.io.File;
+     * Huoltokirja huoltokirja = new Huoltokirja();
+     * Pyora pyora = new Pyora();
+     * pyora.parse(" 1 |  Kottero  |  Helkama   | Jopo  | 2000   | abc123");
+     * Huolto huolto = new Huolto();
+     * huolto.parse(" 1  |  1  |1.1.2019|50.00|  Iskari  | 100 | Öljynvaihto");
+     * huoltokirja.lisaa(pyora);
+     * huoltokirja.lisaa(huolto);
+     * huoltokirja.getPyoria() === 1;
+     * huoltokirja.getHuoltoja() === 1;
+     * 
+     * String hakemisto = "testit/";
+     * File pyorat = new File(hakemisto + "pyorat/pyorat.dat");
+     * File huollot = new File(hakemisto + "huollot/huollot.dat");
+     * huoltokirja.talleta("testit/");
+     * huoltokirja = new Huoltokirja();
+     * huoltokirja.getPyoria() === 0;
+     * huoltokirja.getHuoltoja() === 0;
+     * huoltokirja.lueTiedosto("testit/");
+     * huoltokirja.getPyoria() === 1;
+     * huoltokirja.getHuoltoja() === 1;
+     * huoltokirja.annaPyora(0).equals(pyora);
+     * huoltokirja.annaHuollot(pyora).get(0).toString() === "1|1|1.1.2019|50.00|Iskari|100|Öljynvaihto";
+     * 
+     * pyorat.delete() === true;  // tuhoaa .dat-tiedoston
+     * pyorat.getParentFile().delete() === true;  // tuhoaa pyorat.kansion
+     * huollot.delete() === true;  // tuhoaa .dat-tiedoston
+     * huollot.getParentFile().delete() === true;  // tuhoaa testikansion
+     * pyorat.getParentFile().getParentFile().delete() === true;  // tuhoaa testit.kansion
+     * </pre>
+     */
+    public void talleta(String hakemisto) throws ApuException {
         String virhe="";
         try {
-            pyorat.tallenna("pyorat");
+            pyorat.tallenna(hakemisto +"pyorat");
         } catch (ApuException e) {
             virhe = e.getMessage();
         }
         try {
-            huollot.tallenna("huollot");
+            huollot.tallenna(hakemisto +"huollot");
         } catch (ApuException e) {
             virhe += e.getMessage();
         }
@@ -259,14 +293,15 @@ public class Huoltokirja {
     
     /**
      * Lukee pyörien ja huoltojen tiedot tiedostosta.
+     * @param hakemisto hakemisto josta huoltokirjan tietoja etsitään
      * @throws ApuException jos lukeminen epäonnistuu
      */  // Testit Pyorat- ja Huollot-luokissa
-    public void lueTiedosto() throws ApuException {
+    public void lueTiedosto(String hakemisto) throws ApuException {
         pyorat = new Pyorat();      // Tyhjentää olemassaolevan pyorat-olion
         huollot = new Huollot();    // Tyhjentää olemassaolevan huollot-olion
      
-        pyorat.lueTiedosto("pyorat");                // Lukee tiedot pyoristä
-        huollot.lueTiedosto("huollot");              // Lukee tiedot huolloista   
+        pyorat.lueTiedosto(hakemisto+"pyorat");                // Lukee tiedot pyoristä
+        huollot.lueTiedosto(hakemisto +"huollot");              // Lukee tiedot huolloista   
     }
     
     
@@ -417,7 +452,7 @@ public class Huoltokirja {
         Huoltokirja huoltokirja = new Huoltokirja();
         
         try {
-            huoltokirja.lueTiedosto();
+            huoltokirja.lueTiedosto("");
         } catch (ApuException e1) {
             System.err.println("Tiedoston luku meni pieleen.");
         }
@@ -457,7 +492,7 @@ public class Huoltokirja {
         }
         
         try {
-            huoltokirja.talleta();
+            huoltokirja.talleta("testi");
         }catch (ApuException e) {
             System.err.println(e.getMessage());
         }

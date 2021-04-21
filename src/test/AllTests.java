@@ -15,7 +15,9 @@ import org.junit.runners.Suite.SuiteClasses;
     huoltokirja.test.HuoltoTest.class,
     huoltokirja.test.PyoraTest.class,
     huoltokirja.test.PyoratTest.class,
-    huoltokirja.test.TietueTest.class 
+    huoltokirja.test.TietueTest.class,
+    huoltokirja.test.HuoltokirjaTest.class,
+    huoltokirja.test.ApulaskutTest.class
     })
 
 public class AllTests {

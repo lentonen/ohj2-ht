@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 /**
  * Kontrolleri valitun pyörän huoltokirjan ikkunalle.
  * @author Henri Leinonen
- * @version 20.4.2021
+ * @version 21.4.2021
  *
  */
 public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Pyora>, Initializable {
@@ -104,6 +104,11 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     private int kentta = 1;
     
     
+    /**
+     * Alustetaan valitun pyörän huoltokirja-näkymä. Alustamisen yhteydessä
+     * Luodaan kentät huoltojen tiedoille, tyhjennetään huoltolista edellisen pyörän jäljiltä, 
+     * alustetaan hiiren toiminta, alustetaan suodatin jolla voidaan hakea kenttien mukaan.
+     */
     private void alusta() {
         chooserHuollot.clear(); 
         chooserHuollot.addSelectionListener(e -> naytaHuolto());                                    // lambda-lauseke. Kun valitaan listasta, niin suoritetaan funktio e joka suorittaa naytaHuolto();
@@ -153,6 +158,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     /**
      * Päivittää listan kun uusi huolto lisätään
+     * @param tunnusNumero huolto joka listasta on valittuna päivityksen jälkeen
      */
     private void paivitaLista(int tunnusNumero) {
         String ehto = labelHakuEhto.getText();
@@ -195,6 +201,7 @@ public class HuoltokirjaAukiGUIController implements ModalControllerInterface<Py
     
     /**
      * Muokataan huollon tietoja
+     * @param k kenttä jota halutaan muokata
      */
     private void muokkaaHuoltoa(int k) { 
         //HuoltokirjaAukiDialogGUIController.muokkaaHuolto(null, huoltoKohdalla);

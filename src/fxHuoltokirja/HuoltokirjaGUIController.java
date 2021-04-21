@@ -29,7 +29,7 @@ import static fxHuoltokirja.HuoltokirjaDialogGUIController.getFieldId;;
 /**
  * Kontrolleri huoltokirjan pääikkunalle
  * @author Henri Leinonen
- * @version 20.4.2021
+ * @version 21.4.2021
  */
 public class HuoltokirjaGUIController implements Initializable { // Pitää toteuttaa initializable, jotta päästään lisäämään väliaikaiset ikkunat testaamista varten.
     
@@ -99,6 +99,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     @FXML private TextInputControl[] texts;
     private int kentta = 1;
     private static Pyora apuPyora = new Pyora();      // Pyörä jolta kysytään kenttiä.
+    private String hakemisto = "";                    // mihin hakemistoon pyorat ja huollot tallennetaan  
     
     
     /**
@@ -116,7 +117,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
      */
     private String tallenna() {
         try {
-            huoltokirja.talleta();
+            huoltokirja.talleta(hakemisto);
             return null;
         } catch (ApuException ex) {
               Dialogs.showMessageDialog("Tallennuksessa ongelmia! " + ex.getMessage());
@@ -193,6 +194,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     
     /**
      * Avaa dialogin, jonka avulla pyörän tietoja muokataan
+     * @param k mitä kenttää muokataan
      */
     private void muokkaaPyoraa(int k) {
         if (pyoraKohdalla == null) return;      // Ei muokata jos pyörää ei ole valittu
@@ -311,7 +313,7 @@ public class HuoltokirjaGUIController implements Initializable { // Pitää tote
     public void setHuoltokirja(Huoltokirja huoltokirja) {
         this.huoltokirja = huoltokirja;
         try {                               // Yrittää lukea huoltokirjan tiedostosta.
-            huoltokirja.lueTiedosto();
+            huoltokirja.lueTiedosto(hakemisto);
         } catch (ApuException ex) {
             System.err.println(ex.getMessage());
         }

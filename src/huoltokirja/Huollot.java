@@ -77,7 +77,6 @@ public class Huollot implements Iterable<Huolto> {
      */
     public void lueTiedosto(String hakemisto) throws ApuException {
         File ftied = new File(hakemisto + tiedostonNimi); 
-        
         try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
             while (fi.hasNext()) {
                 String s = "";
