@@ -145,11 +145,12 @@ public class Huoltokirja {
      * huoltokirja.getPyoria() === 1;
      * huoltokirja.poista(pyora);
      * huoltokirja.getPyoria() === 0;
+     * TODO:testit huoltojen poistamiselle.
      * </pre>
      */
     public void poista(Pyora pyora) {
+        huollot.poistaKaikkiHuollot(pyora.getTunnusNro());
         pyorat.poista(pyora.getTunnusNro());
-        
     }
     
     
@@ -293,9 +294,9 @@ public class Huoltokirja {
     
     /**
      * Lukee pyörien ja huoltojen tiedot tiedostosta.
-     * @param hakemisto hakemisto josta huoltokirjan tietoja etsitään
+     * @param hakemisto hakemisto josta huoltokirjan tietoja etsitään. Annetaan muodossa "folder/folder/"
      * @throws ApuException jos lukeminen epäonnistuu
-     */  // Testit Pyorat- ja Huollot-luokissa
+     */  // Testit talleta-metodissa.
     public void lueTiedosto(String hakemisto) throws ApuException {
         pyorat = new Pyorat();      // Tyhjentää olemassaolevan pyorat-olion
         huollot = new Huollot();    // Tyhjentää olemassaolevan huollot-olion

@@ -407,4 +407,21 @@ public class Huollot implements Iterable<Huolto> {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * Poistetaan kaikki tietyn pyörän huollot
+     * @param tunnusNro poistettavan pyörän numero
+     * TODO:testit
+     */
+    public void poistaKaikkiHuollot(int tunnusNro) {
+        int i= 0;
+        while (i<huollot.size()) {
+            if (huollot.get(i).getPyoraNro() == tunnusNro) {
+                huollot.remove(i);
+                muutettu = true;
+            }
+            else i++;
+        }
+    }
 }
